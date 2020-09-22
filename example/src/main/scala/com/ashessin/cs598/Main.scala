@@ -2,6 +2,7 @@ package com.ashessin.cs598
 
 import caliban.client.SelectionBuilder
 import com.ashessin.cs598.clients.Github._
+import com.ashessin.cs598.macros._
 import zio.console.putStrLn
 import zio.{App, ExitCode, URIO}
 
@@ -11,6 +12,7 @@ object Main extends App {
   private val githubGraphqlEndpoint: String = ConfigFactory.load.getString("GITHUB_GRAPHQL_ENDPOINT")
   private val githubOauthToken: String      = ConfigFactory.load.getString("GITHUB_OAUTH_TOKEN")
 
+  @BenchmarkMethod
   override def run(args: List[String]): URIO[zio.ZEnv, ExitCode] = {
 
     case class GhUser(login: String, bio: Option[String], email: String)
