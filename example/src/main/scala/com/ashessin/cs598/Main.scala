@@ -15,11 +15,12 @@ object Main extends App {
   @BenchmarkMethod
   override def run(args: List[String]): URIO[zio.ZEnv, ExitCode] = {
 
-    case class GhUser(login: String, bio: Option[String], email: String)
-    case class GhLicense(id: String, description: Option[String])
+    // These case classes should be generated and mapped automatically as a result of macro expansion below
+    // case class GhUser(login: String, bio: Option[String], email: String)
+    // case class GhLicense(id: String, description: Option[String])
 
-    val userFields: SelectionBuilder[User, _]       = (User.login ~ User.bio ~ User.email).mapN(GhUser)
-    val licenseFields: SelectionBuilder[License, _] = (License.id ~ License.spdxId).mapN(GhLicense)
+    @MapSelection val userFields: SelectionBuilder[User, _]       = User.login ~ User.bio ~ User.email
+    @MapSelection val licenseFields: SelectionBuilder[License, _] = License.id ~ License.spdxId
 
     val selection: caliban.client.SelectionBuilder[caliban.client.Operations.RootQuery, _] = {
       Query.viewer(userFields) ~ Query.licenses(licenseFields)
