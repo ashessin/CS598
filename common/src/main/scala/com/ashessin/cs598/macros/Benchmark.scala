@@ -8,12 +8,12 @@ import scala.reflect.macros.whitebox
  * Annotation macro to benchmark ie. show time consumed by a method.
  */
 @compileTimeOnly("Enable macro paradise to expand macro annotations.")
-class BenchmarkMethod extends StaticAnnotation {
+class Benchmark extends StaticAnnotation {
   //noinspection ScalaUnusedSymbol
-  def macroTransform(annottees: Any*): Any = macro BenchmarkMethodMacro.impl
+  def macroTransform(annottees: Any*): Any = macro BenchmarkMacro.impl
 }
 
-object BenchmarkMethodMacro {
+object BenchmarkMacro {
   def impl(c: whitebox.Context)(annottees: c.Expr[Any]*): c.Expr[c.universe.DefDef] = {
     import c.universe._
 
@@ -26,7 +26,7 @@ object BenchmarkMethodMacro {
             println("Method `" +  ${tname.toString} + "` took: " + (end - start)/1000000 + "ms\n")
             result
           }"""
-      case _ => c.abort(c.enclosingPosition, "Annotation @BenchmarkMethod can be used only with method definition.")
+      case _ => c.abort(c.enclosingPosition, "Annotation @Benchmark can be used only with method definition.")
     }
     c.Expr[DefDef](result)
   }

@@ -12,7 +12,7 @@ object Main extends App {
   private val githubGraphqlEndpoint: String = ConfigFactory.load.getString("GITHUB_GRAPHQL_ENDPOINT")
   private val githubOauthToken: String      = ConfigFactory.load.getString("GITHUB_OAUTH_TOKEN")
 
-  @BenchmarkMethod
+  @Benchmark
   override def run(args: List[String]): URIO[zio.ZEnv, ExitCode] = {
 
     // These case classes should be generated and mapped automatically as a result of macro expansion below
