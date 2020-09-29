@@ -13,7 +13,7 @@ class Benchmark extends StaticAnnotation {
   def macroTransform(annottees: Any*): Any = macro BenchmarkMacro.impl
 }
 
-object BenchmarkMacro {
+private object BenchmarkMacro {
   def impl(c: whitebox.Context)(annottees: c.Expr[Any]*): c.Expr[c.universe.DefDef] = {
     import c.universe._
 
