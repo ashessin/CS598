@@ -95,7 +95,7 @@ private object MapSelectionMacro {
         val unitSelections: Seq[c.universe.Tree] = extractUnitSelections(exprTree)
         // The case class name
         val caseClassName: c.universe.TypeName = TypeName(
-          caseClassNamePrefix + tptTree.tpe.typeArgs.head.typeSymbol.name
+          caseClassNamePrefix + exprTree.tpe.typeArgs.head.typeSymbol.name
         )
         // A list of parameters for the case class
         val parameters: Seq[Tree] = unitSelections.map { unitSelection =>
