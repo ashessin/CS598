@@ -1,6 +1,6 @@
 package com.ashessin.cs598.macros
 
-import scala.annotation.{StaticAnnotation, compileTimeOnly}
+import scala.annotation.{ compileTimeOnly, StaticAnnotation }
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox
 

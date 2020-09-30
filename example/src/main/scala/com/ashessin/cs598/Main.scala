@@ -4,7 +4,7 @@ import caliban.client.SelectionBuilder
 import com.ashessin.cs598.clients.Github._
 import com.ashessin.cs598.macros._
 import zio.console.putStrLn
-import zio.{App, ExitCode, URIO}
+import zio.{ App, ExitCode, URIO }
 
 object Main extends App {
 
