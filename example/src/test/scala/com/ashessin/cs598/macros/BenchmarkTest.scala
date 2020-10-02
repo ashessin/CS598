@@ -58,4 +58,7 @@ class BenchmarkTest extends AnyFlatSpec with Matchers {
     foo.messages.last should startWith("Method `printHelloWorld` took: ")
   }
 
+  // TODO: Checks for name clash. The returned AST defines 3 additional values.
+  //       In all likelihood this shouldn't be an issue when using `c.frehanme()`.
+
 }
