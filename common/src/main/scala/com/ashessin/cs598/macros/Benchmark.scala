@@ -22,13 +22,15 @@ private object BenchmarkMacro {
         val result = c.freshName(TermName("result"))
         val start  = c.freshName(TermName("start"))
         val end    = c.freshName(TermName("end"))
-        q"""$mods def $tname[..$tparams](...$paramss): $tpt = {
-            val $start = System.nanoTime()
-            val $result = $expr
-            val $end = System.nanoTime()
-            println("Method `" +  ${tname.toString} + "` took: " + ($end - $start)/1000000 + "ms\n")
-            $result
-          }"""
+        q"""
+        $mods def $tname[..$tparams](...$paramss): $tpt = {
+          val $start = System.nanoTime()
+          val $result = $expr
+          val $end = System.nanoTime()
+          println("Method `" +  ${tname.toString} + "` took: " + ($end - $start)/1000000 + "ms\n")
+          $result
+        }
+        """
       case _ => c.abort(c.enclosingPosition, "Annotation @Benchmark can be used only with method definition.")
     }
     c.Expr[DefDef](result)
