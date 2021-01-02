@@ -243,6 +243,8 @@ project/plugins/project/
 
 # End of https://www.toptal.com/developers/gitignore/api/scala,sbt,intellij,intellij+iml,intellij+all,vscode
 
-
+.bloop
 .bsp
+.vscode
+.metals
 application.conf

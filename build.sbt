@@ -1,6 +1,6 @@
 name := "playground"
 organization in ThisBuild := "edu.uic"
-scalaVersion in ThisBuild := "2.12.12"
+scalaVersion in ThisBuild := "2.13.5"
 
 // PROJECTS
 
@@ -20,7 +20,10 @@ lazy val common = project
     name := "playground-common",
     settings,
     assemblySettings,
-    libraryDependencies ++= commonDependencies ++ Seq(dependencies.scalaReflect)
+    libraryDependencies ++= commonDependencies ++ Seq(
+      dependencies.scalaReflect,
+      dependencies.scalaGraphCore
+    )
   )
 
 lazy val example = project
@@ -29,7 +32,7 @@ lazy val example = project
     name := "playground-example",
     settings,
     assemblySettings,
-    libraryDependencies ++= commonDependencies
+    libraryDependencies ++= commonDependencies ++ Seq()
   )
   .dependsOn(common)
 
@@ -37,18 +40,14 @@ lazy val example = project
 
 lazy val dependencies =
   new {
-    // format: off
-    val scalaReflect    = "org.scala-lang"                 % "scala-compiler"                  % "2.12.12"
-    val macroParadise   = "org.scalamacros"                % "paradise"                        % "2.1.1"
-    val calibanClient   = "com.github.ghostdogpr"         %% "caliban-client"                  % "0.9.2"
-    val zioBackend      = "com.softwaremill.sttp.client"  %% "async-http-client-backend-zio"   % "2.2.9"
-
-    val typesafeConfig  = "com.typesafe"                   % "config"                          % "1.4.0"
-
-    val logbackClassic  = "ch.qos.logback"                 % "logback-classic"                 % "1.2.3"   % "runtime"
-
-    val scalaTest       = "org.scalatest"                 %% "scalatest"                       % "3.2.2"   % "test"
-    // format: on
+    val scalaReflect   = "org.scala-lang"                  % "scala-compiler"                    % "2.13.5"
+    val scalaGraphCore = "org.scala-graph"                %% "graph-core"                       % "1.13.2"
+    val calibanClient  = "com.github.ghostdogpr"          %% "caliban-client"                   % "0.9.4"
+    val zioBackend     = "com.softwaremill.sttp.client"   %% "async-http-client-backend-zio"    % "2.2.9"
+    val mongodbDriver  = "org.mongodb.scala"              %% "mongo-scala-driver"               % "4.2.3"
+    val typesafeConfig = "com.typesafe"                    % "config"                           % "1.4.1"
+    val logbackClassic = "ch.qos.logback"                  % "logback-classic"                  % "1.2.3"   % "runtime"
+    val scalaTest      = "org.scalatest"                  %% "scalatest"                        % "3.2.3"   % "test"
   }
 
 lazy val commonDependencies = Seq(
@@ -56,7 +55,8 @@ lazy val commonDependencies = Seq(
   dependencies.logbackClassic,
   dependencies.scalaTest,
   dependencies.calibanClient,
-  dependencies.zioBackend
+  dependencies.zioBackend,
+  dependencies.mongodbDriver
 )
 
 // SETTINGS
@@ -65,15 +65,17 @@ lazy val settings =
   commonSettings //++ wartremoverSettings ++ scalafmtSettings
 
 lazy val compilerOptions = Seq(
-  "-unchecked",
+  // format: off
+  "-deprecation",
+  "-encoding", "utf8",
   "-feature",
   "-language:existentials",
   "-language:higherKinds",
   "-language:implicitConversions",
   "-language:postfixOps",
-  "-deprecation",
-  "-encoding",
-  "utf8"
+  "-unchecked",
+  "-Ymacro-annotations",
+  // format: on
 )
 
 lazy val commonSettings = Seq(
@@ -82,13 +84,15 @@ lazy val commonSettings = Seq(
     "Local Maven Repository" at "file://" + Path.userHome.absolutePath + "/.m2/repository",
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots")
-  ),
-  addCompilerPlugin(dependencies.macroParadise cross CrossVersion.full)
+  )
 )
 
 //lazy val wartremoverSettings = Seq(
 //  wartremoverWarnings in (Compile, compile) ++= Warts.allBut(Wart.Throw),
-//  wartremoverExcluded ++= Seq(baseDirectory.value / "common" / "src" / "main" / "clients" / "Github.scala")
+//  wartremoverExcluded ++= Seq(
+//    sourceManaged.value,
+//    baseDirectory.value / "common" / "src" / "main" / "scala" / "com" / "Github.scala"
+//  )
 //)
 //
 //lazy val scalafmtSettings = Seq(

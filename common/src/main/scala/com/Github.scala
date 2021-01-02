@@ -1,11 +1,11 @@
-package com.ashessin.cs598.clients
+package com
 
 import caliban.client.CalibanClientError.DecodingError
 import caliban.client.FieldBuilder._
 import caliban.client.SelectionBuilder._
 import caliban.client._
 import caliban.client.Operations._
-import caliban.client.Value._
+import caliban.client.__Value._
 
 object Github {
 
@@ -34,12 +34,12 @@ object Github {
     case object CREATED_AT extends AuditLogOrderField
 
     implicit val decoder: ScalarDecoder[AuditLogOrderField] = {
-      case StringValue("CREATED_AT") => Right(AuditLogOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build AuditLogOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(AuditLogOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build AuditLogOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[AuditLogOrderField] = new ArgEncoder[AuditLogOrderField] {
-      override def encode(value: AuditLogOrderField): Value = value match {
-        case AuditLogOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: AuditLogOrderField): __Value = value match {
+        case AuditLogOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "AuditLogOrderField"
     }
@@ -52,16 +52,16 @@ object Github {
     case object WARNING extends CheckAnnotationLevel
 
     implicit val decoder: ScalarDecoder[CheckAnnotationLevel] = {
-      case StringValue("FAILURE") => Right(CheckAnnotationLevel.FAILURE)
-      case StringValue("NOTICE")  => Right(CheckAnnotationLevel.NOTICE)
-      case StringValue("WARNING") => Right(CheckAnnotationLevel.WARNING)
-      case other                  => Left(DecodingError(s"Can't build CheckAnnotationLevel from input $other"))
+      case __StringValue("FAILURE") => Right(CheckAnnotationLevel.FAILURE)
+      case __StringValue("NOTICE")  => Right(CheckAnnotationLevel.NOTICE)
+      case __StringValue("WARNING") => Right(CheckAnnotationLevel.WARNING)
+      case other                    => Left(DecodingError(s"Can't build CheckAnnotationLevel from input $other"))
     }
     implicit val encoder: ArgEncoder[CheckAnnotationLevel] = new ArgEncoder[CheckAnnotationLevel] {
-      override def encode(value: CheckAnnotationLevel): Value = value match {
-        case CheckAnnotationLevel.FAILURE => EnumValue("FAILURE")
-        case CheckAnnotationLevel.NOTICE  => EnumValue("NOTICE")
-        case CheckAnnotationLevel.WARNING => EnumValue("WARNING")
+      override def encode(value: CheckAnnotationLevel): __Value = value match {
+        case CheckAnnotationLevel.FAILURE => __EnumValue("FAILURE")
+        case CheckAnnotationLevel.NOTICE  => __EnumValue("NOTICE")
+        case CheckAnnotationLevel.WARNING => __EnumValue("WARNING")
       }
       override def typeName: String = "CheckAnnotationLevel"
     }
@@ -79,26 +79,26 @@ object Github {
     case object TIMED_OUT       extends CheckConclusionState
 
     implicit val decoder: ScalarDecoder[CheckConclusionState] = {
-      case StringValue("ACTION_REQUIRED") => Right(CheckConclusionState.ACTION_REQUIRED)
-      case StringValue("CANCELLED")       => Right(CheckConclusionState.CANCELLED)
-      case StringValue("FAILURE")         => Right(CheckConclusionState.FAILURE)
-      case StringValue("NEUTRAL")         => Right(CheckConclusionState.NEUTRAL)
-      case StringValue("SKIPPED")         => Right(CheckConclusionState.SKIPPED)
-      case StringValue("STALE")           => Right(CheckConclusionState.STALE)
-      case StringValue("SUCCESS")         => Right(CheckConclusionState.SUCCESS)
-      case StringValue("TIMED_OUT")       => Right(CheckConclusionState.TIMED_OUT)
-      case other                          => Left(DecodingError(s"Can't build CheckConclusionState from input $other"))
+      case __StringValue("ACTION_REQUIRED") => Right(CheckConclusionState.ACTION_REQUIRED)
+      case __StringValue("CANCELLED")       => Right(CheckConclusionState.CANCELLED)
+      case __StringValue("FAILURE")         => Right(CheckConclusionState.FAILURE)
+      case __StringValue("NEUTRAL")         => Right(CheckConclusionState.NEUTRAL)
+      case __StringValue("SKIPPED")         => Right(CheckConclusionState.SKIPPED)
+      case __StringValue("STALE")           => Right(CheckConclusionState.STALE)
+      case __StringValue("SUCCESS")         => Right(CheckConclusionState.SUCCESS)
+      case __StringValue("TIMED_OUT")       => Right(CheckConclusionState.TIMED_OUT)
+      case other                            => Left(DecodingError(s"Can't build CheckConclusionState from input $other"))
     }
     implicit val encoder: ArgEncoder[CheckConclusionState] = new ArgEncoder[CheckConclusionState] {
-      override def encode(value: CheckConclusionState): Value = value match {
-        case CheckConclusionState.ACTION_REQUIRED => EnumValue("ACTION_REQUIRED")
-        case CheckConclusionState.CANCELLED       => EnumValue("CANCELLED")
-        case CheckConclusionState.FAILURE         => EnumValue("FAILURE")
-        case CheckConclusionState.NEUTRAL         => EnumValue("NEUTRAL")
-        case CheckConclusionState.SKIPPED         => EnumValue("SKIPPED")
-        case CheckConclusionState.STALE           => EnumValue("STALE")
-        case CheckConclusionState.SUCCESS         => EnumValue("SUCCESS")
-        case CheckConclusionState.TIMED_OUT       => EnumValue("TIMED_OUT")
+      override def encode(value: CheckConclusionState): __Value = value match {
+        case CheckConclusionState.ACTION_REQUIRED => __EnumValue("ACTION_REQUIRED")
+        case CheckConclusionState.CANCELLED       => __EnumValue("CANCELLED")
+        case CheckConclusionState.FAILURE         => __EnumValue("FAILURE")
+        case CheckConclusionState.NEUTRAL         => __EnumValue("NEUTRAL")
+        case CheckConclusionState.SKIPPED         => __EnumValue("SKIPPED")
+        case CheckConclusionState.STALE           => __EnumValue("STALE")
+        case CheckConclusionState.SUCCESS         => __EnumValue("SUCCESS")
+        case CheckConclusionState.TIMED_OUT       => __EnumValue("TIMED_OUT")
       }
       override def typeName: String = "CheckConclusionState"
     }
@@ -110,14 +110,14 @@ object Github {
     case object LATEST extends CheckRunType
 
     implicit val decoder: ScalarDecoder[CheckRunType] = {
-      case StringValue("ALL")    => Right(CheckRunType.ALL)
-      case StringValue("LATEST") => Right(CheckRunType.LATEST)
-      case other                 => Left(DecodingError(s"Can't build CheckRunType from input $other"))
+      case __StringValue("ALL")    => Right(CheckRunType.ALL)
+      case __StringValue("LATEST") => Right(CheckRunType.LATEST)
+      case other                   => Left(DecodingError(s"Can't build CheckRunType from input $other"))
     }
     implicit val encoder: ArgEncoder[CheckRunType] = new ArgEncoder[CheckRunType] {
-      override def encode(value: CheckRunType): Value = value match {
-        case CheckRunType.ALL    => EnumValue("ALL")
-        case CheckRunType.LATEST => EnumValue("LATEST")
+      override def encode(value: CheckRunType): __Value = value match {
+        case CheckRunType.ALL    => __EnumValue("ALL")
+        case CheckRunType.LATEST => __EnumValue("LATEST")
       }
       override def typeName: String = "CheckRunType"
     }
@@ -131,18 +131,18 @@ object Github {
     case object REQUESTED   extends CheckStatusState
 
     implicit val decoder: ScalarDecoder[CheckStatusState] = {
-      case StringValue("COMPLETED")   => Right(CheckStatusState.COMPLETED)
-      case StringValue("IN_PROGRESS") => Right(CheckStatusState.IN_PROGRESS)
-      case StringValue("QUEUED")      => Right(CheckStatusState.QUEUED)
-      case StringValue("REQUESTED")   => Right(CheckStatusState.REQUESTED)
-      case other                      => Left(DecodingError(s"Can't build CheckStatusState from input $other"))
+      case __StringValue("COMPLETED")   => Right(CheckStatusState.COMPLETED)
+      case __StringValue("IN_PROGRESS") => Right(CheckStatusState.IN_PROGRESS)
+      case __StringValue("QUEUED")      => Right(CheckStatusState.QUEUED)
+      case __StringValue("REQUESTED")   => Right(CheckStatusState.REQUESTED)
+      case other                        => Left(DecodingError(s"Can't build CheckStatusState from input $other"))
     }
     implicit val encoder: ArgEncoder[CheckStatusState] = new ArgEncoder[CheckStatusState] {
-      override def encode(value: CheckStatusState): Value = value match {
-        case CheckStatusState.COMPLETED   => EnumValue("COMPLETED")
-        case CheckStatusState.IN_PROGRESS => EnumValue("IN_PROGRESS")
-        case CheckStatusState.QUEUED      => EnumValue("QUEUED")
-        case CheckStatusState.REQUESTED   => EnumValue("REQUESTED")
+      override def encode(value: CheckStatusState): __Value = value match {
+        case CheckStatusState.COMPLETED   => __EnumValue("COMPLETED")
+        case CheckStatusState.IN_PROGRESS => __EnumValue("IN_PROGRESS")
+        case CheckStatusState.QUEUED      => __EnumValue("QUEUED")
+        case CheckStatusState.REQUESTED   => __EnumValue("REQUESTED")
       }
       override def typeName: String = "CheckStatusState"
     }
@@ -155,16 +155,16 @@ object Github {
     case object OUTSIDE extends CollaboratorAffiliation
 
     implicit val decoder: ScalarDecoder[CollaboratorAffiliation] = {
-      case StringValue("ALL")     => Right(CollaboratorAffiliation.ALL)
-      case StringValue("DIRECT")  => Right(CollaboratorAffiliation.DIRECT)
-      case StringValue("OUTSIDE") => Right(CollaboratorAffiliation.OUTSIDE)
-      case other                  => Left(DecodingError(s"Can't build CollaboratorAffiliation from input $other"))
+      case __StringValue("ALL")     => Right(CollaboratorAffiliation.ALL)
+      case __StringValue("DIRECT")  => Right(CollaboratorAffiliation.DIRECT)
+      case __StringValue("OUTSIDE") => Right(CollaboratorAffiliation.OUTSIDE)
+      case other                    => Left(DecodingError(s"Can't build CollaboratorAffiliation from input $other"))
     }
     implicit val encoder: ArgEncoder[CollaboratorAffiliation] = new ArgEncoder[CollaboratorAffiliation] {
-      override def encode(value: CollaboratorAffiliation): Value = value match {
-        case CollaboratorAffiliation.ALL     => EnumValue("ALL")
-        case CollaboratorAffiliation.DIRECT  => EnumValue("DIRECT")
-        case CollaboratorAffiliation.OUTSIDE => EnumValue("OUTSIDE")
+      override def encode(value: CollaboratorAffiliation): __Value = value match {
+        case CollaboratorAffiliation.ALL     => __EnumValue("ALL")
+        case CollaboratorAffiliation.DIRECT  => __EnumValue("DIRECT")
+        case CollaboratorAffiliation.OUTSIDE => __EnumValue("OUTSIDE")
       }
       override def typeName: String = "CollaboratorAffiliation"
     }
@@ -182,26 +182,26 @@ object Github {
     case object OWNER                  extends CommentAuthorAssociation
 
     implicit val decoder: ScalarDecoder[CommentAuthorAssociation] = {
-      case StringValue("COLLABORATOR")           => Right(CommentAuthorAssociation.COLLABORATOR)
-      case StringValue("CONTRIBUTOR")            => Right(CommentAuthorAssociation.CONTRIBUTOR)
-      case StringValue("FIRST_TIMER")            => Right(CommentAuthorAssociation.FIRST_TIMER)
-      case StringValue("FIRST_TIME_CONTRIBUTOR") => Right(CommentAuthorAssociation.FIRST_TIME_CONTRIBUTOR)
-      case StringValue("MANNEQUIN")              => Right(CommentAuthorAssociation.MANNEQUIN)
-      case StringValue("MEMBER")                 => Right(CommentAuthorAssociation.MEMBER)
-      case StringValue("NONE")                   => Right(CommentAuthorAssociation.NONE)
-      case StringValue("OWNER")                  => Right(CommentAuthorAssociation.OWNER)
-      case other                                 => Left(DecodingError(s"Can't build CommentAuthorAssociation from input $other"))
+      case __StringValue("COLLABORATOR")           => Right(CommentAuthorAssociation.COLLABORATOR)
+      case __StringValue("CONTRIBUTOR")            => Right(CommentAuthorAssociation.CONTRIBUTOR)
+      case __StringValue("FIRST_TIMER")            => Right(CommentAuthorAssociation.FIRST_TIMER)
+      case __StringValue("FIRST_TIME_CONTRIBUTOR") => Right(CommentAuthorAssociation.FIRST_TIME_CONTRIBUTOR)
+      case __StringValue("MANNEQUIN")              => Right(CommentAuthorAssociation.MANNEQUIN)
+      case __StringValue("MEMBER")                 => Right(CommentAuthorAssociation.MEMBER)
+      case __StringValue("NONE")                   => Right(CommentAuthorAssociation.NONE)
+      case __StringValue("OWNER")                  => Right(CommentAuthorAssociation.OWNER)
+      case other                                   => Left(DecodingError(s"Can't build CommentAuthorAssociation from input $other"))
     }
     implicit val encoder: ArgEncoder[CommentAuthorAssociation] = new ArgEncoder[CommentAuthorAssociation] {
-      override def encode(value: CommentAuthorAssociation): Value = value match {
-        case CommentAuthorAssociation.COLLABORATOR           => EnumValue("COLLABORATOR")
-        case CommentAuthorAssociation.CONTRIBUTOR            => EnumValue("CONTRIBUTOR")
-        case CommentAuthorAssociation.FIRST_TIMER            => EnumValue("FIRST_TIMER")
-        case CommentAuthorAssociation.FIRST_TIME_CONTRIBUTOR => EnumValue("FIRST_TIME_CONTRIBUTOR")
-        case CommentAuthorAssociation.MANNEQUIN              => EnumValue("MANNEQUIN")
-        case CommentAuthorAssociation.MEMBER                 => EnumValue("MEMBER")
-        case CommentAuthorAssociation.NONE                   => EnumValue("NONE")
-        case CommentAuthorAssociation.OWNER                  => EnumValue("OWNER")
+      override def encode(value: CommentAuthorAssociation): __Value = value match {
+        case CommentAuthorAssociation.COLLABORATOR           => __EnumValue("COLLABORATOR")
+        case CommentAuthorAssociation.CONTRIBUTOR            => __EnumValue("CONTRIBUTOR")
+        case CommentAuthorAssociation.FIRST_TIMER            => __EnumValue("FIRST_TIMER")
+        case CommentAuthorAssociation.FIRST_TIME_CONTRIBUTOR => __EnumValue("FIRST_TIME_CONTRIBUTOR")
+        case CommentAuthorAssociation.MANNEQUIN              => __EnumValue("MANNEQUIN")
+        case CommentAuthorAssociation.MEMBER                 => __EnumValue("MEMBER")
+        case CommentAuthorAssociation.NONE                   => __EnumValue("NONE")
+        case CommentAuthorAssociation.OWNER                  => __EnumValue("OWNER")
       }
       override def typeName: String = "CommentAuthorAssociation"
     }
@@ -218,24 +218,24 @@ object Github {
     case object VERIFIED_EMAIL_REQUIRED extends CommentCannotUpdateReason
 
     implicit val decoder: ScalarDecoder[CommentCannotUpdateReason] = {
-      case StringValue("ARCHIVED")                => Right(CommentCannotUpdateReason.ARCHIVED)
-      case StringValue("DENIED")                  => Right(CommentCannotUpdateReason.DENIED)
-      case StringValue("INSUFFICIENT_ACCESS")     => Right(CommentCannotUpdateReason.INSUFFICIENT_ACCESS)
-      case StringValue("LOCKED")                  => Right(CommentCannotUpdateReason.LOCKED)
-      case StringValue("LOGIN_REQUIRED")          => Right(CommentCannotUpdateReason.LOGIN_REQUIRED)
-      case StringValue("MAINTENANCE")             => Right(CommentCannotUpdateReason.MAINTENANCE)
-      case StringValue("VERIFIED_EMAIL_REQUIRED") => Right(CommentCannotUpdateReason.VERIFIED_EMAIL_REQUIRED)
-      case other                                  => Left(DecodingError(s"Can't build CommentCannotUpdateReason from input $other"))
+      case __StringValue("ARCHIVED")                => Right(CommentCannotUpdateReason.ARCHIVED)
+      case __StringValue("DENIED")                  => Right(CommentCannotUpdateReason.DENIED)
+      case __StringValue("INSUFFICIENT_ACCESS")     => Right(CommentCannotUpdateReason.INSUFFICIENT_ACCESS)
+      case __StringValue("LOCKED")                  => Right(CommentCannotUpdateReason.LOCKED)
+      case __StringValue("LOGIN_REQUIRED")          => Right(CommentCannotUpdateReason.LOGIN_REQUIRED)
+      case __StringValue("MAINTENANCE")             => Right(CommentCannotUpdateReason.MAINTENANCE)
+      case __StringValue("VERIFIED_EMAIL_REQUIRED") => Right(CommentCannotUpdateReason.VERIFIED_EMAIL_REQUIRED)
+      case other                                    => Left(DecodingError(s"Can't build CommentCannotUpdateReason from input $other"))
     }
     implicit val encoder: ArgEncoder[CommentCannotUpdateReason] = new ArgEncoder[CommentCannotUpdateReason] {
-      override def encode(value: CommentCannotUpdateReason): Value = value match {
-        case CommentCannotUpdateReason.ARCHIVED                => EnumValue("ARCHIVED")
-        case CommentCannotUpdateReason.DENIED                  => EnumValue("DENIED")
-        case CommentCannotUpdateReason.INSUFFICIENT_ACCESS     => EnumValue("INSUFFICIENT_ACCESS")
-        case CommentCannotUpdateReason.LOCKED                  => EnumValue("LOCKED")
-        case CommentCannotUpdateReason.LOGIN_REQUIRED          => EnumValue("LOGIN_REQUIRED")
-        case CommentCannotUpdateReason.MAINTENANCE             => EnumValue("MAINTENANCE")
-        case CommentCannotUpdateReason.VERIFIED_EMAIL_REQUIRED => EnumValue("VERIFIED_EMAIL_REQUIRED")
+      override def encode(value: CommentCannotUpdateReason): __Value = value match {
+        case CommentCannotUpdateReason.ARCHIVED                => __EnumValue("ARCHIVED")
+        case CommentCannotUpdateReason.DENIED                  => __EnumValue("DENIED")
+        case CommentCannotUpdateReason.INSUFFICIENT_ACCESS     => __EnumValue("INSUFFICIENT_ACCESS")
+        case CommentCannotUpdateReason.LOCKED                  => __EnumValue("LOCKED")
+        case CommentCannotUpdateReason.LOGIN_REQUIRED          => __EnumValue("LOGIN_REQUIRED")
+        case CommentCannotUpdateReason.MAINTENANCE             => __EnumValue("MAINTENANCE")
+        case CommentCannotUpdateReason.VERIFIED_EMAIL_REQUIRED => __EnumValue("VERIFIED_EMAIL_REQUIRED")
       }
       override def typeName: String = "CommentCannotUpdateReason"
     }
@@ -247,14 +247,14 @@ object Github {
     case object OCCURRED_AT  extends CommitContributionOrderField
 
     implicit val decoder: ScalarDecoder[CommitContributionOrderField] = {
-      case StringValue("COMMIT_COUNT") => Right(CommitContributionOrderField.COMMIT_COUNT)
-      case StringValue("OCCURRED_AT")  => Right(CommitContributionOrderField.OCCURRED_AT)
-      case other                       => Left(DecodingError(s"Can't build CommitContributionOrderField from input $other"))
+      case __StringValue("COMMIT_COUNT") => Right(CommitContributionOrderField.COMMIT_COUNT)
+      case __StringValue("OCCURRED_AT")  => Right(CommitContributionOrderField.OCCURRED_AT)
+      case other                         => Left(DecodingError(s"Can't build CommitContributionOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[CommitContributionOrderField] = new ArgEncoder[CommitContributionOrderField] {
-      override def encode(value: CommitContributionOrderField): Value = value match {
-        case CommitContributionOrderField.COMMIT_COUNT => EnumValue("COMMIT_COUNT")
-        case CommitContributionOrderField.OCCURRED_AT  => EnumValue("OCCURRED_AT")
+      override def encode(value: CommitContributionOrderField): __Value = value match {
+        case CommitContributionOrderField.COMMIT_COUNT => __EnumValue("COMMIT_COUNT")
+        case CommitContributionOrderField.OCCURRED_AT  => __EnumValue("OCCURRED_AT")
       }
       override def typeName: String = "CommitContributionOrderField"
     }
@@ -268,19 +268,19 @@ object Github {
     case object WRITE extends DefaultRepositoryPermissionField
 
     implicit val decoder: ScalarDecoder[DefaultRepositoryPermissionField] = {
-      case StringValue("ADMIN") => Right(DefaultRepositoryPermissionField.ADMIN)
-      case StringValue("NONE")  => Right(DefaultRepositoryPermissionField.NONE)
-      case StringValue("READ")  => Right(DefaultRepositoryPermissionField.READ)
-      case StringValue("WRITE") => Right(DefaultRepositoryPermissionField.WRITE)
-      case other                => Left(DecodingError(s"Can't build DefaultRepositoryPermissionField from input $other"))
+      case __StringValue("ADMIN") => Right(DefaultRepositoryPermissionField.ADMIN)
+      case __StringValue("NONE")  => Right(DefaultRepositoryPermissionField.NONE)
+      case __StringValue("READ")  => Right(DefaultRepositoryPermissionField.READ)
+      case __StringValue("WRITE") => Right(DefaultRepositoryPermissionField.WRITE)
+      case other                  => Left(DecodingError(s"Can't build DefaultRepositoryPermissionField from input $other"))
     }
     implicit val encoder: ArgEncoder[DefaultRepositoryPermissionField] =
       new ArgEncoder[DefaultRepositoryPermissionField] {
-        override def encode(value: DefaultRepositoryPermissionField): Value = value match {
-          case DefaultRepositoryPermissionField.ADMIN => EnumValue("ADMIN")
-          case DefaultRepositoryPermissionField.NONE  => EnumValue("NONE")
-          case DefaultRepositoryPermissionField.READ  => EnumValue("READ")
-          case DefaultRepositoryPermissionField.WRITE => EnumValue("WRITE")
+        override def encode(value: DefaultRepositoryPermissionField): __Value = value match {
+          case DefaultRepositoryPermissionField.ADMIN => __EnumValue("ADMIN")
+          case DefaultRepositoryPermissionField.NONE  => __EnumValue("NONE")
+          case DefaultRepositoryPermissionField.READ  => __EnumValue("READ")
+          case DefaultRepositoryPermissionField.WRITE => __EnumValue("WRITE")
         }
         override def typeName: String = "DefaultRepositoryPermissionField"
       }
@@ -291,12 +291,12 @@ object Github {
     case object CREATED_AT extends DeploymentOrderField
 
     implicit val decoder: ScalarDecoder[DeploymentOrderField] = {
-      case StringValue("CREATED_AT") => Right(DeploymentOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build DeploymentOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(DeploymentOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build DeploymentOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[DeploymentOrderField] = new ArgEncoder[DeploymentOrderField] {
-      override def encode(value: DeploymentOrderField): Value = value match {
-        case DeploymentOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: DeploymentOrderField): __Value = value match {
+        case DeploymentOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "DeploymentOrderField"
     }
@@ -315,28 +315,28 @@ object Github {
     case object QUEUED      extends DeploymentState
 
     implicit val decoder: ScalarDecoder[DeploymentState] = {
-      case StringValue("ABANDONED")   => Right(DeploymentState.ABANDONED)
-      case StringValue("ACTIVE")      => Right(DeploymentState.ACTIVE)
-      case StringValue("DESTROYED")   => Right(DeploymentState.DESTROYED)
-      case StringValue("ERROR")       => Right(DeploymentState.ERROR)
-      case StringValue("FAILURE")     => Right(DeploymentState.FAILURE)
-      case StringValue("INACTIVE")    => Right(DeploymentState.INACTIVE)
-      case StringValue("IN_PROGRESS") => Right(DeploymentState.IN_PROGRESS)
-      case StringValue("PENDING")     => Right(DeploymentState.PENDING)
-      case StringValue("QUEUED")      => Right(DeploymentState.QUEUED)
-      case other                      => Left(DecodingError(s"Can't build DeploymentState from input $other"))
+      case __StringValue("ABANDONED")   => Right(DeploymentState.ABANDONED)
+      case __StringValue("ACTIVE")      => Right(DeploymentState.ACTIVE)
+      case __StringValue("DESTROYED")   => Right(DeploymentState.DESTROYED)
+      case __StringValue("ERROR")       => Right(DeploymentState.ERROR)
+      case __StringValue("FAILURE")     => Right(DeploymentState.FAILURE)
+      case __StringValue("INACTIVE")    => Right(DeploymentState.INACTIVE)
+      case __StringValue("IN_PROGRESS") => Right(DeploymentState.IN_PROGRESS)
+      case __StringValue("PENDING")     => Right(DeploymentState.PENDING)
+      case __StringValue("QUEUED")      => Right(DeploymentState.QUEUED)
+      case other                        => Left(DecodingError(s"Can't build DeploymentState from input $other"))
     }
     implicit val encoder: ArgEncoder[DeploymentState] = new ArgEncoder[DeploymentState] {
-      override def encode(value: DeploymentState): Value = value match {
-        case DeploymentState.ABANDONED   => EnumValue("ABANDONED")
-        case DeploymentState.ACTIVE      => EnumValue("ACTIVE")
-        case DeploymentState.DESTROYED   => EnumValue("DESTROYED")
-        case DeploymentState.ERROR       => EnumValue("ERROR")
-        case DeploymentState.FAILURE     => EnumValue("FAILURE")
-        case DeploymentState.INACTIVE    => EnumValue("INACTIVE")
-        case DeploymentState.IN_PROGRESS => EnumValue("IN_PROGRESS")
-        case DeploymentState.PENDING     => EnumValue("PENDING")
-        case DeploymentState.QUEUED      => EnumValue("QUEUED")
+      override def encode(value: DeploymentState): __Value = value match {
+        case DeploymentState.ABANDONED   => __EnumValue("ABANDONED")
+        case DeploymentState.ACTIVE      => __EnumValue("ACTIVE")
+        case DeploymentState.DESTROYED   => __EnumValue("DESTROYED")
+        case DeploymentState.ERROR       => __EnumValue("ERROR")
+        case DeploymentState.FAILURE     => __EnumValue("FAILURE")
+        case DeploymentState.INACTIVE    => __EnumValue("INACTIVE")
+        case DeploymentState.IN_PROGRESS => __EnumValue("IN_PROGRESS")
+        case DeploymentState.PENDING     => __EnumValue("PENDING")
+        case DeploymentState.QUEUED      => __EnumValue("QUEUED")
       }
       override def typeName: String = "DeploymentState"
     }
@@ -353,24 +353,24 @@ object Github {
     case object SUCCESS     extends DeploymentStatusState
 
     implicit val decoder: ScalarDecoder[DeploymentStatusState] = {
-      case StringValue("ERROR")       => Right(DeploymentStatusState.ERROR)
-      case StringValue("FAILURE")     => Right(DeploymentStatusState.FAILURE)
-      case StringValue("INACTIVE")    => Right(DeploymentStatusState.INACTIVE)
-      case StringValue("IN_PROGRESS") => Right(DeploymentStatusState.IN_PROGRESS)
-      case StringValue("PENDING")     => Right(DeploymentStatusState.PENDING)
-      case StringValue("QUEUED")      => Right(DeploymentStatusState.QUEUED)
-      case StringValue("SUCCESS")     => Right(DeploymentStatusState.SUCCESS)
-      case other                      => Left(DecodingError(s"Can't build DeploymentStatusState from input $other"))
+      case __StringValue("ERROR")       => Right(DeploymentStatusState.ERROR)
+      case __StringValue("FAILURE")     => Right(DeploymentStatusState.FAILURE)
+      case __StringValue("INACTIVE")    => Right(DeploymentStatusState.INACTIVE)
+      case __StringValue("IN_PROGRESS") => Right(DeploymentStatusState.IN_PROGRESS)
+      case __StringValue("PENDING")     => Right(DeploymentStatusState.PENDING)
+      case __StringValue("QUEUED")      => Right(DeploymentStatusState.QUEUED)
+      case __StringValue("SUCCESS")     => Right(DeploymentStatusState.SUCCESS)
+      case other                        => Left(DecodingError(s"Can't build DeploymentStatusState from input $other"))
     }
     implicit val encoder: ArgEncoder[DeploymentStatusState] = new ArgEncoder[DeploymentStatusState] {
-      override def encode(value: DeploymentStatusState): Value = value match {
-        case DeploymentStatusState.ERROR       => EnumValue("ERROR")
-        case DeploymentStatusState.FAILURE     => EnumValue("FAILURE")
-        case DeploymentStatusState.INACTIVE    => EnumValue("INACTIVE")
-        case DeploymentStatusState.IN_PROGRESS => EnumValue("IN_PROGRESS")
-        case DeploymentStatusState.PENDING     => EnumValue("PENDING")
-        case DeploymentStatusState.QUEUED      => EnumValue("QUEUED")
-        case DeploymentStatusState.SUCCESS     => EnumValue("SUCCESS")
+      override def encode(value: DeploymentStatusState): __Value = value match {
+        case DeploymentStatusState.ERROR       => __EnumValue("ERROR")
+        case DeploymentStatusState.FAILURE     => __EnumValue("FAILURE")
+        case DeploymentStatusState.INACTIVE    => __EnumValue("INACTIVE")
+        case DeploymentStatusState.IN_PROGRESS => __EnumValue("IN_PROGRESS")
+        case DeploymentStatusState.PENDING     => __EnumValue("PENDING")
+        case DeploymentStatusState.QUEUED      => __EnumValue("QUEUED")
+        case DeploymentStatusState.SUCCESS     => __EnumValue("SUCCESS")
       }
       override def typeName: String = "DeploymentStatusState"
     }
@@ -382,14 +382,14 @@ object Github {
     case object RIGHT extends DiffSide
 
     implicit val decoder: ScalarDecoder[DiffSide] = {
-      case StringValue("LEFT")  => Right(DiffSide.LEFT)
-      case StringValue("RIGHT") => Right(DiffSide.RIGHT)
-      case other                => Left(DecodingError(s"Can't build DiffSide from input $other"))
+      case __StringValue("LEFT")  => Right(DiffSide.LEFT)
+      case __StringValue("RIGHT") => Right(DiffSide.RIGHT)
+      case other                  => Left(DecodingError(s"Can't build DiffSide from input $other"))
     }
     implicit val encoder: ArgEncoder[DiffSide] = new ArgEncoder[DiffSide] {
-      override def encode(value: DiffSide): Value = value match {
-        case DiffSide.LEFT  => EnumValue("LEFT")
-        case DiffSide.RIGHT => EnumValue("RIGHT")
+      override def encode(value: DiffSide): __Value = value match {
+        case DiffSide.LEFT  => __EnumValue("LEFT")
+        case DiffSide.RIGHT => __EnumValue("RIGHT")
       }
       override def typeName: String = "DiffSide"
     }
@@ -400,13 +400,13 @@ object Github {
     case object CREATED_AT extends EnterpriseAdministratorInvitationOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseAdministratorInvitationOrderField] = {
-      case StringValue("CREATED_AT") => Right(EnterpriseAdministratorInvitationOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build EnterpriseAdministratorInvitationOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(EnterpriseAdministratorInvitationOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build EnterpriseAdministratorInvitationOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseAdministratorInvitationOrderField] =
       new ArgEncoder[EnterpriseAdministratorInvitationOrderField] {
-        override def encode(value: EnterpriseAdministratorInvitationOrderField): Value = value match {
-          case EnterpriseAdministratorInvitationOrderField.CREATED_AT => EnumValue("CREATED_AT")
+        override def encode(value: EnterpriseAdministratorInvitationOrderField): __Value = value match {
+          case EnterpriseAdministratorInvitationOrderField.CREATED_AT => __EnumValue("CREATED_AT")
         }
         override def typeName: String = "EnterpriseAdministratorInvitationOrderField"
       }
@@ -418,14 +418,14 @@ object Github {
     case object OWNER           extends EnterpriseAdministratorRole
 
     implicit val decoder: ScalarDecoder[EnterpriseAdministratorRole] = {
-      case StringValue("BILLING_MANAGER") => Right(EnterpriseAdministratorRole.BILLING_MANAGER)
-      case StringValue("OWNER")           => Right(EnterpriseAdministratorRole.OWNER)
-      case other                          => Left(DecodingError(s"Can't build EnterpriseAdministratorRole from input $other"))
+      case __StringValue("BILLING_MANAGER") => Right(EnterpriseAdministratorRole.BILLING_MANAGER)
+      case __StringValue("OWNER")           => Right(EnterpriseAdministratorRole.OWNER)
+      case other                            => Left(DecodingError(s"Can't build EnterpriseAdministratorRole from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseAdministratorRole] = new ArgEncoder[EnterpriseAdministratorRole] {
-      override def encode(value: EnterpriseAdministratorRole): Value = value match {
-        case EnterpriseAdministratorRole.BILLING_MANAGER => EnumValue("BILLING_MANAGER")
-        case EnterpriseAdministratorRole.OWNER           => EnumValue("OWNER")
+      override def encode(value: EnterpriseAdministratorRole): __Value = value match {
+        case EnterpriseAdministratorRole.BILLING_MANAGER => __EnumValue("BILLING_MANAGER")
+        case EnterpriseAdministratorRole.OWNER           => __EnumValue("OWNER")
       }
       override def typeName: String = "EnterpriseAdministratorRole"
     }
@@ -440,22 +440,22 @@ object Github {
     case object WRITE     extends EnterpriseDefaultRepositoryPermissionSettingValue
 
     implicit val decoder: ScalarDecoder[EnterpriseDefaultRepositoryPermissionSettingValue] = {
-      case StringValue("ADMIN")     => Right(EnterpriseDefaultRepositoryPermissionSettingValue.ADMIN)
-      case StringValue("NONE")      => Right(EnterpriseDefaultRepositoryPermissionSettingValue.NONE)
-      case StringValue("NO_POLICY") => Right(EnterpriseDefaultRepositoryPermissionSettingValue.NO_POLICY)
-      case StringValue("READ")      => Right(EnterpriseDefaultRepositoryPermissionSettingValue.READ)
-      case StringValue("WRITE")     => Right(EnterpriseDefaultRepositoryPermissionSettingValue.WRITE)
+      case __StringValue("ADMIN")     => Right(EnterpriseDefaultRepositoryPermissionSettingValue.ADMIN)
+      case __StringValue("NONE")      => Right(EnterpriseDefaultRepositoryPermissionSettingValue.NONE)
+      case __StringValue("NO_POLICY") => Right(EnterpriseDefaultRepositoryPermissionSettingValue.NO_POLICY)
+      case __StringValue("READ")      => Right(EnterpriseDefaultRepositoryPermissionSettingValue.READ)
+      case __StringValue("WRITE")     => Right(EnterpriseDefaultRepositoryPermissionSettingValue.WRITE)
       case other =>
         Left(DecodingError(s"Can't build EnterpriseDefaultRepositoryPermissionSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseDefaultRepositoryPermissionSettingValue] =
       new ArgEncoder[EnterpriseDefaultRepositoryPermissionSettingValue] {
-        override def encode(value: EnterpriseDefaultRepositoryPermissionSettingValue): Value = value match {
-          case EnterpriseDefaultRepositoryPermissionSettingValue.ADMIN     => EnumValue("ADMIN")
-          case EnterpriseDefaultRepositoryPermissionSettingValue.NONE      => EnumValue("NONE")
-          case EnterpriseDefaultRepositoryPermissionSettingValue.NO_POLICY => EnumValue("NO_POLICY")
-          case EnterpriseDefaultRepositoryPermissionSettingValue.READ      => EnumValue("READ")
-          case EnterpriseDefaultRepositoryPermissionSettingValue.WRITE     => EnumValue("WRITE")
+        override def encode(value: EnterpriseDefaultRepositoryPermissionSettingValue): __Value = value match {
+          case EnterpriseDefaultRepositoryPermissionSettingValue.ADMIN     => __EnumValue("ADMIN")
+          case EnterpriseDefaultRepositoryPermissionSettingValue.NONE      => __EnumValue("NONE")
+          case EnterpriseDefaultRepositoryPermissionSettingValue.NO_POLICY => __EnumValue("NO_POLICY")
+          case EnterpriseDefaultRepositoryPermissionSettingValue.READ      => __EnumValue("READ")
+          case EnterpriseDefaultRepositoryPermissionSettingValue.WRITE     => __EnumValue("WRITE")
         }
         override def typeName: String = "EnterpriseDefaultRepositoryPermissionSettingValue"
       }
@@ -468,17 +468,17 @@ object Github {
     case object NO_POLICY extends EnterpriseEnabledDisabledSettingValue
 
     implicit val decoder: ScalarDecoder[EnterpriseEnabledDisabledSettingValue] = {
-      case StringValue("DISABLED")  => Right(EnterpriseEnabledDisabledSettingValue.DISABLED)
-      case StringValue("ENABLED")   => Right(EnterpriseEnabledDisabledSettingValue.ENABLED)
-      case StringValue("NO_POLICY") => Right(EnterpriseEnabledDisabledSettingValue.NO_POLICY)
-      case other                    => Left(DecodingError(s"Can't build EnterpriseEnabledDisabledSettingValue from input $other"))
+      case __StringValue("DISABLED")  => Right(EnterpriseEnabledDisabledSettingValue.DISABLED)
+      case __StringValue("ENABLED")   => Right(EnterpriseEnabledDisabledSettingValue.ENABLED)
+      case __StringValue("NO_POLICY") => Right(EnterpriseEnabledDisabledSettingValue.NO_POLICY)
+      case other                      => Left(DecodingError(s"Can't build EnterpriseEnabledDisabledSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseEnabledDisabledSettingValue] =
       new ArgEncoder[EnterpriseEnabledDisabledSettingValue] {
-        override def encode(value: EnterpriseEnabledDisabledSettingValue): Value = value match {
-          case EnterpriseEnabledDisabledSettingValue.DISABLED  => EnumValue("DISABLED")
-          case EnterpriseEnabledDisabledSettingValue.ENABLED   => EnumValue("ENABLED")
-          case EnterpriseEnabledDisabledSettingValue.NO_POLICY => EnumValue("NO_POLICY")
+        override def encode(value: EnterpriseEnabledDisabledSettingValue): __Value = value match {
+          case EnterpriseEnabledDisabledSettingValue.DISABLED  => __EnumValue("DISABLED")
+          case EnterpriseEnabledDisabledSettingValue.ENABLED   => __EnumValue("ENABLED")
+          case EnterpriseEnabledDisabledSettingValue.NO_POLICY => __EnumValue("NO_POLICY")
         }
         override def typeName: String = "EnterpriseEnabledDisabledSettingValue"
       }
@@ -490,14 +490,14 @@ object Github {
     case object NO_POLICY extends EnterpriseEnabledSettingValue
 
     implicit val decoder: ScalarDecoder[EnterpriseEnabledSettingValue] = {
-      case StringValue("ENABLED")   => Right(EnterpriseEnabledSettingValue.ENABLED)
-      case StringValue("NO_POLICY") => Right(EnterpriseEnabledSettingValue.NO_POLICY)
-      case other                    => Left(DecodingError(s"Can't build EnterpriseEnabledSettingValue from input $other"))
+      case __StringValue("ENABLED")   => Right(EnterpriseEnabledSettingValue.ENABLED)
+      case __StringValue("NO_POLICY") => Right(EnterpriseEnabledSettingValue.NO_POLICY)
+      case other                      => Left(DecodingError(s"Can't build EnterpriseEnabledSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseEnabledSettingValue] = new ArgEncoder[EnterpriseEnabledSettingValue] {
-      override def encode(value: EnterpriseEnabledSettingValue): Value = value match {
-        case EnterpriseEnabledSettingValue.ENABLED   => EnumValue("ENABLED")
-        case EnterpriseEnabledSettingValue.NO_POLICY => EnumValue("NO_POLICY")
+      override def encode(value: EnterpriseEnabledSettingValue): __Value = value match {
+        case EnterpriseEnabledSettingValue.ENABLED   => __EnumValue("ENABLED")
+        case EnterpriseEnabledSettingValue.NO_POLICY => __EnumValue("NO_POLICY")
       }
       override def typeName: String = "EnterpriseEnabledSettingValue"
     }
@@ -509,14 +509,14 @@ object Github {
     case object LOGIN      extends EnterpriseMemberOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseMemberOrderField] = {
-      case StringValue("CREATED_AT") => Right(EnterpriseMemberOrderField.CREATED_AT)
-      case StringValue("LOGIN")      => Right(EnterpriseMemberOrderField.LOGIN)
-      case other                     => Left(DecodingError(s"Can't build EnterpriseMemberOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(EnterpriseMemberOrderField.CREATED_AT)
+      case __StringValue("LOGIN")      => Right(EnterpriseMemberOrderField.LOGIN)
+      case other                       => Left(DecodingError(s"Can't build EnterpriseMemberOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseMemberOrderField] = new ArgEncoder[EnterpriseMemberOrderField] {
-      override def encode(value: EnterpriseMemberOrderField): Value = value match {
-        case EnterpriseMemberOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case EnterpriseMemberOrderField.LOGIN      => EnumValue("LOGIN")
+      override def encode(value: EnterpriseMemberOrderField): __Value = value match {
+        case EnterpriseMemberOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case EnterpriseMemberOrderField.LOGIN      => __EnumValue("LOGIN")
       }
       override def typeName: String = "EnterpriseMemberOrderField"
     }
@@ -531,22 +531,22 @@ object Github {
     case object PUBLIC    extends EnterpriseMembersCanCreateRepositoriesSettingValue
 
     implicit val decoder: ScalarDecoder[EnterpriseMembersCanCreateRepositoriesSettingValue] = {
-      case StringValue("ALL")       => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.ALL)
-      case StringValue("DISABLED")  => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.DISABLED)
-      case StringValue("NO_POLICY") => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.NO_POLICY)
-      case StringValue("PRIVATE")   => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.PRIVATE)
-      case StringValue("PUBLIC")    => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.PUBLIC)
+      case __StringValue("ALL")       => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.ALL)
+      case __StringValue("DISABLED")  => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.DISABLED)
+      case __StringValue("NO_POLICY") => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.NO_POLICY)
+      case __StringValue("PRIVATE")   => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.PRIVATE)
+      case __StringValue("PUBLIC")    => Right(EnterpriseMembersCanCreateRepositoriesSettingValue.PUBLIC)
       case other =>
         Left(DecodingError(s"Can't build EnterpriseMembersCanCreateRepositoriesSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseMembersCanCreateRepositoriesSettingValue] =
       new ArgEncoder[EnterpriseMembersCanCreateRepositoriesSettingValue] {
-        override def encode(value: EnterpriseMembersCanCreateRepositoriesSettingValue): Value = value match {
-          case EnterpriseMembersCanCreateRepositoriesSettingValue.ALL       => EnumValue("ALL")
-          case EnterpriseMembersCanCreateRepositoriesSettingValue.DISABLED  => EnumValue("DISABLED")
-          case EnterpriseMembersCanCreateRepositoriesSettingValue.NO_POLICY => EnumValue("NO_POLICY")
-          case EnterpriseMembersCanCreateRepositoriesSettingValue.PRIVATE   => EnumValue("PRIVATE")
-          case EnterpriseMembersCanCreateRepositoriesSettingValue.PUBLIC    => EnumValue("PUBLIC")
+        override def encode(value: EnterpriseMembersCanCreateRepositoriesSettingValue): __Value = value match {
+          case EnterpriseMembersCanCreateRepositoriesSettingValue.ALL       => __EnumValue("ALL")
+          case EnterpriseMembersCanCreateRepositoriesSettingValue.DISABLED  => __EnumValue("DISABLED")
+          case EnterpriseMembersCanCreateRepositoriesSettingValue.NO_POLICY => __EnumValue("NO_POLICY")
+          case EnterpriseMembersCanCreateRepositoriesSettingValue.PRIVATE   => __EnumValue("PRIVATE")
+          case EnterpriseMembersCanCreateRepositoriesSettingValue.PUBLIC    => __EnumValue("PUBLIC")
         }
         override def typeName: String = "EnterpriseMembersCanCreateRepositoriesSettingValue"
       }
@@ -558,15 +558,15 @@ object Github {
     case object ENABLED  extends EnterpriseMembersCanMakePurchasesSettingValue
 
     implicit val decoder: ScalarDecoder[EnterpriseMembersCanMakePurchasesSettingValue] = {
-      case StringValue("DISABLED") => Right(EnterpriseMembersCanMakePurchasesSettingValue.DISABLED)
-      case StringValue("ENABLED")  => Right(EnterpriseMembersCanMakePurchasesSettingValue.ENABLED)
-      case other                   => Left(DecodingError(s"Can't build EnterpriseMembersCanMakePurchasesSettingValue from input $other"))
+      case __StringValue("DISABLED") => Right(EnterpriseMembersCanMakePurchasesSettingValue.DISABLED)
+      case __StringValue("ENABLED")  => Right(EnterpriseMembersCanMakePurchasesSettingValue.ENABLED)
+      case other                     => Left(DecodingError(s"Can't build EnterpriseMembersCanMakePurchasesSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseMembersCanMakePurchasesSettingValue] =
       new ArgEncoder[EnterpriseMembersCanMakePurchasesSettingValue] {
-        override def encode(value: EnterpriseMembersCanMakePurchasesSettingValue): Value = value match {
-          case EnterpriseMembersCanMakePurchasesSettingValue.DISABLED => EnumValue("DISABLED")
-          case EnterpriseMembersCanMakePurchasesSettingValue.ENABLED  => EnumValue("ENABLED")
+        override def encode(value: EnterpriseMembersCanMakePurchasesSettingValue): __Value = value match {
+          case EnterpriseMembersCanMakePurchasesSettingValue.DISABLED => __EnumValue("DISABLED")
+          case EnterpriseMembersCanMakePurchasesSettingValue.ENABLED  => __EnumValue("ENABLED")
         }
         override def typeName: String = "EnterpriseMembersCanMakePurchasesSettingValue"
       }
@@ -579,17 +579,17 @@ object Github {
     case object HOST_NAME     extends EnterpriseServerInstallationOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseServerInstallationOrderField] = {
-      case StringValue("CREATED_AT")    => Right(EnterpriseServerInstallationOrderField.CREATED_AT)
-      case StringValue("CUSTOMER_NAME") => Right(EnterpriseServerInstallationOrderField.CUSTOMER_NAME)
-      case StringValue("HOST_NAME")     => Right(EnterpriseServerInstallationOrderField.HOST_NAME)
-      case other                        => Left(DecodingError(s"Can't build EnterpriseServerInstallationOrderField from input $other"))
+      case __StringValue("CREATED_AT")    => Right(EnterpriseServerInstallationOrderField.CREATED_AT)
+      case __StringValue("CUSTOMER_NAME") => Right(EnterpriseServerInstallationOrderField.CUSTOMER_NAME)
+      case __StringValue("HOST_NAME")     => Right(EnterpriseServerInstallationOrderField.HOST_NAME)
+      case other                          => Left(DecodingError(s"Can't build EnterpriseServerInstallationOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseServerInstallationOrderField] =
       new ArgEncoder[EnterpriseServerInstallationOrderField] {
-        override def encode(value: EnterpriseServerInstallationOrderField): Value = value match {
-          case EnterpriseServerInstallationOrderField.CREATED_AT    => EnumValue("CREATED_AT")
-          case EnterpriseServerInstallationOrderField.CUSTOMER_NAME => EnumValue("CUSTOMER_NAME")
-          case EnterpriseServerInstallationOrderField.HOST_NAME     => EnumValue("HOST_NAME")
+        override def encode(value: EnterpriseServerInstallationOrderField): __Value = value match {
+          case EnterpriseServerInstallationOrderField.CREATED_AT    => __EnumValue("CREATED_AT")
+          case EnterpriseServerInstallationOrderField.CUSTOMER_NAME => __EnumValue("CUSTOMER_NAME")
+          case EnterpriseServerInstallationOrderField.HOST_NAME     => __EnumValue("HOST_NAME")
         }
         override def typeName: String = "EnterpriseServerInstallationOrderField"
       }
@@ -600,13 +600,13 @@ object Github {
     case object EMAIL extends EnterpriseServerUserAccountEmailOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseServerUserAccountEmailOrderField] = {
-      case StringValue("EMAIL") => Right(EnterpriseServerUserAccountEmailOrderField.EMAIL)
-      case other                => Left(DecodingError(s"Can't build EnterpriseServerUserAccountEmailOrderField from input $other"))
+      case __StringValue("EMAIL") => Right(EnterpriseServerUserAccountEmailOrderField.EMAIL)
+      case other                  => Left(DecodingError(s"Can't build EnterpriseServerUserAccountEmailOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountEmailOrderField] =
       new ArgEncoder[EnterpriseServerUserAccountEmailOrderField] {
-        override def encode(value: EnterpriseServerUserAccountEmailOrderField): Value = value match {
-          case EnterpriseServerUserAccountEmailOrderField.EMAIL => EnumValue("EMAIL")
+        override def encode(value: EnterpriseServerUserAccountEmailOrderField): __Value = value match {
+          case EnterpriseServerUserAccountEmailOrderField.EMAIL => __EnumValue("EMAIL")
         }
         override def typeName: String = "EnterpriseServerUserAccountEmailOrderField"
       }
@@ -618,15 +618,15 @@ object Github {
     case object REMOTE_CREATED_AT extends EnterpriseServerUserAccountOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseServerUserAccountOrderField] = {
-      case StringValue("LOGIN")             => Right(EnterpriseServerUserAccountOrderField.LOGIN)
-      case StringValue("REMOTE_CREATED_AT") => Right(EnterpriseServerUserAccountOrderField.REMOTE_CREATED_AT)
-      case other                            => Left(DecodingError(s"Can't build EnterpriseServerUserAccountOrderField from input $other"))
+      case __StringValue("LOGIN")             => Right(EnterpriseServerUserAccountOrderField.LOGIN)
+      case __StringValue("REMOTE_CREATED_AT") => Right(EnterpriseServerUserAccountOrderField.REMOTE_CREATED_AT)
+      case other                              => Left(DecodingError(s"Can't build EnterpriseServerUserAccountOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountOrderField] =
       new ArgEncoder[EnterpriseServerUserAccountOrderField] {
-        override def encode(value: EnterpriseServerUserAccountOrderField): Value = value match {
-          case EnterpriseServerUserAccountOrderField.LOGIN             => EnumValue("LOGIN")
-          case EnterpriseServerUserAccountOrderField.REMOTE_CREATED_AT => EnumValue("REMOTE_CREATED_AT")
+        override def encode(value: EnterpriseServerUserAccountOrderField): __Value = value match {
+          case EnterpriseServerUserAccountOrderField.LOGIN             => __EnumValue("LOGIN")
+          case EnterpriseServerUserAccountOrderField.REMOTE_CREATED_AT => __EnumValue("REMOTE_CREATED_AT")
         }
         override def typeName: String = "EnterpriseServerUserAccountOrderField"
       }
@@ -637,13 +637,13 @@ object Github {
     case object CREATED_AT extends EnterpriseServerUserAccountsUploadOrderField
 
     implicit val decoder: ScalarDecoder[EnterpriseServerUserAccountsUploadOrderField] = {
-      case StringValue("CREATED_AT") => Right(EnterpriseServerUserAccountsUploadOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build EnterpriseServerUserAccountsUploadOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(EnterpriseServerUserAccountsUploadOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build EnterpriseServerUserAccountsUploadOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountsUploadOrderField] =
       new ArgEncoder[EnterpriseServerUserAccountsUploadOrderField] {
-        override def encode(value: EnterpriseServerUserAccountsUploadOrderField): Value = value match {
-          case EnterpriseServerUserAccountsUploadOrderField.CREATED_AT => EnumValue("CREATED_AT")
+        override def encode(value: EnterpriseServerUserAccountsUploadOrderField): __Value = value match {
+          case EnterpriseServerUserAccountsUploadOrderField.CREATED_AT => __EnumValue("CREATED_AT")
         }
         override def typeName: String = "EnterpriseServerUserAccountsUploadOrderField"
       }
@@ -656,17 +656,17 @@ object Github {
     case object SUCCESS extends EnterpriseServerUserAccountsUploadSyncState
 
     implicit val decoder: ScalarDecoder[EnterpriseServerUserAccountsUploadSyncState] = {
-      case StringValue("FAILURE") => Right(EnterpriseServerUserAccountsUploadSyncState.FAILURE)
-      case StringValue("PENDING") => Right(EnterpriseServerUserAccountsUploadSyncState.PENDING)
-      case StringValue("SUCCESS") => Right(EnterpriseServerUserAccountsUploadSyncState.SUCCESS)
-      case other                  => Left(DecodingError(s"Can't build EnterpriseServerUserAccountsUploadSyncState from input $other"))
+      case __StringValue("FAILURE") => Right(EnterpriseServerUserAccountsUploadSyncState.FAILURE)
+      case __StringValue("PENDING") => Right(EnterpriseServerUserAccountsUploadSyncState.PENDING)
+      case __StringValue("SUCCESS") => Right(EnterpriseServerUserAccountsUploadSyncState.SUCCESS)
+      case other                    => Left(DecodingError(s"Can't build EnterpriseServerUserAccountsUploadSyncState from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountsUploadSyncState] =
       new ArgEncoder[EnterpriseServerUserAccountsUploadSyncState] {
-        override def encode(value: EnterpriseServerUserAccountsUploadSyncState): Value = value match {
-          case EnterpriseServerUserAccountsUploadSyncState.FAILURE => EnumValue("FAILURE")
-          case EnterpriseServerUserAccountsUploadSyncState.PENDING => EnumValue("PENDING")
-          case EnterpriseServerUserAccountsUploadSyncState.SUCCESS => EnumValue("SUCCESS")
+        override def encode(value: EnterpriseServerUserAccountsUploadSyncState): __Value = value match {
+          case EnterpriseServerUserAccountsUploadSyncState.FAILURE => __EnumValue("FAILURE")
+          case EnterpriseServerUserAccountsUploadSyncState.PENDING => __EnumValue("PENDING")
+          case EnterpriseServerUserAccountsUploadSyncState.SUCCESS => __EnumValue("SUCCESS")
         }
         override def typeName: String = "EnterpriseServerUserAccountsUploadSyncState"
       }
@@ -678,15 +678,15 @@ object Github {
     case object OWNER  extends EnterpriseUserAccountMembershipRole
 
     implicit val decoder: ScalarDecoder[EnterpriseUserAccountMembershipRole] = {
-      case StringValue("MEMBER") => Right(EnterpriseUserAccountMembershipRole.MEMBER)
-      case StringValue("OWNER")  => Right(EnterpriseUserAccountMembershipRole.OWNER)
-      case other                 => Left(DecodingError(s"Can't build EnterpriseUserAccountMembershipRole from input $other"))
+      case __StringValue("MEMBER") => Right(EnterpriseUserAccountMembershipRole.MEMBER)
+      case __StringValue("OWNER")  => Right(EnterpriseUserAccountMembershipRole.OWNER)
+      case other                   => Left(DecodingError(s"Can't build EnterpriseUserAccountMembershipRole from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseUserAccountMembershipRole] =
       new ArgEncoder[EnterpriseUserAccountMembershipRole] {
-        override def encode(value: EnterpriseUserAccountMembershipRole): Value = value match {
-          case EnterpriseUserAccountMembershipRole.MEMBER => EnumValue("MEMBER")
-          case EnterpriseUserAccountMembershipRole.OWNER  => EnumValue("OWNER")
+        override def encode(value: EnterpriseUserAccountMembershipRole): __Value = value match {
+          case EnterpriseUserAccountMembershipRole.MEMBER => __EnumValue("MEMBER")
+          case EnterpriseUserAccountMembershipRole.OWNER  => __EnumValue("OWNER")
         }
         override def typeName: String = "EnterpriseUserAccountMembershipRole"
       }
@@ -698,14 +698,14 @@ object Github {
     case object SERVER extends EnterpriseUserDeployment
 
     implicit val decoder: ScalarDecoder[EnterpriseUserDeployment] = {
-      case StringValue("CLOUD")  => Right(EnterpriseUserDeployment.CLOUD)
-      case StringValue("SERVER") => Right(EnterpriseUserDeployment.SERVER)
-      case other                 => Left(DecodingError(s"Can't build EnterpriseUserDeployment from input $other"))
+      case __StringValue("CLOUD")  => Right(EnterpriseUserDeployment.CLOUD)
+      case __StringValue("SERVER") => Right(EnterpriseUserDeployment.SERVER)
+      case other                   => Left(DecodingError(s"Can't build EnterpriseUserDeployment from input $other"))
     }
     implicit val encoder: ArgEncoder[EnterpriseUserDeployment] = new ArgEncoder[EnterpriseUserDeployment] {
-      override def encode(value: EnterpriseUserDeployment): Value = value match {
-        case EnterpriseUserDeployment.CLOUD  => EnumValue("CLOUD")
-        case EnterpriseUserDeployment.SERVER => EnumValue("SERVER")
+      override def encode(value: EnterpriseUserDeployment): __Value = value match {
+        case EnterpriseUserDeployment.CLOUD  => __EnumValue("CLOUD")
+        case EnterpriseUserDeployment.SERVER => __EnumValue("SERVER")
       }
       override def typeName: String = "EnterpriseUserDeployment"
     }
@@ -718,16 +718,16 @@ object Github {
     case object VIEWED    extends FileViewedState
 
     implicit val decoder: ScalarDecoder[FileViewedState] = {
-      case StringValue("DISMISSED") => Right(FileViewedState.DISMISSED)
-      case StringValue("UNVIEWED")  => Right(FileViewedState.UNVIEWED)
-      case StringValue("VIEWED")    => Right(FileViewedState.VIEWED)
-      case other                    => Left(DecodingError(s"Can't build FileViewedState from input $other"))
+      case __StringValue("DISMISSED") => Right(FileViewedState.DISMISSED)
+      case __StringValue("UNVIEWED")  => Right(FileViewedState.UNVIEWED)
+      case __StringValue("VIEWED")    => Right(FileViewedState.VIEWED)
+      case other                      => Left(DecodingError(s"Can't build FileViewedState from input $other"))
     }
     implicit val encoder: ArgEncoder[FileViewedState] = new ArgEncoder[FileViewedState] {
-      override def encode(value: FileViewedState): Value = value match {
-        case FileViewedState.DISMISSED => EnumValue("DISMISSED")
-        case FileViewedState.UNVIEWED  => EnumValue("UNVIEWED")
-        case FileViewedState.VIEWED    => EnumValue("VIEWED")
+      override def encode(value: FileViewedState): __Value = value match {
+        case FileViewedState.DISMISSED => __EnumValue("DISMISSED")
+        case FileViewedState.UNVIEWED  => __EnumValue("UNVIEWED")
+        case FileViewedState.VIEWED    => __EnumValue("VIEWED")
       }
       override def typeName: String = "FileViewedState"
     }
@@ -747,30 +747,30 @@ object Github {
     case object TIDELIFT         extends FundingPlatform
 
     implicit val decoder: ScalarDecoder[FundingPlatform] = {
-      case StringValue("COMMUNITY_BRIDGE") => Right(FundingPlatform.COMMUNITY_BRIDGE)
-      case StringValue("CUSTOM")           => Right(FundingPlatform.CUSTOM)
-      case StringValue("GITHUB")           => Right(FundingPlatform.GITHUB)
-      case StringValue("ISSUEHUNT")        => Right(FundingPlatform.ISSUEHUNT)
-      case StringValue("KO_FI")            => Right(FundingPlatform.KO_FI)
-      case StringValue("LIBERAPAY")        => Right(FundingPlatform.LIBERAPAY)
-      case StringValue("OPEN_COLLECTIVE")  => Right(FundingPlatform.OPEN_COLLECTIVE)
-      case StringValue("OTECHIE")          => Right(FundingPlatform.OTECHIE)
-      case StringValue("PATREON")          => Right(FundingPlatform.PATREON)
-      case StringValue("TIDELIFT")         => Right(FundingPlatform.TIDELIFT)
-      case other                           => Left(DecodingError(s"Can't build FundingPlatform from input $other"))
+      case __StringValue("COMMUNITY_BRIDGE") => Right(FundingPlatform.COMMUNITY_BRIDGE)
+      case __StringValue("CUSTOM")           => Right(FundingPlatform.CUSTOM)
+      case __StringValue("GITHUB")           => Right(FundingPlatform.GITHUB)
+      case __StringValue("ISSUEHUNT")        => Right(FundingPlatform.ISSUEHUNT)
+      case __StringValue("KO_FI")            => Right(FundingPlatform.KO_FI)
+      case __StringValue("LIBERAPAY")        => Right(FundingPlatform.LIBERAPAY)
+      case __StringValue("OPEN_COLLECTIVE")  => Right(FundingPlatform.OPEN_COLLECTIVE)
+      case __StringValue("OTECHIE")          => Right(FundingPlatform.OTECHIE)
+      case __StringValue("PATREON")          => Right(FundingPlatform.PATREON)
+      case __StringValue("TIDELIFT")         => Right(FundingPlatform.TIDELIFT)
+      case other                             => Left(DecodingError(s"Can't build FundingPlatform from input $other"))
     }
     implicit val encoder: ArgEncoder[FundingPlatform] = new ArgEncoder[FundingPlatform] {
-      override def encode(value: FundingPlatform): Value = value match {
-        case FundingPlatform.COMMUNITY_BRIDGE => EnumValue("COMMUNITY_BRIDGE")
-        case FundingPlatform.CUSTOM           => EnumValue("CUSTOM")
-        case FundingPlatform.GITHUB           => EnumValue("GITHUB")
-        case FundingPlatform.ISSUEHUNT        => EnumValue("ISSUEHUNT")
-        case FundingPlatform.KO_FI            => EnumValue("KO_FI")
-        case FundingPlatform.LIBERAPAY        => EnumValue("LIBERAPAY")
-        case FundingPlatform.OPEN_COLLECTIVE  => EnumValue("OPEN_COLLECTIVE")
-        case FundingPlatform.OTECHIE          => EnumValue("OTECHIE")
-        case FundingPlatform.PATREON          => EnumValue("PATREON")
-        case FundingPlatform.TIDELIFT         => EnumValue("TIDELIFT")
+      override def encode(value: FundingPlatform): __Value = value match {
+        case FundingPlatform.COMMUNITY_BRIDGE => __EnumValue("COMMUNITY_BRIDGE")
+        case FundingPlatform.CUSTOM           => __EnumValue("CUSTOM")
+        case FundingPlatform.GITHUB           => __EnumValue("GITHUB")
+        case FundingPlatform.ISSUEHUNT        => __EnumValue("ISSUEHUNT")
+        case FundingPlatform.KO_FI            => __EnumValue("KO_FI")
+        case FundingPlatform.LIBERAPAY        => __EnumValue("LIBERAPAY")
+        case FundingPlatform.OPEN_COLLECTIVE  => __EnumValue("OPEN_COLLECTIVE")
+        case FundingPlatform.OTECHIE          => __EnumValue("OTECHIE")
+        case FundingPlatform.PATREON          => __EnumValue("PATREON")
+        case FundingPlatform.TIDELIFT         => __EnumValue("TIDELIFT")
       }
       override def typeName: String = "FundingPlatform"
     }
@@ -783,16 +783,16 @@ object Github {
     case object UPDATED_AT extends GistOrderField
 
     implicit val decoder: ScalarDecoder[GistOrderField] = {
-      case StringValue("CREATED_AT") => Right(GistOrderField.CREATED_AT)
-      case StringValue("PUSHED_AT")  => Right(GistOrderField.PUSHED_AT)
-      case StringValue("UPDATED_AT") => Right(GistOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build GistOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(GistOrderField.CREATED_AT)
+      case __StringValue("PUSHED_AT")  => Right(GistOrderField.PUSHED_AT)
+      case __StringValue("UPDATED_AT") => Right(GistOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build GistOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[GistOrderField] = new ArgEncoder[GistOrderField] {
-      override def encode(value: GistOrderField): Value = value match {
-        case GistOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case GistOrderField.PUSHED_AT  => EnumValue("PUSHED_AT")
-        case GistOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: GistOrderField): __Value = value match {
+        case GistOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case GistOrderField.PUSHED_AT  => __EnumValue("PUSHED_AT")
+        case GistOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "GistOrderField"
     }
@@ -805,16 +805,16 @@ object Github {
     case object SECRET extends GistPrivacy
 
     implicit val decoder: ScalarDecoder[GistPrivacy] = {
-      case StringValue("ALL")    => Right(GistPrivacy.ALL)
-      case StringValue("PUBLIC") => Right(GistPrivacy.PUBLIC)
-      case StringValue("SECRET") => Right(GistPrivacy.SECRET)
-      case other                 => Left(DecodingError(s"Can't build GistPrivacy from input $other"))
+      case __StringValue("ALL")    => Right(GistPrivacy.ALL)
+      case __StringValue("PUBLIC") => Right(GistPrivacy.PUBLIC)
+      case __StringValue("SECRET") => Right(GistPrivacy.SECRET)
+      case other                   => Left(DecodingError(s"Can't build GistPrivacy from input $other"))
     }
     implicit val encoder: ArgEncoder[GistPrivacy] = new ArgEncoder[GistPrivacy] {
-      override def encode(value: GistPrivacy): Value = value match {
-        case GistPrivacy.ALL    => EnumValue("ALL")
-        case GistPrivacy.PUBLIC => EnumValue("PUBLIC")
-        case GistPrivacy.SECRET => EnumValue("SECRET")
+      override def encode(value: GistPrivacy): __Value = value match {
+        case GistPrivacy.ALL    => __EnumValue("ALL")
+        case GistPrivacy.PUBLIC => __EnumValue("PUBLIC")
+        case GistPrivacy.SECRET => __EnumValue("SECRET")
       }
       override def typeName: String = "GistPrivacy"
     }
@@ -841,44 +841,44 @@ object Github {
     case object VALID                 extends GitSignatureState
 
     implicit val decoder: ScalarDecoder[GitSignatureState] = {
-      case StringValue("BAD_CERT")              => Right(GitSignatureState.BAD_CERT)
-      case StringValue("BAD_EMAIL")             => Right(GitSignatureState.BAD_EMAIL)
-      case StringValue("EXPIRED_KEY")           => Right(GitSignatureState.EXPIRED_KEY)
-      case StringValue("GPGVERIFY_ERROR")       => Right(GitSignatureState.GPGVERIFY_ERROR)
-      case StringValue("GPGVERIFY_UNAVAILABLE") => Right(GitSignatureState.GPGVERIFY_UNAVAILABLE)
-      case StringValue("INVALID")               => Right(GitSignatureState.INVALID)
-      case StringValue("MALFORMED_SIG")         => Right(GitSignatureState.MALFORMED_SIG)
-      case StringValue("NOT_SIGNING_KEY")       => Right(GitSignatureState.NOT_SIGNING_KEY)
-      case StringValue("NO_USER")               => Right(GitSignatureState.NO_USER)
-      case StringValue("OCSP_ERROR")            => Right(GitSignatureState.OCSP_ERROR)
-      case StringValue("OCSP_PENDING")          => Right(GitSignatureState.OCSP_PENDING)
-      case StringValue("OCSP_REVOKED")          => Right(GitSignatureState.OCSP_REVOKED)
-      case StringValue("UNKNOWN_KEY")           => Right(GitSignatureState.UNKNOWN_KEY)
-      case StringValue("UNKNOWN_SIG_TYPE")      => Right(GitSignatureState.UNKNOWN_SIG_TYPE)
-      case StringValue("UNSIGNED")              => Right(GitSignatureState.UNSIGNED)
-      case StringValue("UNVERIFIED_EMAIL")      => Right(GitSignatureState.UNVERIFIED_EMAIL)
-      case StringValue("VALID")                 => Right(GitSignatureState.VALID)
-      case other                                => Left(DecodingError(s"Can't build GitSignatureState from input $other"))
+      case __StringValue("BAD_CERT")              => Right(GitSignatureState.BAD_CERT)
+      case __StringValue("BAD_EMAIL")             => Right(GitSignatureState.BAD_EMAIL)
+      case __StringValue("EXPIRED_KEY")           => Right(GitSignatureState.EXPIRED_KEY)
+      case __StringValue("GPGVERIFY_ERROR")       => Right(GitSignatureState.GPGVERIFY_ERROR)
+      case __StringValue("GPGVERIFY_UNAVAILABLE") => Right(GitSignatureState.GPGVERIFY_UNAVAILABLE)
+      case __StringValue("INVALID")               => Right(GitSignatureState.INVALID)
+      case __StringValue("MALFORMED_SIG")         => Right(GitSignatureState.MALFORMED_SIG)
+      case __StringValue("NOT_SIGNING_KEY")       => Right(GitSignatureState.NOT_SIGNING_KEY)
+      case __StringValue("NO_USER")               => Right(GitSignatureState.NO_USER)
+      case __StringValue("OCSP_ERROR")            => Right(GitSignatureState.OCSP_ERROR)
+      case __StringValue("OCSP_PENDING")          => Right(GitSignatureState.OCSP_PENDING)
+      case __StringValue("OCSP_REVOKED")          => Right(GitSignatureState.OCSP_REVOKED)
+      case __StringValue("UNKNOWN_KEY")           => Right(GitSignatureState.UNKNOWN_KEY)
+      case __StringValue("UNKNOWN_SIG_TYPE")      => Right(GitSignatureState.UNKNOWN_SIG_TYPE)
+      case __StringValue("UNSIGNED")              => Right(GitSignatureState.UNSIGNED)
+      case __StringValue("UNVERIFIED_EMAIL")      => Right(GitSignatureState.UNVERIFIED_EMAIL)
+      case __StringValue("VALID")                 => Right(GitSignatureState.VALID)
+      case other                                  => Left(DecodingError(s"Can't build GitSignatureState from input $other"))
     }
     implicit val encoder: ArgEncoder[GitSignatureState] = new ArgEncoder[GitSignatureState] {
-      override def encode(value: GitSignatureState): Value = value match {
-        case GitSignatureState.BAD_CERT              => EnumValue("BAD_CERT")
-        case GitSignatureState.BAD_EMAIL             => EnumValue("BAD_EMAIL")
-        case GitSignatureState.EXPIRED_KEY           => EnumValue("EXPIRED_KEY")
-        case GitSignatureState.GPGVERIFY_ERROR       => EnumValue("GPGVERIFY_ERROR")
-        case GitSignatureState.GPGVERIFY_UNAVAILABLE => EnumValue("GPGVERIFY_UNAVAILABLE")
-        case GitSignatureState.INVALID               => EnumValue("INVALID")
-        case GitSignatureState.MALFORMED_SIG         => EnumValue("MALFORMED_SIG")
-        case GitSignatureState.NOT_SIGNING_KEY       => EnumValue("NOT_SIGNING_KEY")
-        case GitSignatureState.NO_USER               => EnumValue("NO_USER")
-        case GitSignatureState.OCSP_ERROR            => EnumValue("OCSP_ERROR")
-        case GitSignatureState.OCSP_PENDING          => EnumValue("OCSP_PENDING")
-        case GitSignatureState.OCSP_REVOKED          => EnumValue("OCSP_REVOKED")
-        case GitSignatureState.UNKNOWN_KEY           => EnumValue("UNKNOWN_KEY")
-        case GitSignatureState.UNKNOWN_SIG_TYPE      => EnumValue("UNKNOWN_SIG_TYPE")
-        case GitSignatureState.UNSIGNED              => EnumValue("UNSIGNED")
-        case GitSignatureState.UNVERIFIED_EMAIL      => EnumValue("UNVERIFIED_EMAIL")
-        case GitSignatureState.VALID                 => EnumValue("VALID")
+      override def encode(value: GitSignatureState): __Value = value match {
+        case GitSignatureState.BAD_CERT              => __EnumValue("BAD_CERT")
+        case GitSignatureState.BAD_EMAIL             => __EnumValue("BAD_EMAIL")
+        case GitSignatureState.EXPIRED_KEY           => __EnumValue("EXPIRED_KEY")
+        case GitSignatureState.GPGVERIFY_ERROR       => __EnumValue("GPGVERIFY_ERROR")
+        case GitSignatureState.GPGVERIFY_UNAVAILABLE => __EnumValue("GPGVERIFY_UNAVAILABLE")
+        case GitSignatureState.INVALID               => __EnumValue("INVALID")
+        case GitSignatureState.MALFORMED_SIG         => __EnumValue("MALFORMED_SIG")
+        case GitSignatureState.NOT_SIGNING_KEY       => __EnumValue("NOT_SIGNING_KEY")
+        case GitSignatureState.NO_USER               => __EnumValue("NO_USER")
+        case GitSignatureState.OCSP_ERROR            => __EnumValue("OCSP_ERROR")
+        case GitSignatureState.OCSP_PENDING          => __EnumValue("OCSP_PENDING")
+        case GitSignatureState.OCSP_REVOKED          => __EnumValue("OCSP_REVOKED")
+        case GitSignatureState.UNKNOWN_KEY           => __EnumValue("UNKNOWN_KEY")
+        case GitSignatureState.UNKNOWN_SIG_TYPE      => __EnumValue("UNKNOWN_SIG_TYPE")
+        case GitSignatureState.UNSIGNED              => __EnumValue("UNSIGNED")
+        case GitSignatureState.UNVERIFIED_EMAIL      => __EnumValue("UNVERIFIED_EMAIL")
+        case GitSignatureState.VALID                 => __EnumValue("VALID")
       }
       override def typeName: String = "GitSignatureState"
     }
@@ -891,17 +891,17 @@ object Github {
     case object UNCONFIGURED extends IdentityProviderConfigurationState
 
     implicit val decoder: ScalarDecoder[IdentityProviderConfigurationState] = {
-      case StringValue("CONFIGURED")   => Right(IdentityProviderConfigurationState.CONFIGURED)
-      case StringValue("ENFORCED")     => Right(IdentityProviderConfigurationState.ENFORCED)
-      case StringValue("UNCONFIGURED") => Right(IdentityProviderConfigurationState.UNCONFIGURED)
-      case other                       => Left(DecodingError(s"Can't build IdentityProviderConfigurationState from input $other"))
+      case __StringValue("CONFIGURED")   => Right(IdentityProviderConfigurationState.CONFIGURED)
+      case __StringValue("ENFORCED")     => Right(IdentityProviderConfigurationState.ENFORCED)
+      case __StringValue("UNCONFIGURED") => Right(IdentityProviderConfigurationState.UNCONFIGURED)
+      case other                         => Left(DecodingError(s"Can't build IdentityProviderConfigurationState from input $other"))
     }
     implicit val encoder: ArgEncoder[IdentityProviderConfigurationState] =
       new ArgEncoder[IdentityProviderConfigurationState] {
-        override def encode(value: IdentityProviderConfigurationState): Value = value match {
-          case IdentityProviderConfigurationState.CONFIGURED   => EnumValue("CONFIGURED")
-          case IdentityProviderConfigurationState.ENFORCED     => EnumValue("ENFORCED")
-          case IdentityProviderConfigurationState.UNCONFIGURED => EnumValue("UNCONFIGURED")
+        override def encode(value: IdentityProviderConfigurationState): __Value = value match {
+          case IdentityProviderConfigurationState.CONFIGURED   => __EnumValue("CONFIGURED")
+          case IdentityProviderConfigurationState.ENFORCED     => __EnumValue("ENFORCED")
+          case IdentityProviderConfigurationState.UNCONFIGURED => __EnumValue("UNCONFIGURED")
         }
         override def typeName: String = "IdentityProviderConfigurationState"
       }
@@ -913,14 +913,14 @@ object Github {
     case object ENABLED  extends IpAllowListEnabledSettingValue
 
     implicit val decoder: ScalarDecoder[IpAllowListEnabledSettingValue] = {
-      case StringValue("DISABLED") => Right(IpAllowListEnabledSettingValue.DISABLED)
-      case StringValue("ENABLED")  => Right(IpAllowListEnabledSettingValue.ENABLED)
-      case other                   => Left(DecodingError(s"Can't build IpAllowListEnabledSettingValue from input $other"))
+      case __StringValue("DISABLED") => Right(IpAllowListEnabledSettingValue.DISABLED)
+      case __StringValue("ENABLED")  => Right(IpAllowListEnabledSettingValue.ENABLED)
+      case other                     => Left(DecodingError(s"Can't build IpAllowListEnabledSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[IpAllowListEnabledSettingValue] = new ArgEncoder[IpAllowListEnabledSettingValue] {
-      override def encode(value: IpAllowListEnabledSettingValue): Value = value match {
-        case IpAllowListEnabledSettingValue.DISABLED => EnumValue("DISABLED")
-        case IpAllowListEnabledSettingValue.ENABLED  => EnumValue("ENABLED")
+      override def encode(value: IpAllowListEnabledSettingValue): __Value = value match {
+        case IpAllowListEnabledSettingValue.DISABLED => __EnumValue("DISABLED")
+        case IpAllowListEnabledSettingValue.ENABLED  => __EnumValue("ENABLED")
       }
       override def typeName: String = "IpAllowListEnabledSettingValue"
     }
@@ -932,14 +932,14 @@ object Github {
     case object CREATED_AT       extends IpAllowListEntryOrderField
 
     implicit val decoder: ScalarDecoder[IpAllowListEntryOrderField] = {
-      case StringValue("ALLOW_LIST_VALUE") => Right(IpAllowListEntryOrderField.ALLOW_LIST_VALUE)
-      case StringValue("CREATED_AT")       => Right(IpAllowListEntryOrderField.CREATED_AT)
-      case other                           => Left(DecodingError(s"Can't build IpAllowListEntryOrderField from input $other"))
+      case __StringValue("ALLOW_LIST_VALUE") => Right(IpAllowListEntryOrderField.ALLOW_LIST_VALUE)
+      case __StringValue("CREATED_AT")       => Right(IpAllowListEntryOrderField.CREATED_AT)
+      case other                             => Left(DecodingError(s"Can't build IpAllowListEntryOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[IpAllowListEntryOrderField] = new ArgEncoder[IpAllowListEntryOrderField] {
-      override def encode(value: IpAllowListEntryOrderField): Value = value match {
-        case IpAllowListEntryOrderField.ALLOW_LIST_VALUE => EnumValue("ALLOW_LIST_VALUE")
-        case IpAllowListEntryOrderField.CREATED_AT       => EnumValue("CREATED_AT")
+      override def encode(value: IpAllowListEntryOrderField): __Value = value match {
+        case IpAllowListEntryOrderField.ALLOW_LIST_VALUE => __EnumValue("ALLOW_LIST_VALUE")
+        case IpAllowListEntryOrderField.CREATED_AT       => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "IpAllowListEntryOrderField"
     }
@@ -952,16 +952,16 @@ object Github {
     case object UPDATED_AT extends IssueOrderField
 
     implicit val decoder: ScalarDecoder[IssueOrderField] = {
-      case StringValue("COMMENTS")   => Right(IssueOrderField.COMMENTS)
-      case StringValue("CREATED_AT") => Right(IssueOrderField.CREATED_AT)
-      case StringValue("UPDATED_AT") => Right(IssueOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build IssueOrderField from input $other"))
+      case __StringValue("COMMENTS")   => Right(IssueOrderField.COMMENTS)
+      case __StringValue("CREATED_AT") => Right(IssueOrderField.CREATED_AT)
+      case __StringValue("UPDATED_AT") => Right(IssueOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build IssueOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[IssueOrderField] = new ArgEncoder[IssueOrderField] {
-      override def encode(value: IssueOrderField): Value = value match {
-        case IssueOrderField.COMMENTS   => EnumValue("COMMENTS")
-        case IssueOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case IssueOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: IssueOrderField): __Value = value match {
+        case IssueOrderField.COMMENTS   => __EnumValue("COMMENTS")
+        case IssueOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case IssueOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "IssueOrderField"
     }
@@ -973,14 +973,14 @@ object Github {
     case object OPEN   extends IssueState
 
     implicit val decoder: ScalarDecoder[IssueState] = {
-      case StringValue("CLOSED") => Right(IssueState.CLOSED)
-      case StringValue("OPEN")   => Right(IssueState.OPEN)
-      case other                 => Left(DecodingError(s"Can't build IssueState from input $other"))
+      case __StringValue("CLOSED") => Right(IssueState.CLOSED)
+      case __StringValue("OPEN")   => Right(IssueState.OPEN)
+      case other                   => Left(DecodingError(s"Can't build IssueState from input $other"))
     }
     implicit val encoder: ArgEncoder[IssueState] = new ArgEncoder[IssueState] {
-      override def encode(value: IssueState): Value = value match {
-        case IssueState.CLOSED => EnumValue("CLOSED")
-        case IssueState.OPEN   => EnumValue("OPEN")
+      override def encode(value: IssueState): __Value = value match {
+        case IssueState.CLOSED => __EnumValue("CLOSED")
+        case IssueState.OPEN   => __EnumValue("OPEN")
       }
       override def typeName: String = "IssueState"
     }
@@ -1020,72 +1020,72 @@ object Github {
     case object USER_BLOCKED_EVENT             extends IssueTimelineItemsItemType
 
     implicit val decoder: ScalarDecoder[IssueTimelineItemsItemType] = {
-      case StringValue("ADDED_TO_PROJECT_EVENT") => Right(IssueTimelineItemsItemType.ADDED_TO_PROJECT_EVENT)
-      case StringValue("ASSIGNED_EVENT")         => Right(IssueTimelineItemsItemType.ASSIGNED_EVENT)
-      case StringValue("CLOSED_EVENT")           => Right(IssueTimelineItemsItemType.CLOSED_EVENT)
-      case StringValue("COMMENT_DELETED_EVENT")  => Right(IssueTimelineItemsItemType.COMMENT_DELETED_EVENT)
-      case StringValue("CONNECTED_EVENT")        => Right(IssueTimelineItemsItemType.CONNECTED_EVENT)
-      case StringValue("CONVERTED_NOTE_TO_ISSUE_EVENT") =>
+      case __StringValue("ADDED_TO_PROJECT_EVENT") => Right(IssueTimelineItemsItemType.ADDED_TO_PROJECT_EVENT)
+      case __StringValue("ASSIGNED_EVENT")         => Right(IssueTimelineItemsItemType.ASSIGNED_EVENT)
+      case __StringValue("CLOSED_EVENT")           => Right(IssueTimelineItemsItemType.CLOSED_EVENT)
+      case __StringValue("COMMENT_DELETED_EVENT")  => Right(IssueTimelineItemsItemType.COMMENT_DELETED_EVENT)
+      case __StringValue("CONNECTED_EVENT")        => Right(IssueTimelineItemsItemType.CONNECTED_EVENT)
+      case __StringValue("CONVERTED_NOTE_TO_ISSUE_EVENT") =>
         Right(IssueTimelineItemsItemType.CONVERTED_NOTE_TO_ISSUE_EVENT)
-      case StringValue("CROSS_REFERENCED_EVENT")    => Right(IssueTimelineItemsItemType.CROSS_REFERENCED_EVENT)
-      case StringValue("DEMILESTONED_EVENT")        => Right(IssueTimelineItemsItemType.DEMILESTONED_EVENT)
-      case StringValue("DISCONNECTED_EVENT")        => Right(IssueTimelineItemsItemType.DISCONNECTED_EVENT)
-      case StringValue("ISSUE_COMMENT")             => Right(IssueTimelineItemsItemType.ISSUE_COMMENT)
-      case StringValue("LABELED_EVENT")             => Right(IssueTimelineItemsItemType.LABELED_EVENT)
-      case StringValue("LOCKED_EVENT")              => Right(IssueTimelineItemsItemType.LOCKED_EVENT)
-      case StringValue("MARKED_AS_DUPLICATE_EVENT") => Right(IssueTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT)
-      case StringValue("MENTIONED_EVENT")           => Right(IssueTimelineItemsItemType.MENTIONED_EVENT)
-      case StringValue("MILESTONED_EVENT")          => Right(IssueTimelineItemsItemType.MILESTONED_EVENT)
-      case StringValue("MOVED_COLUMNS_IN_PROJECT_EVENT") =>
+      case __StringValue("CROSS_REFERENCED_EVENT")    => Right(IssueTimelineItemsItemType.CROSS_REFERENCED_EVENT)
+      case __StringValue("DEMILESTONED_EVENT")        => Right(IssueTimelineItemsItemType.DEMILESTONED_EVENT)
+      case __StringValue("DISCONNECTED_EVENT")        => Right(IssueTimelineItemsItemType.DISCONNECTED_EVENT)
+      case __StringValue("ISSUE_COMMENT")             => Right(IssueTimelineItemsItemType.ISSUE_COMMENT)
+      case __StringValue("LABELED_EVENT")             => Right(IssueTimelineItemsItemType.LABELED_EVENT)
+      case __StringValue("LOCKED_EVENT")              => Right(IssueTimelineItemsItemType.LOCKED_EVENT)
+      case __StringValue("MARKED_AS_DUPLICATE_EVENT") => Right(IssueTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT)
+      case __StringValue("MENTIONED_EVENT")           => Right(IssueTimelineItemsItemType.MENTIONED_EVENT)
+      case __StringValue("MILESTONED_EVENT")          => Right(IssueTimelineItemsItemType.MILESTONED_EVENT)
+      case __StringValue("MOVED_COLUMNS_IN_PROJECT_EVENT") =>
         Right(IssueTimelineItemsItemType.MOVED_COLUMNS_IN_PROJECT_EVENT)
-      case StringValue("PINNED_EVENT")                => Right(IssueTimelineItemsItemType.PINNED_EVENT)
-      case StringValue("REFERENCED_EVENT")            => Right(IssueTimelineItemsItemType.REFERENCED_EVENT)
-      case StringValue("REMOVED_FROM_PROJECT_EVENT")  => Right(IssueTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT)
-      case StringValue("RENAMED_TITLE_EVENT")         => Right(IssueTimelineItemsItemType.RENAMED_TITLE_EVENT)
-      case StringValue("REOPENED_EVENT")              => Right(IssueTimelineItemsItemType.REOPENED_EVENT)
-      case StringValue("SUBSCRIBED_EVENT")            => Right(IssueTimelineItemsItemType.SUBSCRIBED_EVENT)
-      case StringValue("TRANSFERRED_EVENT")           => Right(IssueTimelineItemsItemType.TRANSFERRED_EVENT)
-      case StringValue("UNASSIGNED_EVENT")            => Right(IssueTimelineItemsItemType.UNASSIGNED_EVENT)
-      case StringValue("UNLABELED_EVENT")             => Right(IssueTimelineItemsItemType.UNLABELED_EVENT)
-      case StringValue("UNLOCKED_EVENT")              => Right(IssueTimelineItemsItemType.UNLOCKED_EVENT)
-      case StringValue("UNMARKED_AS_DUPLICATE_EVENT") => Right(IssueTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT)
-      case StringValue("UNPINNED_EVENT")              => Right(IssueTimelineItemsItemType.UNPINNED_EVENT)
-      case StringValue("UNSUBSCRIBED_EVENT")          => Right(IssueTimelineItemsItemType.UNSUBSCRIBED_EVENT)
-      case StringValue("USER_BLOCKED_EVENT")          => Right(IssueTimelineItemsItemType.USER_BLOCKED_EVENT)
-      case other                                      => Left(DecodingError(s"Can't build IssueTimelineItemsItemType from input $other"))
+      case __StringValue("PINNED_EVENT")                => Right(IssueTimelineItemsItemType.PINNED_EVENT)
+      case __StringValue("REFERENCED_EVENT")            => Right(IssueTimelineItemsItemType.REFERENCED_EVENT)
+      case __StringValue("REMOVED_FROM_PROJECT_EVENT")  => Right(IssueTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT)
+      case __StringValue("RENAMED_TITLE_EVENT")         => Right(IssueTimelineItemsItemType.RENAMED_TITLE_EVENT)
+      case __StringValue("REOPENED_EVENT")              => Right(IssueTimelineItemsItemType.REOPENED_EVENT)
+      case __StringValue("SUBSCRIBED_EVENT")            => Right(IssueTimelineItemsItemType.SUBSCRIBED_EVENT)
+      case __StringValue("TRANSFERRED_EVENT")           => Right(IssueTimelineItemsItemType.TRANSFERRED_EVENT)
+      case __StringValue("UNASSIGNED_EVENT")            => Right(IssueTimelineItemsItemType.UNASSIGNED_EVENT)
+      case __StringValue("UNLABELED_EVENT")             => Right(IssueTimelineItemsItemType.UNLABELED_EVENT)
+      case __StringValue("UNLOCKED_EVENT")              => Right(IssueTimelineItemsItemType.UNLOCKED_EVENT)
+      case __StringValue("UNMARKED_AS_DUPLICATE_EVENT") => Right(IssueTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT)
+      case __StringValue("UNPINNED_EVENT")              => Right(IssueTimelineItemsItemType.UNPINNED_EVENT)
+      case __StringValue("UNSUBSCRIBED_EVENT")          => Right(IssueTimelineItemsItemType.UNSUBSCRIBED_EVENT)
+      case __StringValue("USER_BLOCKED_EVENT")          => Right(IssueTimelineItemsItemType.USER_BLOCKED_EVENT)
+      case other                                        => Left(DecodingError(s"Can't build IssueTimelineItemsItemType from input $other"))
     }
     implicit val encoder: ArgEncoder[IssueTimelineItemsItemType] = new ArgEncoder[IssueTimelineItemsItemType] {
-      override def encode(value: IssueTimelineItemsItemType): Value = value match {
-        case IssueTimelineItemsItemType.ADDED_TO_PROJECT_EVENT         => EnumValue("ADDED_TO_PROJECT_EVENT")
-        case IssueTimelineItemsItemType.ASSIGNED_EVENT                 => EnumValue("ASSIGNED_EVENT")
-        case IssueTimelineItemsItemType.CLOSED_EVENT                   => EnumValue("CLOSED_EVENT")
-        case IssueTimelineItemsItemType.COMMENT_DELETED_EVENT          => EnumValue("COMMENT_DELETED_EVENT")
-        case IssueTimelineItemsItemType.CONNECTED_EVENT                => EnumValue("CONNECTED_EVENT")
-        case IssueTimelineItemsItemType.CONVERTED_NOTE_TO_ISSUE_EVENT  => EnumValue("CONVERTED_NOTE_TO_ISSUE_EVENT")
-        case IssueTimelineItemsItemType.CROSS_REFERENCED_EVENT         => EnumValue("CROSS_REFERENCED_EVENT")
-        case IssueTimelineItemsItemType.DEMILESTONED_EVENT             => EnumValue("DEMILESTONED_EVENT")
-        case IssueTimelineItemsItemType.DISCONNECTED_EVENT             => EnumValue("DISCONNECTED_EVENT")
-        case IssueTimelineItemsItemType.ISSUE_COMMENT                  => EnumValue("ISSUE_COMMENT")
-        case IssueTimelineItemsItemType.LABELED_EVENT                  => EnumValue("LABELED_EVENT")
-        case IssueTimelineItemsItemType.LOCKED_EVENT                   => EnumValue("LOCKED_EVENT")
-        case IssueTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT      => EnumValue("MARKED_AS_DUPLICATE_EVENT")
-        case IssueTimelineItemsItemType.MENTIONED_EVENT                => EnumValue("MENTIONED_EVENT")
-        case IssueTimelineItemsItemType.MILESTONED_EVENT               => EnumValue("MILESTONED_EVENT")
-        case IssueTimelineItemsItemType.MOVED_COLUMNS_IN_PROJECT_EVENT => EnumValue("MOVED_COLUMNS_IN_PROJECT_EVENT")
-        case IssueTimelineItemsItemType.PINNED_EVENT                   => EnumValue("PINNED_EVENT")
-        case IssueTimelineItemsItemType.REFERENCED_EVENT               => EnumValue("REFERENCED_EVENT")
-        case IssueTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT     => EnumValue("REMOVED_FROM_PROJECT_EVENT")
-        case IssueTimelineItemsItemType.RENAMED_TITLE_EVENT            => EnumValue("RENAMED_TITLE_EVENT")
-        case IssueTimelineItemsItemType.REOPENED_EVENT                 => EnumValue("REOPENED_EVENT")
-        case IssueTimelineItemsItemType.SUBSCRIBED_EVENT               => EnumValue("SUBSCRIBED_EVENT")
-        case IssueTimelineItemsItemType.TRANSFERRED_EVENT              => EnumValue("TRANSFERRED_EVENT")
-        case IssueTimelineItemsItemType.UNASSIGNED_EVENT               => EnumValue("UNASSIGNED_EVENT")
-        case IssueTimelineItemsItemType.UNLABELED_EVENT                => EnumValue("UNLABELED_EVENT")
-        case IssueTimelineItemsItemType.UNLOCKED_EVENT                 => EnumValue("UNLOCKED_EVENT")
-        case IssueTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT    => EnumValue("UNMARKED_AS_DUPLICATE_EVENT")
-        case IssueTimelineItemsItemType.UNPINNED_EVENT                 => EnumValue("UNPINNED_EVENT")
-        case IssueTimelineItemsItemType.UNSUBSCRIBED_EVENT             => EnumValue("UNSUBSCRIBED_EVENT")
-        case IssueTimelineItemsItemType.USER_BLOCKED_EVENT             => EnumValue("USER_BLOCKED_EVENT")
+      override def encode(value: IssueTimelineItemsItemType): __Value = value match {
+        case IssueTimelineItemsItemType.ADDED_TO_PROJECT_EVENT         => __EnumValue("ADDED_TO_PROJECT_EVENT")
+        case IssueTimelineItemsItemType.ASSIGNED_EVENT                 => __EnumValue("ASSIGNED_EVENT")
+        case IssueTimelineItemsItemType.CLOSED_EVENT                   => __EnumValue("CLOSED_EVENT")
+        case IssueTimelineItemsItemType.COMMENT_DELETED_EVENT          => __EnumValue("COMMENT_DELETED_EVENT")
+        case IssueTimelineItemsItemType.CONNECTED_EVENT                => __EnumValue("CONNECTED_EVENT")
+        case IssueTimelineItemsItemType.CONVERTED_NOTE_TO_ISSUE_EVENT  => __EnumValue("CONVERTED_NOTE_TO_ISSUE_EVENT")
+        case IssueTimelineItemsItemType.CROSS_REFERENCED_EVENT         => __EnumValue("CROSS_REFERENCED_EVENT")
+        case IssueTimelineItemsItemType.DEMILESTONED_EVENT             => __EnumValue("DEMILESTONED_EVENT")
+        case IssueTimelineItemsItemType.DISCONNECTED_EVENT             => __EnumValue("DISCONNECTED_EVENT")
+        case IssueTimelineItemsItemType.ISSUE_COMMENT                  => __EnumValue("ISSUE_COMMENT")
+        case IssueTimelineItemsItemType.LABELED_EVENT                  => __EnumValue("LABELED_EVENT")
+        case IssueTimelineItemsItemType.LOCKED_EVENT                   => __EnumValue("LOCKED_EVENT")
+        case IssueTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT      => __EnumValue("MARKED_AS_DUPLICATE_EVENT")
+        case IssueTimelineItemsItemType.MENTIONED_EVENT                => __EnumValue("MENTIONED_EVENT")
+        case IssueTimelineItemsItemType.MILESTONED_EVENT               => __EnumValue("MILESTONED_EVENT")
+        case IssueTimelineItemsItemType.MOVED_COLUMNS_IN_PROJECT_EVENT => __EnumValue("MOVED_COLUMNS_IN_PROJECT_EVENT")
+        case IssueTimelineItemsItemType.PINNED_EVENT                   => __EnumValue("PINNED_EVENT")
+        case IssueTimelineItemsItemType.REFERENCED_EVENT               => __EnumValue("REFERENCED_EVENT")
+        case IssueTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT     => __EnumValue("REMOVED_FROM_PROJECT_EVENT")
+        case IssueTimelineItemsItemType.RENAMED_TITLE_EVENT            => __EnumValue("RENAMED_TITLE_EVENT")
+        case IssueTimelineItemsItemType.REOPENED_EVENT                 => __EnumValue("REOPENED_EVENT")
+        case IssueTimelineItemsItemType.SUBSCRIBED_EVENT               => __EnumValue("SUBSCRIBED_EVENT")
+        case IssueTimelineItemsItemType.TRANSFERRED_EVENT              => __EnumValue("TRANSFERRED_EVENT")
+        case IssueTimelineItemsItemType.UNASSIGNED_EVENT               => __EnumValue("UNASSIGNED_EVENT")
+        case IssueTimelineItemsItemType.UNLABELED_EVENT                => __EnumValue("UNLABELED_EVENT")
+        case IssueTimelineItemsItemType.UNLOCKED_EVENT                 => __EnumValue("UNLOCKED_EVENT")
+        case IssueTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT    => __EnumValue("UNMARKED_AS_DUPLICATE_EVENT")
+        case IssueTimelineItemsItemType.UNPINNED_EVENT                 => __EnumValue("UNPINNED_EVENT")
+        case IssueTimelineItemsItemType.UNSUBSCRIBED_EVENT             => __EnumValue("UNSUBSCRIBED_EVENT")
+        case IssueTimelineItemsItemType.USER_BLOCKED_EVENT             => __EnumValue("USER_BLOCKED_EVENT")
       }
       override def typeName: String = "IssueTimelineItemsItemType"
     }
@@ -1097,14 +1097,14 @@ object Github {
     case object NAME       extends LabelOrderField
 
     implicit val decoder: ScalarDecoder[LabelOrderField] = {
-      case StringValue("CREATED_AT") => Right(LabelOrderField.CREATED_AT)
-      case StringValue("NAME")       => Right(LabelOrderField.NAME)
-      case other                     => Left(DecodingError(s"Can't build LabelOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(LabelOrderField.CREATED_AT)
+      case __StringValue("NAME")       => Right(LabelOrderField.NAME)
+      case other                       => Left(DecodingError(s"Can't build LabelOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[LabelOrderField] = new ArgEncoder[LabelOrderField] {
-      override def encode(value: LabelOrderField): Value = value match {
-        case LabelOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case LabelOrderField.NAME       => EnumValue("NAME")
+      override def encode(value: LabelOrderField): __Value = value match {
+        case LabelOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case LabelOrderField.NAME       => __EnumValue("NAME")
       }
       override def typeName: String = "LabelOrderField"
     }
@@ -1115,12 +1115,12 @@ object Github {
     case object SIZE extends LanguageOrderField
 
     implicit val decoder: ScalarDecoder[LanguageOrderField] = {
-      case StringValue("SIZE") => Right(LanguageOrderField.SIZE)
-      case other               => Left(DecodingError(s"Can't build LanguageOrderField from input $other"))
+      case __StringValue("SIZE") => Right(LanguageOrderField.SIZE)
+      case other                 => Left(DecodingError(s"Can't build LanguageOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[LanguageOrderField] = new ArgEncoder[LanguageOrderField] {
-      override def encode(value: LanguageOrderField): Value = value match {
-        case LanguageOrderField.SIZE => EnumValue("SIZE")
+      override def encode(value: LanguageOrderField): __Value = value match {
+        case LanguageOrderField.SIZE => __EnumValue("SIZE")
       }
       override def typeName: String = "LanguageOrderField"
     }
@@ -1134,18 +1134,18 @@ object Github {
     case object TOO_HEATED extends LockReason
 
     implicit val decoder: ScalarDecoder[LockReason] = {
-      case StringValue("OFF_TOPIC")  => Right(LockReason.OFF_TOPIC)
-      case StringValue("RESOLVED")   => Right(LockReason.RESOLVED)
-      case StringValue("SPAM")       => Right(LockReason.SPAM)
-      case StringValue("TOO_HEATED") => Right(LockReason.TOO_HEATED)
-      case other                     => Left(DecodingError(s"Can't build LockReason from input $other"))
+      case __StringValue("OFF_TOPIC")  => Right(LockReason.OFF_TOPIC)
+      case __StringValue("RESOLVED")   => Right(LockReason.RESOLVED)
+      case __StringValue("SPAM")       => Right(LockReason.SPAM)
+      case __StringValue("TOO_HEATED") => Right(LockReason.TOO_HEATED)
+      case other                       => Left(DecodingError(s"Can't build LockReason from input $other"))
     }
     implicit val encoder: ArgEncoder[LockReason] = new ArgEncoder[LockReason] {
-      override def encode(value: LockReason): Value = value match {
-        case LockReason.OFF_TOPIC  => EnumValue("OFF_TOPIC")
-        case LockReason.RESOLVED   => EnumValue("RESOLVED")
-        case LockReason.SPAM       => EnumValue("SPAM")
-        case LockReason.TOO_HEATED => EnumValue("TOO_HEATED")
+      override def encode(value: LockReason): __Value = value match {
+        case LockReason.OFF_TOPIC  => __EnumValue("OFF_TOPIC")
+        case LockReason.RESOLVED   => __EnumValue("RESOLVED")
+        case LockReason.SPAM       => __EnumValue("SPAM")
+        case LockReason.TOO_HEATED => __EnumValue("TOO_HEATED")
       }
       override def typeName: String = "LockReason"
     }
@@ -1163,26 +1163,26 @@ object Github {
     case object UNSTABLE  extends MergeStateStatus
 
     implicit val decoder: ScalarDecoder[MergeStateStatus] = {
-      case StringValue("BEHIND")    => Right(MergeStateStatus.BEHIND)
-      case StringValue("BLOCKED")   => Right(MergeStateStatus.BLOCKED)
-      case StringValue("CLEAN")     => Right(MergeStateStatus.CLEAN)
-      case StringValue("DIRTY")     => Right(MergeStateStatus.DIRTY)
-      case StringValue("DRAFT")     => Right(MergeStateStatus.DRAFT)
-      case StringValue("HAS_HOOKS") => Right(MergeStateStatus.HAS_HOOKS)
-      case StringValue("UNKNOWN")   => Right(MergeStateStatus.UNKNOWN)
-      case StringValue("UNSTABLE")  => Right(MergeStateStatus.UNSTABLE)
-      case other                    => Left(DecodingError(s"Can't build MergeStateStatus from input $other"))
+      case __StringValue("BEHIND")    => Right(MergeStateStatus.BEHIND)
+      case __StringValue("BLOCKED")   => Right(MergeStateStatus.BLOCKED)
+      case __StringValue("CLEAN")     => Right(MergeStateStatus.CLEAN)
+      case __StringValue("DIRTY")     => Right(MergeStateStatus.DIRTY)
+      case __StringValue("DRAFT")     => Right(MergeStateStatus.DRAFT)
+      case __StringValue("HAS_HOOKS") => Right(MergeStateStatus.HAS_HOOKS)
+      case __StringValue("UNKNOWN")   => Right(MergeStateStatus.UNKNOWN)
+      case __StringValue("UNSTABLE")  => Right(MergeStateStatus.UNSTABLE)
+      case other                      => Left(DecodingError(s"Can't build MergeStateStatus from input $other"))
     }
     implicit val encoder: ArgEncoder[MergeStateStatus] = new ArgEncoder[MergeStateStatus] {
-      override def encode(value: MergeStateStatus): Value = value match {
-        case MergeStateStatus.BEHIND    => EnumValue("BEHIND")
-        case MergeStateStatus.BLOCKED   => EnumValue("BLOCKED")
-        case MergeStateStatus.CLEAN     => EnumValue("CLEAN")
-        case MergeStateStatus.DIRTY     => EnumValue("DIRTY")
-        case MergeStateStatus.DRAFT     => EnumValue("DRAFT")
-        case MergeStateStatus.HAS_HOOKS => EnumValue("HAS_HOOKS")
-        case MergeStateStatus.UNKNOWN   => EnumValue("UNKNOWN")
-        case MergeStateStatus.UNSTABLE  => EnumValue("UNSTABLE")
+      override def encode(value: MergeStateStatus): __Value = value match {
+        case MergeStateStatus.BEHIND    => __EnumValue("BEHIND")
+        case MergeStateStatus.BLOCKED   => __EnumValue("BLOCKED")
+        case MergeStateStatus.CLEAN     => __EnumValue("CLEAN")
+        case MergeStateStatus.DIRTY     => __EnumValue("DIRTY")
+        case MergeStateStatus.DRAFT     => __EnumValue("DRAFT")
+        case MergeStateStatus.HAS_HOOKS => __EnumValue("HAS_HOOKS")
+        case MergeStateStatus.UNKNOWN   => __EnumValue("UNKNOWN")
+        case MergeStateStatus.UNSTABLE  => __EnumValue("UNSTABLE")
       }
       override def typeName: String = "MergeStateStatus"
     }
@@ -1195,16 +1195,16 @@ object Github {
     case object UNKNOWN     extends MergeableState
 
     implicit val decoder: ScalarDecoder[MergeableState] = {
-      case StringValue("CONFLICTING") => Right(MergeableState.CONFLICTING)
-      case StringValue("MERGEABLE")   => Right(MergeableState.MERGEABLE)
-      case StringValue("UNKNOWN")     => Right(MergeableState.UNKNOWN)
-      case other                      => Left(DecodingError(s"Can't build MergeableState from input $other"))
+      case __StringValue("CONFLICTING") => Right(MergeableState.CONFLICTING)
+      case __StringValue("MERGEABLE")   => Right(MergeableState.MERGEABLE)
+      case __StringValue("UNKNOWN")     => Right(MergeableState.UNKNOWN)
+      case other                        => Left(DecodingError(s"Can't build MergeableState from input $other"))
     }
     implicit val encoder: ArgEncoder[MergeableState] = new ArgEncoder[MergeableState] {
-      override def encode(value: MergeableState): Value = value match {
-        case MergeableState.CONFLICTING => EnumValue("CONFLICTING")
-        case MergeableState.MERGEABLE   => EnumValue("MERGEABLE")
-        case MergeableState.UNKNOWN     => EnumValue("UNKNOWN")
+      override def encode(value: MergeableState): __Value = value match {
+        case MergeableState.CONFLICTING => __EnumValue("CONFLICTING")
+        case MergeableState.MERGEABLE   => __EnumValue("MERGEABLE")
+        case MergeableState.UNKNOWN     => __EnumValue("UNKNOWN")
       }
       override def typeName: String = "MergeableState"
     }
@@ -1218,18 +1218,18 @@ object Github {
     case object UPDATED_AT extends MilestoneOrderField
 
     implicit val decoder: ScalarDecoder[MilestoneOrderField] = {
-      case StringValue("CREATED_AT") => Right(MilestoneOrderField.CREATED_AT)
-      case StringValue("DUE_DATE")   => Right(MilestoneOrderField.DUE_DATE)
-      case StringValue("NUMBER")     => Right(MilestoneOrderField.NUMBER)
-      case StringValue("UPDATED_AT") => Right(MilestoneOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build MilestoneOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(MilestoneOrderField.CREATED_AT)
+      case __StringValue("DUE_DATE")   => Right(MilestoneOrderField.DUE_DATE)
+      case __StringValue("NUMBER")     => Right(MilestoneOrderField.NUMBER)
+      case __StringValue("UPDATED_AT") => Right(MilestoneOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build MilestoneOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[MilestoneOrderField] = new ArgEncoder[MilestoneOrderField] {
-      override def encode(value: MilestoneOrderField): Value = value match {
-        case MilestoneOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case MilestoneOrderField.DUE_DATE   => EnumValue("DUE_DATE")
-        case MilestoneOrderField.NUMBER     => EnumValue("NUMBER")
-        case MilestoneOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: MilestoneOrderField): __Value = value match {
+        case MilestoneOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case MilestoneOrderField.DUE_DATE   => __EnumValue("DUE_DATE")
+        case MilestoneOrderField.NUMBER     => __EnumValue("NUMBER")
+        case MilestoneOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "MilestoneOrderField"
     }
@@ -1241,14 +1241,14 @@ object Github {
     case object OPEN   extends MilestoneState
 
     implicit val decoder: ScalarDecoder[MilestoneState] = {
-      case StringValue("CLOSED") => Right(MilestoneState.CLOSED)
-      case StringValue("OPEN")   => Right(MilestoneState.OPEN)
-      case other                 => Left(DecodingError(s"Can't build MilestoneState from input $other"))
+      case __StringValue("CLOSED") => Right(MilestoneState.CLOSED)
+      case __StringValue("OPEN")   => Right(MilestoneState.OPEN)
+      case other                   => Left(DecodingError(s"Can't build MilestoneState from input $other"))
     }
     implicit val encoder: ArgEncoder[MilestoneState] = new ArgEncoder[MilestoneState] {
-      override def encode(value: MilestoneState): Value = value match {
-        case MilestoneState.CLOSED => EnumValue("CLOSED")
-        case MilestoneState.OPEN   => EnumValue("OPEN")
+      override def encode(value: MilestoneState): __Value = value match {
+        case MilestoneState.CLOSED => __EnumValue("CLOSED")
+        case MilestoneState.OPEN   => __EnumValue("OPEN")
       }
       override def typeName: String = "MilestoneState"
     }
@@ -1261,17 +1261,17 @@ object Github {
     case object SUSPENDED        extends OauthApplicationCreateAuditEntryState
 
     implicit val decoder: ScalarDecoder[OauthApplicationCreateAuditEntryState] = {
-      case StringValue("ACTIVE")           => Right(OauthApplicationCreateAuditEntryState.ACTIVE)
-      case StringValue("PENDING_DELETION") => Right(OauthApplicationCreateAuditEntryState.PENDING_DELETION)
-      case StringValue("SUSPENDED")        => Right(OauthApplicationCreateAuditEntryState.SUSPENDED)
-      case other                           => Left(DecodingError(s"Can't build OauthApplicationCreateAuditEntryState from input $other"))
+      case __StringValue("ACTIVE")           => Right(OauthApplicationCreateAuditEntryState.ACTIVE)
+      case __StringValue("PENDING_DELETION") => Right(OauthApplicationCreateAuditEntryState.PENDING_DELETION)
+      case __StringValue("SUSPENDED")        => Right(OauthApplicationCreateAuditEntryState.SUSPENDED)
+      case other                             => Left(DecodingError(s"Can't build OauthApplicationCreateAuditEntryState from input $other"))
     }
     implicit val encoder: ArgEncoder[OauthApplicationCreateAuditEntryState] =
       new ArgEncoder[OauthApplicationCreateAuditEntryState] {
-        override def encode(value: OauthApplicationCreateAuditEntryState): Value = value match {
-          case OauthApplicationCreateAuditEntryState.ACTIVE           => EnumValue("ACTIVE")
-          case OauthApplicationCreateAuditEntryState.PENDING_DELETION => EnumValue("PENDING_DELETION")
-          case OauthApplicationCreateAuditEntryState.SUSPENDED        => EnumValue("SUSPENDED")
+        override def encode(value: OauthApplicationCreateAuditEntryState): __Value = value match {
+          case OauthApplicationCreateAuditEntryState.ACTIVE           => __EnumValue("ACTIVE")
+          case OauthApplicationCreateAuditEntryState.PENDING_DELETION => __EnumValue("PENDING_DELETION")
+          case OauthApplicationCreateAuditEntryState.SUSPENDED        => __EnumValue("SUSPENDED")
         }
         override def typeName: String = "OauthApplicationCreateAuditEntryState"
       }
@@ -1288,24 +1288,24 @@ object Github {
     case object TRANSFER       extends OperationType
 
     implicit val decoder: ScalarDecoder[OperationType] = {
-      case StringValue("ACCESS")         => Right(OperationType.ACCESS)
-      case StringValue("AUTHENTICATION") => Right(OperationType.AUTHENTICATION)
-      case StringValue("CREATE")         => Right(OperationType.CREATE)
-      case StringValue("MODIFY")         => Right(OperationType.MODIFY)
-      case StringValue("REMOVE")         => Right(OperationType.REMOVE)
-      case StringValue("RESTORE")        => Right(OperationType.RESTORE)
-      case StringValue("TRANSFER")       => Right(OperationType.TRANSFER)
-      case other                         => Left(DecodingError(s"Can't build OperationType from input $other"))
+      case __StringValue("ACCESS")         => Right(OperationType.ACCESS)
+      case __StringValue("AUTHENTICATION") => Right(OperationType.AUTHENTICATION)
+      case __StringValue("CREATE")         => Right(OperationType.CREATE)
+      case __StringValue("MODIFY")         => Right(OperationType.MODIFY)
+      case __StringValue("REMOVE")         => Right(OperationType.REMOVE)
+      case __StringValue("RESTORE")        => Right(OperationType.RESTORE)
+      case __StringValue("TRANSFER")       => Right(OperationType.TRANSFER)
+      case other                           => Left(DecodingError(s"Can't build OperationType from input $other"))
     }
     implicit val encoder: ArgEncoder[OperationType] = new ArgEncoder[OperationType] {
-      override def encode(value: OperationType): Value = value match {
-        case OperationType.ACCESS         => EnumValue("ACCESS")
-        case OperationType.AUTHENTICATION => EnumValue("AUTHENTICATION")
-        case OperationType.CREATE         => EnumValue("CREATE")
-        case OperationType.MODIFY         => EnumValue("MODIFY")
-        case OperationType.REMOVE         => EnumValue("REMOVE")
-        case OperationType.RESTORE        => EnumValue("RESTORE")
-        case OperationType.TRANSFER       => EnumValue("TRANSFER")
+      override def encode(value: OperationType): __Value = value match {
+        case OperationType.ACCESS         => __EnumValue("ACCESS")
+        case OperationType.AUTHENTICATION => __EnumValue("AUTHENTICATION")
+        case OperationType.CREATE         => __EnumValue("CREATE")
+        case OperationType.MODIFY         => __EnumValue("MODIFY")
+        case OperationType.REMOVE         => __EnumValue("REMOVE")
+        case OperationType.RESTORE        => __EnumValue("RESTORE")
+        case OperationType.TRANSFER       => __EnumValue("TRANSFER")
       }
       override def typeName: String = "OperationType"
     }
@@ -1317,14 +1317,14 @@ object Github {
     case object DESC extends OrderDirection
 
     implicit val decoder: ScalarDecoder[OrderDirection] = {
-      case StringValue("ASC")  => Right(OrderDirection.ASC)
-      case StringValue("DESC") => Right(OrderDirection.DESC)
-      case other               => Left(DecodingError(s"Can't build OrderDirection from input $other"))
+      case __StringValue("ASC")  => Right(OrderDirection.ASC)
+      case __StringValue("DESC") => Right(OrderDirection.DESC)
+      case other                 => Left(DecodingError(s"Can't build OrderDirection from input $other"))
     }
     implicit val encoder: ArgEncoder[OrderDirection] = new ArgEncoder[OrderDirection] {
-      override def encode(value: OrderDirection): Value = value match {
-        case OrderDirection.ASC  => EnumValue("ASC")
-        case OrderDirection.DESC => EnumValue("DESC")
+      override def encode(value: OrderDirection): __Value = value match {
+        case OrderDirection.ASC  => __EnumValue("ASC")
+        case OrderDirection.DESC => __EnumValue("DESC")
       }
       override def typeName: String = "OrderDirection"
     }
@@ -1336,15 +1336,15 @@ object Github {
     case object READ  extends OrgAddMemberAuditEntryPermission
 
     implicit val decoder: ScalarDecoder[OrgAddMemberAuditEntryPermission] = {
-      case StringValue("ADMIN") => Right(OrgAddMemberAuditEntryPermission.ADMIN)
-      case StringValue("READ")  => Right(OrgAddMemberAuditEntryPermission.READ)
-      case other                => Left(DecodingError(s"Can't build OrgAddMemberAuditEntryPermission from input $other"))
+      case __StringValue("ADMIN") => Right(OrgAddMemberAuditEntryPermission.ADMIN)
+      case __StringValue("READ")  => Right(OrgAddMemberAuditEntryPermission.READ)
+      case other                  => Left(DecodingError(s"Can't build OrgAddMemberAuditEntryPermission from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgAddMemberAuditEntryPermission] =
       new ArgEncoder[OrgAddMemberAuditEntryPermission] {
-        override def encode(value: OrgAddMemberAuditEntryPermission): Value = value match {
-          case OrgAddMemberAuditEntryPermission.ADMIN => EnumValue("ADMIN")
-          case OrgAddMemberAuditEntryPermission.READ  => EnumValue("READ")
+        override def encode(value: OrgAddMemberAuditEntryPermission): __Value = value match {
+          case OrgAddMemberAuditEntryPermission.ADMIN => __EnumValue("ADMIN")
+          case OrgAddMemberAuditEntryPermission.READ  => __EnumValue("READ")
         }
         override def typeName: String = "OrgAddMemberAuditEntryPermission"
       }
@@ -1359,20 +1359,20 @@ object Github {
     case object UNLIMITED       extends OrgCreateAuditEntryBillingPlan
 
     implicit val decoder: ScalarDecoder[OrgCreateAuditEntryBillingPlan] = {
-      case StringValue("BUSINESS")        => Right(OrgCreateAuditEntryBillingPlan.BUSINESS)
-      case StringValue("BUSINESS_PLUS")   => Right(OrgCreateAuditEntryBillingPlan.BUSINESS_PLUS)
-      case StringValue("FREE")            => Right(OrgCreateAuditEntryBillingPlan.FREE)
-      case StringValue("TIERED_PER_SEAT") => Right(OrgCreateAuditEntryBillingPlan.TIERED_PER_SEAT)
-      case StringValue("UNLIMITED")       => Right(OrgCreateAuditEntryBillingPlan.UNLIMITED)
-      case other                          => Left(DecodingError(s"Can't build OrgCreateAuditEntryBillingPlan from input $other"))
+      case __StringValue("BUSINESS")        => Right(OrgCreateAuditEntryBillingPlan.BUSINESS)
+      case __StringValue("BUSINESS_PLUS")   => Right(OrgCreateAuditEntryBillingPlan.BUSINESS_PLUS)
+      case __StringValue("FREE")            => Right(OrgCreateAuditEntryBillingPlan.FREE)
+      case __StringValue("TIERED_PER_SEAT") => Right(OrgCreateAuditEntryBillingPlan.TIERED_PER_SEAT)
+      case __StringValue("UNLIMITED")       => Right(OrgCreateAuditEntryBillingPlan.UNLIMITED)
+      case other                            => Left(DecodingError(s"Can't build OrgCreateAuditEntryBillingPlan from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgCreateAuditEntryBillingPlan] = new ArgEncoder[OrgCreateAuditEntryBillingPlan] {
-      override def encode(value: OrgCreateAuditEntryBillingPlan): Value = value match {
-        case OrgCreateAuditEntryBillingPlan.BUSINESS        => EnumValue("BUSINESS")
-        case OrgCreateAuditEntryBillingPlan.BUSINESS_PLUS   => EnumValue("BUSINESS_PLUS")
-        case OrgCreateAuditEntryBillingPlan.FREE            => EnumValue("FREE")
-        case OrgCreateAuditEntryBillingPlan.TIERED_PER_SEAT => EnumValue("TIERED_PER_SEAT")
-        case OrgCreateAuditEntryBillingPlan.UNLIMITED       => EnumValue("UNLIMITED")
+      override def encode(value: OrgCreateAuditEntryBillingPlan): __Value = value match {
+        case OrgCreateAuditEntryBillingPlan.BUSINESS        => __EnumValue("BUSINESS")
+        case OrgCreateAuditEntryBillingPlan.BUSINESS_PLUS   => __EnumValue("BUSINESS_PLUS")
+        case OrgCreateAuditEntryBillingPlan.FREE            => __EnumValue("FREE")
+        case OrgCreateAuditEntryBillingPlan.TIERED_PER_SEAT => __EnumValue("TIERED_PER_SEAT")
+        case OrgCreateAuditEntryBillingPlan.UNLIMITED       => __EnumValue("UNLIMITED")
       }
       override def typeName: String = "OrgCreateAuditEntryBillingPlan"
     }
@@ -1385,23 +1385,23 @@ object Github {
     case object TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE           extends OrgRemoveBillingManagerAuditEntryReason
 
     implicit val decoder: ScalarDecoder[OrgRemoveBillingManagerAuditEntryReason] = {
-      case StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
+      case __StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
         Right(OrgRemoveBillingManagerAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING)
-      case StringValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY") =>
+      case __StringValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY") =>
         Right(OrgRemoveBillingManagerAuditEntryReason.SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY)
-      case StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
+      case __StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
         Right(OrgRemoveBillingManagerAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE)
       case other => Left(DecodingError(s"Can't build OrgRemoveBillingManagerAuditEntryReason from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgRemoveBillingManagerAuditEntryReason] =
       new ArgEncoder[OrgRemoveBillingManagerAuditEntryReason] {
-        override def encode(value: OrgRemoveBillingManagerAuditEntryReason): Value = value match {
+        override def encode(value: OrgRemoveBillingManagerAuditEntryReason): __Value = value match {
           case OrgRemoveBillingManagerAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING =>
-            EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
+            __EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
           case OrgRemoveBillingManagerAuditEntryReason.SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY =>
-            EnumValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY")
+            __EnumValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY")
           case OrgRemoveBillingManagerAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE =>
-            EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
+            __EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
         }
         override def typeName: String = "OrgRemoveBillingManagerAuditEntryReason"
       }
@@ -1416,21 +1416,21 @@ object Github {
     case object UNAFFILIATED         extends OrgRemoveMemberAuditEntryMembershipType
 
     implicit val decoder: ScalarDecoder[OrgRemoveMemberAuditEntryMembershipType] = {
-      case StringValue("ADMIN")                => Right(OrgRemoveMemberAuditEntryMembershipType.ADMIN)
-      case StringValue("BILLING_MANAGER")      => Right(OrgRemoveMemberAuditEntryMembershipType.BILLING_MANAGER)
-      case StringValue("DIRECT_MEMBER")        => Right(OrgRemoveMemberAuditEntryMembershipType.DIRECT_MEMBER)
-      case StringValue("OUTSIDE_COLLABORATOR") => Right(OrgRemoveMemberAuditEntryMembershipType.OUTSIDE_COLLABORATOR)
-      case StringValue("UNAFFILIATED")         => Right(OrgRemoveMemberAuditEntryMembershipType.UNAFFILIATED)
-      case other                               => Left(DecodingError(s"Can't build OrgRemoveMemberAuditEntryMembershipType from input $other"))
+      case __StringValue("ADMIN")                => Right(OrgRemoveMemberAuditEntryMembershipType.ADMIN)
+      case __StringValue("BILLING_MANAGER")      => Right(OrgRemoveMemberAuditEntryMembershipType.BILLING_MANAGER)
+      case __StringValue("DIRECT_MEMBER")        => Right(OrgRemoveMemberAuditEntryMembershipType.DIRECT_MEMBER)
+      case __StringValue("OUTSIDE_COLLABORATOR") => Right(OrgRemoveMemberAuditEntryMembershipType.OUTSIDE_COLLABORATOR)
+      case __StringValue("UNAFFILIATED")         => Right(OrgRemoveMemberAuditEntryMembershipType.UNAFFILIATED)
+      case other                                 => Left(DecodingError(s"Can't build OrgRemoveMemberAuditEntryMembershipType from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgRemoveMemberAuditEntryMembershipType] =
       new ArgEncoder[OrgRemoveMemberAuditEntryMembershipType] {
-        override def encode(value: OrgRemoveMemberAuditEntryMembershipType): Value = value match {
-          case OrgRemoveMemberAuditEntryMembershipType.ADMIN                => EnumValue("ADMIN")
-          case OrgRemoveMemberAuditEntryMembershipType.BILLING_MANAGER      => EnumValue("BILLING_MANAGER")
-          case OrgRemoveMemberAuditEntryMembershipType.DIRECT_MEMBER        => EnumValue("DIRECT_MEMBER")
-          case OrgRemoveMemberAuditEntryMembershipType.OUTSIDE_COLLABORATOR => EnumValue("OUTSIDE_COLLABORATOR")
-          case OrgRemoveMemberAuditEntryMembershipType.UNAFFILIATED         => EnumValue("UNAFFILIATED")
+        override def encode(value: OrgRemoveMemberAuditEntryMembershipType): __Value = value match {
+          case OrgRemoveMemberAuditEntryMembershipType.ADMIN                => __EnumValue("ADMIN")
+          case OrgRemoveMemberAuditEntryMembershipType.BILLING_MANAGER      => __EnumValue("BILLING_MANAGER")
+          case OrgRemoveMemberAuditEntryMembershipType.DIRECT_MEMBER        => __EnumValue("DIRECT_MEMBER")
+          case OrgRemoveMemberAuditEntryMembershipType.OUTSIDE_COLLABORATOR => __EnumValue("OUTSIDE_COLLABORATOR")
+          case OrgRemoveMemberAuditEntryMembershipType.UNAFFILIATED         => __EnumValue("UNAFFILIATED")
         }
         override def typeName: String = "OrgRemoveMemberAuditEntryMembershipType"
       }
@@ -1445,28 +1445,28 @@ object Github {
     case object USER_ACCOUNT_DELETED                            extends OrgRemoveMemberAuditEntryReason
 
     implicit val decoder: ScalarDecoder[OrgRemoveMemberAuditEntryReason] = {
-      case StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
+      case __StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
         Right(OrgRemoveMemberAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING)
-      case StringValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY") =>
+      case __StringValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY") =>
         Right(OrgRemoveMemberAuditEntryReason.SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY)
-      case StringValue("TWO_FACTOR_ACCOUNT_RECOVERY") =>
+      case __StringValue("TWO_FACTOR_ACCOUNT_RECOVERY") =>
         Right(OrgRemoveMemberAuditEntryReason.TWO_FACTOR_ACCOUNT_RECOVERY)
-      case StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
+      case __StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
         Right(OrgRemoveMemberAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE)
-      case StringValue("USER_ACCOUNT_DELETED") => Right(OrgRemoveMemberAuditEntryReason.USER_ACCOUNT_DELETED)
-      case other                               => Left(DecodingError(s"Can't build OrgRemoveMemberAuditEntryReason from input $other"))
+      case __StringValue("USER_ACCOUNT_DELETED") => Right(OrgRemoveMemberAuditEntryReason.USER_ACCOUNT_DELETED)
+      case other                                 => Left(DecodingError(s"Can't build OrgRemoveMemberAuditEntryReason from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgRemoveMemberAuditEntryReason] =
       new ArgEncoder[OrgRemoveMemberAuditEntryReason] {
-        override def encode(value: OrgRemoveMemberAuditEntryReason): Value = value match {
+        override def encode(value: OrgRemoveMemberAuditEntryReason): __Value = value match {
           case OrgRemoveMemberAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING =>
-            EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
+            __EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
           case OrgRemoveMemberAuditEntryReason.SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY =>
-            EnumValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY")
-          case OrgRemoveMemberAuditEntryReason.TWO_FACTOR_ACCOUNT_RECOVERY => EnumValue("TWO_FACTOR_ACCOUNT_RECOVERY")
+            __EnumValue("SAML_SSO_ENFORCEMENT_REQUIRES_EXTERNAL_IDENTITY")
+          case OrgRemoveMemberAuditEntryReason.TWO_FACTOR_ACCOUNT_RECOVERY => __EnumValue("TWO_FACTOR_ACCOUNT_RECOVERY")
           case OrgRemoveMemberAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE =>
-            EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
-          case OrgRemoveMemberAuditEntryReason.USER_ACCOUNT_DELETED => EnumValue("USER_ACCOUNT_DELETED")
+            __EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
+          case OrgRemoveMemberAuditEntryReason.USER_ACCOUNT_DELETED => __EnumValue("USER_ACCOUNT_DELETED")
         }
         override def typeName: String = "OrgRemoveMemberAuditEntryReason"
       }
@@ -1479,20 +1479,21 @@ object Github {
     case object UNAFFILIATED         extends OrgRemoveOutsideCollaboratorAuditEntryMembershipType
 
     implicit val decoder: ScalarDecoder[OrgRemoveOutsideCollaboratorAuditEntryMembershipType] = {
-      case StringValue("BILLING_MANAGER") => Right(OrgRemoveOutsideCollaboratorAuditEntryMembershipType.BILLING_MANAGER)
-      case StringValue("OUTSIDE_COLLABORATOR") =>
+      case __StringValue("BILLING_MANAGER") =>
+        Right(OrgRemoveOutsideCollaboratorAuditEntryMembershipType.BILLING_MANAGER)
+      case __StringValue("OUTSIDE_COLLABORATOR") =>
         Right(OrgRemoveOutsideCollaboratorAuditEntryMembershipType.OUTSIDE_COLLABORATOR)
-      case StringValue("UNAFFILIATED") => Right(OrgRemoveOutsideCollaboratorAuditEntryMembershipType.UNAFFILIATED)
+      case __StringValue("UNAFFILIATED") => Right(OrgRemoveOutsideCollaboratorAuditEntryMembershipType.UNAFFILIATED)
       case other =>
         Left(DecodingError(s"Can't build OrgRemoveOutsideCollaboratorAuditEntryMembershipType from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgRemoveOutsideCollaboratorAuditEntryMembershipType] =
       new ArgEncoder[OrgRemoveOutsideCollaboratorAuditEntryMembershipType] {
-        override def encode(value: OrgRemoveOutsideCollaboratorAuditEntryMembershipType): Value = value match {
-          case OrgRemoveOutsideCollaboratorAuditEntryMembershipType.BILLING_MANAGER => EnumValue("BILLING_MANAGER")
+        override def encode(value: OrgRemoveOutsideCollaboratorAuditEntryMembershipType): __Value = value match {
+          case OrgRemoveOutsideCollaboratorAuditEntryMembershipType.BILLING_MANAGER => __EnumValue("BILLING_MANAGER")
           case OrgRemoveOutsideCollaboratorAuditEntryMembershipType.OUTSIDE_COLLABORATOR =>
-            EnumValue("OUTSIDE_COLLABORATOR")
-          case OrgRemoveOutsideCollaboratorAuditEntryMembershipType.UNAFFILIATED => EnumValue("UNAFFILIATED")
+            __EnumValue("OUTSIDE_COLLABORATOR")
+          case OrgRemoveOutsideCollaboratorAuditEntryMembershipType.UNAFFILIATED => __EnumValue("UNAFFILIATED")
         }
         override def typeName: String = "OrgRemoveOutsideCollaboratorAuditEntryMembershipType"
       }
@@ -1504,19 +1505,19 @@ object Github {
     case object TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE extends OrgRemoveOutsideCollaboratorAuditEntryReason
 
     implicit val decoder: ScalarDecoder[OrgRemoveOutsideCollaboratorAuditEntryReason] = {
-      case StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
+      case __StringValue("SAML_EXTERNAL_IDENTITY_MISSING") =>
         Right(OrgRemoveOutsideCollaboratorAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING)
-      case StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
+      case __StringValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE") =>
         Right(OrgRemoveOutsideCollaboratorAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE)
       case other => Left(DecodingError(s"Can't build OrgRemoveOutsideCollaboratorAuditEntryReason from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgRemoveOutsideCollaboratorAuditEntryReason] =
       new ArgEncoder[OrgRemoveOutsideCollaboratorAuditEntryReason] {
-        override def encode(value: OrgRemoveOutsideCollaboratorAuditEntryReason): Value = value match {
+        override def encode(value: OrgRemoveOutsideCollaboratorAuditEntryReason): __Value = value match {
           case OrgRemoveOutsideCollaboratorAuditEntryReason.SAML_EXTERNAL_IDENTITY_MISSING =>
-            EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
+            __EnumValue("SAML_EXTERNAL_IDENTITY_MISSING")
           case OrgRemoveOutsideCollaboratorAuditEntryReason.TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE =>
-            EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
+            __EnumValue("TWO_FACTOR_REQUIREMENT_NON_COMPLIANCE")
         }
         override def typeName: String = "OrgRemoveOutsideCollaboratorAuditEntryReason"
       }
@@ -1530,20 +1531,20 @@ object Github {
     case object WRITE extends OrgUpdateDefaultRepositoryPermissionAuditEntryPermission
 
     implicit val decoder: ScalarDecoder[OrgUpdateDefaultRepositoryPermissionAuditEntryPermission] = {
-      case StringValue("ADMIN") => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.ADMIN)
-      case StringValue("NONE")  => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.NONE)
-      case StringValue("READ")  => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.READ)
-      case StringValue("WRITE") => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.WRITE)
+      case __StringValue("ADMIN") => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.ADMIN)
+      case __StringValue("NONE")  => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.NONE)
+      case __StringValue("READ")  => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.READ)
+      case __StringValue("WRITE") => Right(OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.WRITE)
       case other =>
         Left(DecodingError(s"Can't build OrgUpdateDefaultRepositoryPermissionAuditEntryPermission from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgUpdateDefaultRepositoryPermissionAuditEntryPermission] =
       new ArgEncoder[OrgUpdateDefaultRepositoryPermissionAuditEntryPermission] {
-        override def encode(value: OrgUpdateDefaultRepositoryPermissionAuditEntryPermission): Value = value match {
-          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.ADMIN => EnumValue("ADMIN")
-          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.NONE  => EnumValue("NONE")
-          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.READ  => EnumValue("READ")
-          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.WRITE => EnumValue("WRITE")
+        override def encode(value: OrgUpdateDefaultRepositoryPermissionAuditEntryPermission): __Value = value match {
+          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.ADMIN => __EnumValue("ADMIN")
+          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.NONE  => __EnumValue("NONE")
+          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.READ  => __EnumValue("READ")
+          case OrgUpdateDefaultRepositoryPermissionAuditEntryPermission.WRITE => __EnumValue("WRITE")
         }
         override def typeName: String = "OrgUpdateDefaultRepositoryPermissionAuditEntryPermission"
       }
@@ -1555,15 +1556,15 @@ object Github {
     case object READ  extends OrgUpdateMemberAuditEntryPermission
 
     implicit val decoder: ScalarDecoder[OrgUpdateMemberAuditEntryPermission] = {
-      case StringValue("ADMIN") => Right(OrgUpdateMemberAuditEntryPermission.ADMIN)
-      case StringValue("READ")  => Right(OrgUpdateMemberAuditEntryPermission.READ)
-      case other                => Left(DecodingError(s"Can't build OrgUpdateMemberAuditEntryPermission from input $other"))
+      case __StringValue("ADMIN") => Right(OrgUpdateMemberAuditEntryPermission.ADMIN)
+      case __StringValue("READ")  => Right(OrgUpdateMemberAuditEntryPermission.READ)
+      case other                  => Left(DecodingError(s"Can't build OrgUpdateMemberAuditEntryPermission from input $other"))
     }
     implicit val encoder: ArgEncoder[OrgUpdateMemberAuditEntryPermission] =
       new ArgEncoder[OrgUpdateMemberAuditEntryPermission] {
-        override def encode(value: OrgUpdateMemberAuditEntryPermission): Value = value match {
-          case OrgUpdateMemberAuditEntryPermission.ADMIN => EnumValue("ADMIN")
-          case OrgUpdateMemberAuditEntryPermission.READ  => EnumValue("READ")
+        override def encode(value: OrgUpdateMemberAuditEntryPermission): __Value = value match {
+          case OrgUpdateMemberAuditEntryPermission.ADMIN => __EnumValue("ADMIN")
+          case OrgUpdateMemberAuditEntryPermission.READ  => __EnumValue("READ")
         }
         override def typeName: String = "OrgUpdateMemberAuditEntryPermission"
       }
@@ -1583,16 +1584,16 @@ object Github {
     case object PUBLIC_PRIVATE   extends OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility] = {
-      case StringValue("ALL")      => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.ALL)
-      case StringValue("INTERNAL") => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.INTERNAL)
-      case StringValue("NONE")     => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.NONE)
-      case StringValue("PRIVATE")  => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE)
-      case StringValue("PRIVATE_INTERNAL") =>
+      case __StringValue("ALL")      => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.ALL)
+      case __StringValue("INTERNAL") => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.INTERNAL)
+      case __StringValue("NONE")     => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.NONE)
+      case __StringValue("PRIVATE")  => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE)
+      case __StringValue("PRIVATE_INTERNAL") =>
         Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE_INTERNAL)
-      case StringValue("PUBLIC") => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC)
-      case StringValue("PUBLIC_INTERNAL") =>
+      case __StringValue("PUBLIC") => Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC)
+      case __StringValue("PUBLIC_INTERNAL") =>
         Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC_INTERNAL)
-      case StringValue("PUBLIC_PRIVATE") =>
+      case __StringValue("PUBLIC_PRIVATE") =>
         Right(OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC_PRIVATE)
       case other =>
         Left(
@@ -1603,19 +1604,19 @@ object Github {
     }
     implicit val encoder: ArgEncoder[OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility] =
       new ArgEncoder[OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility] {
-        override def encode(value: OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility): Value =
+        override def encode(value: OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility): __Value =
           value match {
-            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.ALL      => EnumValue("ALL")
-            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.NONE     => EnumValue("NONE")
-            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
+            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.ALL      => __EnumValue("ALL")
+            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.NONE     => __EnumValue("NONE")
+            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
             case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PRIVATE_INTERNAL =>
-              EnumValue("PRIVATE_INTERNAL")
-            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC => EnumValue("PUBLIC")
+              __EnumValue("PRIVATE_INTERNAL")
+            case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC => __EnumValue("PUBLIC")
             case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC_INTERNAL =>
-              EnumValue("PUBLIC_INTERNAL")
+              __EnumValue("PUBLIC_INTERNAL")
             case OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility.PUBLIC_PRIVATE =>
-              EnumValue("PUBLIC_PRIVATE")
+              __EnumValue("PUBLIC_PRIVATE")
           }
         override def typeName: String = "OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility"
       }
@@ -1629,18 +1630,18 @@ object Github {
     case object REINSTATE       extends OrganizationInvitationRole
 
     implicit val decoder: ScalarDecoder[OrganizationInvitationRole] = {
-      case StringValue("ADMIN")           => Right(OrganizationInvitationRole.ADMIN)
-      case StringValue("BILLING_MANAGER") => Right(OrganizationInvitationRole.BILLING_MANAGER)
-      case StringValue("DIRECT_MEMBER")   => Right(OrganizationInvitationRole.DIRECT_MEMBER)
-      case StringValue("REINSTATE")       => Right(OrganizationInvitationRole.REINSTATE)
-      case other                          => Left(DecodingError(s"Can't build OrganizationInvitationRole from input $other"))
+      case __StringValue("ADMIN")           => Right(OrganizationInvitationRole.ADMIN)
+      case __StringValue("BILLING_MANAGER") => Right(OrganizationInvitationRole.BILLING_MANAGER)
+      case __StringValue("DIRECT_MEMBER")   => Right(OrganizationInvitationRole.DIRECT_MEMBER)
+      case __StringValue("REINSTATE")       => Right(OrganizationInvitationRole.REINSTATE)
+      case other                            => Left(DecodingError(s"Can't build OrganizationInvitationRole from input $other"))
     }
     implicit val encoder: ArgEncoder[OrganizationInvitationRole] = new ArgEncoder[OrganizationInvitationRole] {
-      override def encode(value: OrganizationInvitationRole): Value = value match {
-        case OrganizationInvitationRole.ADMIN           => EnumValue("ADMIN")
-        case OrganizationInvitationRole.BILLING_MANAGER => EnumValue("BILLING_MANAGER")
-        case OrganizationInvitationRole.DIRECT_MEMBER   => EnumValue("DIRECT_MEMBER")
-        case OrganizationInvitationRole.REINSTATE       => EnumValue("REINSTATE")
+      override def encode(value: OrganizationInvitationRole): __Value = value match {
+        case OrganizationInvitationRole.ADMIN           => __EnumValue("ADMIN")
+        case OrganizationInvitationRole.BILLING_MANAGER => __EnumValue("BILLING_MANAGER")
+        case OrganizationInvitationRole.DIRECT_MEMBER   => __EnumValue("DIRECT_MEMBER")
+        case OrganizationInvitationRole.REINSTATE       => __EnumValue("REINSTATE")
       }
       override def typeName: String = "OrganizationInvitationRole"
     }
@@ -1652,14 +1653,14 @@ object Github {
     case object USER  extends OrganizationInvitationType
 
     implicit val decoder: ScalarDecoder[OrganizationInvitationType] = {
-      case StringValue("EMAIL") => Right(OrganizationInvitationType.EMAIL)
-      case StringValue("USER")  => Right(OrganizationInvitationType.USER)
-      case other                => Left(DecodingError(s"Can't build OrganizationInvitationType from input $other"))
+      case __StringValue("EMAIL") => Right(OrganizationInvitationType.EMAIL)
+      case __StringValue("USER")  => Right(OrganizationInvitationType.USER)
+      case other                  => Left(DecodingError(s"Can't build OrganizationInvitationType from input $other"))
     }
     implicit val encoder: ArgEncoder[OrganizationInvitationType] = new ArgEncoder[OrganizationInvitationType] {
-      override def encode(value: OrganizationInvitationType): Value = value match {
-        case OrganizationInvitationType.EMAIL => EnumValue("EMAIL")
-        case OrganizationInvitationType.USER  => EnumValue("USER")
+      override def encode(value: OrganizationInvitationType): __Value = value match {
+        case OrganizationInvitationType.EMAIL => __EnumValue("EMAIL")
+        case OrganizationInvitationType.USER  => __EnumValue("USER")
       }
       override def typeName: String = "OrganizationInvitationType"
     }
@@ -1671,14 +1672,14 @@ object Github {
     case object MEMBER extends OrganizationMemberRole
 
     implicit val decoder: ScalarDecoder[OrganizationMemberRole] = {
-      case StringValue("ADMIN")  => Right(OrganizationMemberRole.ADMIN)
-      case StringValue("MEMBER") => Right(OrganizationMemberRole.MEMBER)
-      case other                 => Left(DecodingError(s"Can't build OrganizationMemberRole from input $other"))
+      case __StringValue("ADMIN")  => Right(OrganizationMemberRole.ADMIN)
+      case __StringValue("MEMBER") => Right(OrganizationMemberRole.MEMBER)
+      case other                   => Left(DecodingError(s"Can't build OrganizationMemberRole from input $other"))
     }
     implicit val encoder: ArgEncoder[OrganizationMemberRole] = new ArgEncoder[OrganizationMemberRole] {
-      override def encode(value: OrganizationMemberRole): Value = value match {
-        case OrganizationMemberRole.ADMIN  => EnumValue("ADMIN")
-        case OrganizationMemberRole.MEMBER => EnumValue("MEMBER")
+      override def encode(value: OrganizationMemberRole): __Value = value match {
+        case OrganizationMemberRole.ADMIN  => __EnumValue("ADMIN")
+        case OrganizationMemberRole.MEMBER => __EnumValue("MEMBER")
       }
       override def typeName: String = "OrganizationMemberRole"
     }
@@ -1691,18 +1692,18 @@ object Github {
     case object PRIVATE  extends OrganizationMembersCanCreateRepositoriesSettingValue
 
     implicit val decoder: ScalarDecoder[OrganizationMembersCanCreateRepositoriesSettingValue] = {
-      case StringValue("ALL")      => Right(OrganizationMembersCanCreateRepositoriesSettingValue.ALL)
-      case StringValue("DISABLED") => Right(OrganizationMembersCanCreateRepositoriesSettingValue.DISABLED)
-      case StringValue("PRIVATE")  => Right(OrganizationMembersCanCreateRepositoriesSettingValue.PRIVATE)
+      case __StringValue("ALL")      => Right(OrganizationMembersCanCreateRepositoriesSettingValue.ALL)
+      case __StringValue("DISABLED") => Right(OrganizationMembersCanCreateRepositoriesSettingValue.DISABLED)
+      case __StringValue("PRIVATE")  => Right(OrganizationMembersCanCreateRepositoriesSettingValue.PRIVATE)
       case other =>
         Left(DecodingError(s"Can't build OrganizationMembersCanCreateRepositoriesSettingValue from input $other"))
     }
     implicit val encoder: ArgEncoder[OrganizationMembersCanCreateRepositoriesSettingValue] =
       new ArgEncoder[OrganizationMembersCanCreateRepositoriesSettingValue] {
-        override def encode(value: OrganizationMembersCanCreateRepositoriesSettingValue): Value = value match {
-          case OrganizationMembersCanCreateRepositoriesSettingValue.ALL      => EnumValue("ALL")
-          case OrganizationMembersCanCreateRepositoriesSettingValue.DISABLED => EnumValue("DISABLED")
-          case OrganizationMembersCanCreateRepositoriesSettingValue.PRIVATE  => EnumValue("PRIVATE")
+        override def encode(value: OrganizationMembersCanCreateRepositoriesSettingValue): __Value = value match {
+          case OrganizationMembersCanCreateRepositoriesSettingValue.ALL      => __EnumValue("ALL")
+          case OrganizationMembersCanCreateRepositoriesSettingValue.DISABLED => __EnumValue("DISABLED")
+          case OrganizationMembersCanCreateRepositoriesSettingValue.PRIVATE  => __EnumValue("PRIVATE")
         }
         override def typeName: String = "OrganizationMembersCanCreateRepositoriesSettingValue"
       }
@@ -1714,14 +1715,14 @@ object Github {
     case object LOGIN      extends OrganizationOrderField
 
     implicit val decoder: ScalarDecoder[OrganizationOrderField] = {
-      case StringValue("CREATED_AT") => Right(OrganizationOrderField.CREATED_AT)
-      case StringValue("LOGIN")      => Right(OrganizationOrderField.LOGIN)
-      case other                     => Left(DecodingError(s"Can't build OrganizationOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(OrganizationOrderField.CREATED_AT)
+      case __StringValue("LOGIN")      => Right(OrganizationOrderField.LOGIN)
+      case other                       => Left(DecodingError(s"Can't build OrganizationOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[OrganizationOrderField] = new ArgEncoder[OrganizationOrderField] {
-      override def encode(value: OrganizationOrderField): Value = value match {
-        case OrganizationOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case OrganizationOrderField.LOGIN      => EnumValue("LOGIN")
+      override def encode(value: OrganizationOrderField): __Value = value match {
+        case OrganizationOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case OrganizationOrderField.LOGIN      => __EnumValue("LOGIN")
       }
       override def typeName: String = "OrganizationOrderField"
     }
@@ -1732,12 +1733,12 @@ object Github {
     case object CREATED_AT extends PackageFileOrderField
 
     implicit val decoder: ScalarDecoder[PackageFileOrderField] = {
-      case StringValue("CREATED_AT") => Right(PackageFileOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build PackageFileOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(PackageFileOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build PackageFileOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[PackageFileOrderField] = new ArgEncoder[PackageFileOrderField] {
-      override def encode(value: PackageFileOrderField): Value = value match {
-        case PackageFileOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: PackageFileOrderField): __Value = value match {
+        case PackageFileOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "PackageFileOrderField"
     }
@@ -1748,12 +1749,12 @@ object Github {
     case object CREATED_AT extends PackageOrderField
 
     implicit val decoder: ScalarDecoder[PackageOrderField] = {
-      case StringValue("CREATED_AT") => Right(PackageOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build PackageOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(PackageOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build PackageOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[PackageOrderField] = new ArgEncoder[PackageOrderField] {
-      override def encode(value: PackageOrderField): Value = value match {
-        case PackageOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: PackageOrderField): __Value = value match {
+        case PackageOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "PackageOrderField"
     }
@@ -1770,24 +1771,24 @@ object Github {
     case object RUBYGEMS extends PackageType
 
     implicit val decoder: ScalarDecoder[PackageType] = {
-      case StringValue("DEBIAN")   => Right(PackageType.DEBIAN)
-      case StringValue("DOCKER")   => Right(PackageType.DOCKER)
-      case StringValue("MAVEN")    => Right(PackageType.MAVEN)
-      case StringValue("NPM")      => Right(PackageType.NPM)
-      case StringValue("NUGET")    => Right(PackageType.NUGET)
-      case StringValue("PYPI")     => Right(PackageType.PYPI)
-      case StringValue("RUBYGEMS") => Right(PackageType.RUBYGEMS)
-      case other                   => Left(DecodingError(s"Can't build PackageType from input $other"))
+      case __StringValue("DEBIAN")   => Right(PackageType.DEBIAN)
+      case __StringValue("DOCKER")   => Right(PackageType.DOCKER)
+      case __StringValue("MAVEN")    => Right(PackageType.MAVEN)
+      case __StringValue("NPM")      => Right(PackageType.NPM)
+      case __StringValue("NUGET")    => Right(PackageType.NUGET)
+      case __StringValue("PYPI")     => Right(PackageType.PYPI)
+      case __StringValue("RUBYGEMS") => Right(PackageType.RUBYGEMS)
+      case other                     => Left(DecodingError(s"Can't build PackageType from input $other"))
     }
     implicit val encoder: ArgEncoder[PackageType] = new ArgEncoder[PackageType] {
-      override def encode(value: PackageType): Value = value match {
-        case PackageType.DEBIAN   => EnumValue("DEBIAN")
-        case PackageType.DOCKER   => EnumValue("DOCKER")
-        case PackageType.MAVEN    => EnumValue("MAVEN")
-        case PackageType.NPM      => EnumValue("NPM")
-        case PackageType.NUGET    => EnumValue("NUGET")
-        case PackageType.PYPI     => EnumValue("PYPI")
-        case PackageType.RUBYGEMS => EnumValue("RUBYGEMS")
+      override def encode(value: PackageType): __Value = value match {
+        case PackageType.DEBIAN   => __EnumValue("DEBIAN")
+        case PackageType.DOCKER   => __EnumValue("DOCKER")
+        case PackageType.MAVEN    => __EnumValue("MAVEN")
+        case PackageType.NPM      => __EnumValue("NPM")
+        case PackageType.NUGET    => __EnumValue("NUGET")
+        case PackageType.PYPI     => __EnumValue("PYPI")
+        case PackageType.RUBYGEMS => __EnumValue("RUBYGEMS")
       }
       override def typeName: String = "PackageType"
     }
@@ -1798,12 +1799,12 @@ object Github {
     case object CREATED_AT extends PackageVersionOrderField
 
     implicit val decoder: ScalarDecoder[PackageVersionOrderField] = {
-      case StringValue("CREATED_AT") => Right(PackageVersionOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build PackageVersionOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(PackageVersionOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build PackageVersionOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[PackageVersionOrderField] = new ArgEncoder[PackageVersionOrderField] {
-      override def encode(value: PackageVersionOrderField): Value = value match {
-        case PackageVersionOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: PackageVersionOrderField): __Value = value match {
+        case PackageVersionOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "PackageVersionOrderField"
     }
@@ -1821,26 +1822,26 @@ object Github {
     case object USER         extends PinnableItemType
 
     implicit val decoder: ScalarDecoder[PinnableItemType] = {
-      case StringValue("GIST")         => Right(PinnableItemType.GIST)
-      case StringValue("ISSUE")        => Right(PinnableItemType.ISSUE)
-      case StringValue("ORGANIZATION") => Right(PinnableItemType.ORGANIZATION)
-      case StringValue("PROJECT")      => Right(PinnableItemType.PROJECT)
-      case StringValue("PULL_REQUEST") => Right(PinnableItemType.PULL_REQUEST)
-      case StringValue("REPOSITORY")   => Right(PinnableItemType.REPOSITORY)
-      case StringValue("TEAM")         => Right(PinnableItemType.TEAM)
-      case StringValue("USER")         => Right(PinnableItemType.USER)
-      case other                       => Left(DecodingError(s"Can't build PinnableItemType from input $other"))
+      case __StringValue("GIST")         => Right(PinnableItemType.GIST)
+      case __StringValue("ISSUE")        => Right(PinnableItemType.ISSUE)
+      case __StringValue("ORGANIZATION") => Right(PinnableItemType.ORGANIZATION)
+      case __StringValue("PROJECT")      => Right(PinnableItemType.PROJECT)
+      case __StringValue("PULL_REQUEST") => Right(PinnableItemType.PULL_REQUEST)
+      case __StringValue("REPOSITORY")   => Right(PinnableItemType.REPOSITORY)
+      case __StringValue("TEAM")         => Right(PinnableItemType.TEAM)
+      case __StringValue("USER")         => Right(PinnableItemType.USER)
+      case other                         => Left(DecodingError(s"Can't build PinnableItemType from input $other"))
     }
     implicit val encoder: ArgEncoder[PinnableItemType] = new ArgEncoder[PinnableItemType] {
-      override def encode(value: PinnableItemType): Value = value match {
-        case PinnableItemType.GIST         => EnumValue("GIST")
-        case PinnableItemType.ISSUE        => EnumValue("ISSUE")
-        case PinnableItemType.ORGANIZATION => EnumValue("ORGANIZATION")
-        case PinnableItemType.PROJECT      => EnumValue("PROJECT")
-        case PinnableItemType.PULL_REQUEST => EnumValue("PULL_REQUEST")
-        case PinnableItemType.REPOSITORY   => EnumValue("REPOSITORY")
-        case PinnableItemType.TEAM         => EnumValue("TEAM")
-        case PinnableItemType.USER         => EnumValue("USER")
+      override def encode(value: PinnableItemType): __Value = value match {
+        case PinnableItemType.GIST         => __EnumValue("GIST")
+        case PinnableItemType.ISSUE        => __EnumValue("ISSUE")
+        case PinnableItemType.ORGANIZATION => __EnumValue("ORGANIZATION")
+        case PinnableItemType.PROJECT      => __EnumValue("PROJECT")
+        case PinnableItemType.PULL_REQUEST => __EnumValue("PULL_REQUEST")
+        case PinnableItemType.REPOSITORY   => __EnumValue("REPOSITORY")
+        case PinnableItemType.TEAM         => __EnumValue("TEAM")
+        case PinnableItemType.USER         => __EnumValue("USER")
       }
       override def typeName: String = "PinnableItemType"
     }
@@ -1852,14 +1853,14 @@ object Github {
     case object NOT_ARCHIVED extends ProjectCardArchivedState
 
     implicit val decoder: ScalarDecoder[ProjectCardArchivedState] = {
-      case StringValue("ARCHIVED")     => Right(ProjectCardArchivedState.ARCHIVED)
-      case StringValue("NOT_ARCHIVED") => Right(ProjectCardArchivedState.NOT_ARCHIVED)
-      case other                       => Left(DecodingError(s"Can't build ProjectCardArchivedState from input $other"))
+      case __StringValue("ARCHIVED")     => Right(ProjectCardArchivedState.ARCHIVED)
+      case __StringValue("NOT_ARCHIVED") => Right(ProjectCardArchivedState.NOT_ARCHIVED)
+      case other                         => Left(DecodingError(s"Can't build ProjectCardArchivedState from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectCardArchivedState] = new ArgEncoder[ProjectCardArchivedState] {
-      override def encode(value: ProjectCardArchivedState): Value = value match {
-        case ProjectCardArchivedState.ARCHIVED     => EnumValue("ARCHIVED")
-        case ProjectCardArchivedState.NOT_ARCHIVED => EnumValue("NOT_ARCHIVED")
+      override def encode(value: ProjectCardArchivedState): __Value = value match {
+        case ProjectCardArchivedState.ARCHIVED     => __EnumValue("ARCHIVED")
+        case ProjectCardArchivedState.NOT_ARCHIVED => __EnumValue("NOT_ARCHIVED")
       }
       override def typeName: String = "ProjectCardArchivedState"
     }
@@ -1872,16 +1873,16 @@ object Github {
     case object REDACTED     extends ProjectCardState
 
     implicit val decoder: ScalarDecoder[ProjectCardState] = {
-      case StringValue("CONTENT_ONLY") => Right(ProjectCardState.CONTENT_ONLY)
-      case StringValue("NOTE_ONLY")    => Right(ProjectCardState.NOTE_ONLY)
-      case StringValue("REDACTED")     => Right(ProjectCardState.REDACTED)
-      case other                       => Left(DecodingError(s"Can't build ProjectCardState from input $other"))
+      case __StringValue("CONTENT_ONLY") => Right(ProjectCardState.CONTENT_ONLY)
+      case __StringValue("NOTE_ONLY")    => Right(ProjectCardState.NOTE_ONLY)
+      case __StringValue("REDACTED")     => Right(ProjectCardState.REDACTED)
+      case other                         => Left(DecodingError(s"Can't build ProjectCardState from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectCardState] = new ArgEncoder[ProjectCardState] {
-      override def encode(value: ProjectCardState): Value = value match {
-        case ProjectCardState.CONTENT_ONLY => EnumValue("CONTENT_ONLY")
-        case ProjectCardState.NOTE_ONLY    => EnumValue("NOTE_ONLY")
-        case ProjectCardState.REDACTED     => EnumValue("REDACTED")
+      override def encode(value: ProjectCardState): __Value = value match {
+        case ProjectCardState.CONTENT_ONLY => __EnumValue("CONTENT_ONLY")
+        case ProjectCardState.NOTE_ONLY    => __EnumValue("NOTE_ONLY")
+        case ProjectCardState.REDACTED     => __EnumValue("REDACTED")
       }
       override def typeName: String = "ProjectCardState"
     }
@@ -1894,16 +1895,16 @@ object Github {
     case object TODO        extends ProjectColumnPurpose
 
     implicit val decoder: ScalarDecoder[ProjectColumnPurpose] = {
-      case StringValue("DONE")        => Right(ProjectColumnPurpose.DONE)
-      case StringValue("IN_PROGRESS") => Right(ProjectColumnPurpose.IN_PROGRESS)
-      case StringValue("TODO")        => Right(ProjectColumnPurpose.TODO)
-      case other                      => Left(DecodingError(s"Can't build ProjectColumnPurpose from input $other"))
+      case __StringValue("DONE")        => Right(ProjectColumnPurpose.DONE)
+      case __StringValue("IN_PROGRESS") => Right(ProjectColumnPurpose.IN_PROGRESS)
+      case __StringValue("TODO")        => Right(ProjectColumnPurpose.TODO)
+      case other                        => Left(DecodingError(s"Can't build ProjectColumnPurpose from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectColumnPurpose] = new ArgEncoder[ProjectColumnPurpose] {
-      override def encode(value: ProjectColumnPurpose): Value = value match {
-        case ProjectColumnPurpose.DONE        => EnumValue("DONE")
-        case ProjectColumnPurpose.IN_PROGRESS => EnumValue("IN_PROGRESS")
-        case ProjectColumnPurpose.TODO        => EnumValue("TODO")
+      override def encode(value: ProjectColumnPurpose): __Value = value match {
+        case ProjectColumnPurpose.DONE        => __EnumValue("DONE")
+        case ProjectColumnPurpose.IN_PROGRESS => __EnumValue("IN_PROGRESS")
+        case ProjectColumnPurpose.TODO        => __EnumValue("TODO")
       }
       override def typeName: String = "ProjectColumnPurpose"
     }
@@ -1916,16 +1917,16 @@ object Github {
     case object UPDATED_AT extends ProjectOrderField
 
     implicit val decoder: ScalarDecoder[ProjectOrderField] = {
-      case StringValue("CREATED_AT") => Right(ProjectOrderField.CREATED_AT)
-      case StringValue("NAME")       => Right(ProjectOrderField.NAME)
-      case StringValue("UPDATED_AT") => Right(ProjectOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build ProjectOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(ProjectOrderField.CREATED_AT)
+      case __StringValue("NAME")       => Right(ProjectOrderField.NAME)
+      case __StringValue("UPDATED_AT") => Right(ProjectOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build ProjectOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectOrderField] = new ArgEncoder[ProjectOrderField] {
-      override def encode(value: ProjectOrderField): Value = value match {
-        case ProjectOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case ProjectOrderField.NAME       => EnumValue("NAME")
-        case ProjectOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: ProjectOrderField): __Value = value match {
+        case ProjectOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case ProjectOrderField.NAME       => __EnumValue("NAME")
+        case ProjectOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "ProjectOrderField"
     }
@@ -1937,14 +1938,14 @@ object Github {
     case object OPEN   extends ProjectState
 
     implicit val decoder: ScalarDecoder[ProjectState] = {
-      case StringValue("CLOSED") => Right(ProjectState.CLOSED)
-      case StringValue("OPEN")   => Right(ProjectState.OPEN)
-      case other                 => Left(DecodingError(s"Can't build ProjectState from input $other"))
+      case __StringValue("CLOSED") => Right(ProjectState.CLOSED)
+      case __StringValue("OPEN")   => Right(ProjectState.OPEN)
+      case other                   => Left(DecodingError(s"Can't build ProjectState from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectState] = new ArgEncoder[ProjectState] {
-      override def encode(value: ProjectState): Value = value match {
-        case ProjectState.CLOSED => EnumValue("CLOSED")
-        case ProjectState.OPEN   => EnumValue("OPEN")
+      override def encode(value: ProjectState): __Value = value match {
+        case ProjectState.CLOSED => __EnumValue("CLOSED")
+        case ProjectState.OPEN   => __EnumValue("OPEN")
       }
       override def typeName: String = "ProjectState"
     }
@@ -1958,18 +1959,18 @@ object Github {
     case object BUG_TRIAGE               extends ProjectTemplate
 
     implicit val decoder: ScalarDecoder[ProjectTemplate] = {
-      case StringValue("AUTOMATED_KANBAN_V2")      => Right(ProjectTemplate.AUTOMATED_KANBAN_V2)
-      case StringValue("AUTOMATED_REVIEWS_KANBAN") => Right(ProjectTemplate.AUTOMATED_REVIEWS_KANBAN)
-      case StringValue("BASIC_KANBAN")             => Right(ProjectTemplate.BASIC_KANBAN)
-      case StringValue("BUG_TRIAGE")               => Right(ProjectTemplate.BUG_TRIAGE)
-      case other                                   => Left(DecodingError(s"Can't build ProjectTemplate from input $other"))
+      case __StringValue("AUTOMATED_KANBAN_V2")      => Right(ProjectTemplate.AUTOMATED_KANBAN_V2)
+      case __StringValue("AUTOMATED_REVIEWS_KANBAN") => Right(ProjectTemplate.AUTOMATED_REVIEWS_KANBAN)
+      case __StringValue("BASIC_KANBAN")             => Right(ProjectTemplate.BASIC_KANBAN)
+      case __StringValue("BUG_TRIAGE")               => Right(ProjectTemplate.BUG_TRIAGE)
+      case other                                     => Left(DecodingError(s"Can't build ProjectTemplate from input $other"))
     }
     implicit val encoder: ArgEncoder[ProjectTemplate] = new ArgEncoder[ProjectTemplate] {
-      override def encode(value: ProjectTemplate): Value = value match {
-        case ProjectTemplate.AUTOMATED_KANBAN_V2      => EnumValue("AUTOMATED_KANBAN_V2")
-        case ProjectTemplate.AUTOMATED_REVIEWS_KANBAN => EnumValue("AUTOMATED_REVIEWS_KANBAN")
-        case ProjectTemplate.BASIC_KANBAN             => EnumValue("BASIC_KANBAN")
-        case ProjectTemplate.BUG_TRIAGE               => EnumValue("BUG_TRIAGE")
+      override def encode(value: ProjectTemplate): __Value = value match {
+        case ProjectTemplate.AUTOMATED_KANBAN_V2      => __EnumValue("AUTOMATED_KANBAN_V2")
+        case ProjectTemplate.AUTOMATED_REVIEWS_KANBAN => __EnumValue("AUTOMATED_REVIEWS_KANBAN")
+        case ProjectTemplate.BASIC_KANBAN             => __EnumValue("BASIC_KANBAN")
+        case ProjectTemplate.BUG_TRIAGE               => __EnumValue("BUG_TRIAGE")
       }
       override def typeName: String = "ProjectTemplate"
     }
@@ -1982,16 +1983,16 @@ object Github {
     case object SQUASH extends PullRequestMergeMethod
 
     implicit val decoder: ScalarDecoder[PullRequestMergeMethod] = {
-      case StringValue("MERGE")  => Right(PullRequestMergeMethod.MERGE)
-      case StringValue("REBASE") => Right(PullRequestMergeMethod.REBASE)
-      case StringValue("SQUASH") => Right(PullRequestMergeMethod.SQUASH)
-      case other                 => Left(DecodingError(s"Can't build PullRequestMergeMethod from input $other"))
+      case __StringValue("MERGE")  => Right(PullRequestMergeMethod.MERGE)
+      case __StringValue("REBASE") => Right(PullRequestMergeMethod.REBASE)
+      case __StringValue("SQUASH") => Right(PullRequestMergeMethod.SQUASH)
+      case other                   => Left(DecodingError(s"Can't build PullRequestMergeMethod from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestMergeMethod] = new ArgEncoder[PullRequestMergeMethod] {
-      override def encode(value: PullRequestMergeMethod): Value = value match {
-        case PullRequestMergeMethod.MERGE  => EnumValue("MERGE")
-        case PullRequestMergeMethod.REBASE => EnumValue("REBASE")
-        case PullRequestMergeMethod.SQUASH => EnumValue("SQUASH")
+      override def encode(value: PullRequestMergeMethod): __Value = value match {
+        case PullRequestMergeMethod.MERGE  => __EnumValue("MERGE")
+        case PullRequestMergeMethod.REBASE => __EnumValue("REBASE")
+        case PullRequestMergeMethod.SQUASH => __EnumValue("SQUASH")
       }
       override def typeName: String = "PullRequestMergeMethod"
     }
@@ -2003,14 +2004,14 @@ object Github {
     case object UPDATED_AT extends PullRequestOrderField
 
     implicit val decoder: ScalarDecoder[PullRequestOrderField] = {
-      case StringValue("CREATED_AT") => Right(PullRequestOrderField.CREATED_AT)
-      case StringValue("UPDATED_AT") => Right(PullRequestOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build PullRequestOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(PullRequestOrderField.CREATED_AT)
+      case __StringValue("UPDATED_AT") => Right(PullRequestOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build PullRequestOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestOrderField] = new ArgEncoder[PullRequestOrderField] {
-      override def encode(value: PullRequestOrderField): Value = value match {
-        case PullRequestOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case PullRequestOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: PullRequestOrderField): __Value = value match {
+        case PullRequestOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case PullRequestOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "PullRequestOrderField"
     }
@@ -2022,14 +2023,14 @@ object Github {
     case object SUBMITTED extends PullRequestReviewCommentState
 
     implicit val decoder: ScalarDecoder[PullRequestReviewCommentState] = {
-      case StringValue("PENDING")   => Right(PullRequestReviewCommentState.PENDING)
-      case StringValue("SUBMITTED") => Right(PullRequestReviewCommentState.SUBMITTED)
-      case other                    => Left(DecodingError(s"Can't build PullRequestReviewCommentState from input $other"))
+      case __StringValue("PENDING")   => Right(PullRequestReviewCommentState.PENDING)
+      case __StringValue("SUBMITTED") => Right(PullRequestReviewCommentState.SUBMITTED)
+      case other                      => Left(DecodingError(s"Can't build PullRequestReviewCommentState from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestReviewCommentState] = new ArgEncoder[PullRequestReviewCommentState] {
-      override def encode(value: PullRequestReviewCommentState): Value = value match {
-        case PullRequestReviewCommentState.PENDING   => EnumValue("PENDING")
-        case PullRequestReviewCommentState.SUBMITTED => EnumValue("SUBMITTED")
+      override def encode(value: PullRequestReviewCommentState): __Value = value match {
+        case PullRequestReviewCommentState.PENDING   => __EnumValue("PENDING")
+        case PullRequestReviewCommentState.SUBMITTED => __EnumValue("SUBMITTED")
       }
       override def typeName: String = "PullRequestReviewCommentState"
     }
@@ -2042,16 +2043,16 @@ object Github {
     case object REVIEW_REQUIRED   extends PullRequestReviewDecision
 
     implicit val decoder: ScalarDecoder[PullRequestReviewDecision] = {
-      case StringValue("APPROVED")          => Right(PullRequestReviewDecision.APPROVED)
-      case StringValue("CHANGES_REQUESTED") => Right(PullRequestReviewDecision.CHANGES_REQUESTED)
-      case StringValue("REVIEW_REQUIRED")   => Right(PullRequestReviewDecision.REVIEW_REQUIRED)
-      case other                            => Left(DecodingError(s"Can't build PullRequestReviewDecision from input $other"))
+      case __StringValue("APPROVED")          => Right(PullRequestReviewDecision.APPROVED)
+      case __StringValue("CHANGES_REQUESTED") => Right(PullRequestReviewDecision.CHANGES_REQUESTED)
+      case __StringValue("REVIEW_REQUIRED")   => Right(PullRequestReviewDecision.REVIEW_REQUIRED)
+      case other                              => Left(DecodingError(s"Can't build PullRequestReviewDecision from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestReviewDecision] = new ArgEncoder[PullRequestReviewDecision] {
-      override def encode(value: PullRequestReviewDecision): Value = value match {
-        case PullRequestReviewDecision.APPROVED          => EnumValue("APPROVED")
-        case PullRequestReviewDecision.CHANGES_REQUESTED => EnumValue("CHANGES_REQUESTED")
-        case PullRequestReviewDecision.REVIEW_REQUIRED   => EnumValue("REVIEW_REQUIRED")
+      override def encode(value: PullRequestReviewDecision): __Value = value match {
+        case PullRequestReviewDecision.APPROVED          => __EnumValue("APPROVED")
+        case PullRequestReviewDecision.CHANGES_REQUESTED => __EnumValue("CHANGES_REQUESTED")
+        case PullRequestReviewDecision.REVIEW_REQUIRED   => __EnumValue("REVIEW_REQUIRED")
       }
       override def typeName: String = "PullRequestReviewDecision"
     }
@@ -2065,18 +2066,18 @@ object Github {
     case object REQUEST_CHANGES extends PullRequestReviewEvent
 
     implicit val decoder: ScalarDecoder[PullRequestReviewEvent] = {
-      case StringValue("APPROVE")         => Right(PullRequestReviewEvent.APPROVE)
-      case StringValue("COMMENT")         => Right(PullRequestReviewEvent.COMMENT)
-      case StringValue("DISMISS")         => Right(PullRequestReviewEvent.DISMISS)
-      case StringValue("REQUEST_CHANGES") => Right(PullRequestReviewEvent.REQUEST_CHANGES)
-      case other                          => Left(DecodingError(s"Can't build PullRequestReviewEvent from input $other"))
+      case __StringValue("APPROVE")         => Right(PullRequestReviewEvent.APPROVE)
+      case __StringValue("COMMENT")         => Right(PullRequestReviewEvent.COMMENT)
+      case __StringValue("DISMISS")         => Right(PullRequestReviewEvent.DISMISS)
+      case __StringValue("REQUEST_CHANGES") => Right(PullRequestReviewEvent.REQUEST_CHANGES)
+      case other                            => Left(DecodingError(s"Can't build PullRequestReviewEvent from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestReviewEvent] = new ArgEncoder[PullRequestReviewEvent] {
-      override def encode(value: PullRequestReviewEvent): Value = value match {
-        case PullRequestReviewEvent.APPROVE         => EnumValue("APPROVE")
-        case PullRequestReviewEvent.COMMENT         => EnumValue("COMMENT")
-        case PullRequestReviewEvent.DISMISS         => EnumValue("DISMISS")
-        case PullRequestReviewEvent.REQUEST_CHANGES => EnumValue("REQUEST_CHANGES")
+      override def encode(value: PullRequestReviewEvent): __Value = value match {
+        case PullRequestReviewEvent.APPROVE         => __EnumValue("APPROVE")
+        case PullRequestReviewEvent.COMMENT         => __EnumValue("COMMENT")
+        case PullRequestReviewEvent.DISMISS         => __EnumValue("DISMISS")
+        case PullRequestReviewEvent.REQUEST_CHANGES => __EnumValue("REQUEST_CHANGES")
       }
       override def typeName: String = "PullRequestReviewEvent"
     }
@@ -2091,20 +2092,20 @@ object Github {
     case object PENDING           extends PullRequestReviewState
 
     implicit val decoder: ScalarDecoder[PullRequestReviewState] = {
-      case StringValue("APPROVED")          => Right(PullRequestReviewState.APPROVED)
-      case StringValue("CHANGES_REQUESTED") => Right(PullRequestReviewState.CHANGES_REQUESTED)
-      case StringValue("COMMENTED")         => Right(PullRequestReviewState.COMMENTED)
-      case StringValue("DISMISSED")         => Right(PullRequestReviewState.DISMISSED)
-      case StringValue("PENDING")           => Right(PullRequestReviewState.PENDING)
-      case other                            => Left(DecodingError(s"Can't build PullRequestReviewState from input $other"))
+      case __StringValue("APPROVED")          => Right(PullRequestReviewState.APPROVED)
+      case __StringValue("CHANGES_REQUESTED") => Right(PullRequestReviewState.CHANGES_REQUESTED)
+      case __StringValue("COMMENTED")         => Right(PullRequestReviewState.COMMENTED)
+      case __StringValue("DISMISSED")         => Right(PullRequestReviewState.DISMISSED)
+      case __StringValue("PENDING")           => Right(PullRequestReviewState.PENDING)
+      case other                              => Left(DecodingError(s"Can't build PullRequestReviewState from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestReviewState] = new ArgEncoder[PullRequestReviewState] {
-      override def encode(value: PullRequestReviewState): Value = value match {
-        case PullRequestReviewState.APPROVED          => EnumValue("APPROVED")
-        case PullRequestReviewState.CHANGES_REQUESTED => EnumValue("CHANGES_REQUESTED")
-        case PullRequestReviewState.COMMENTED         => EnumValue("COMMENTED")
-        case PullRequestReviewState.DISMISSED         => EnumValue("DISMISSED")
-        case PullRequestReviewState.PENDING           => EnumValue("PENDING")
+      override def encode(value: PullRequestReviewState): __Value = value match {
+        case PullRequestReviewState.APPROVED          => __EnumValue("APPROVED")
+        case PullRequestReviewState.CHANGES_REQUESTED => __EnumValue("CHANGES_REQUESTED")
+        case PullRequestReviewState.COMMENTED         => __EnumValue("COMMENTED")
+        case PullRequestReviewState.DISMISSED         => __EnumValue("DISMISSED")
+        case PullRequestReviewState.PENDING           => __EnumValue("PENDING")
       }
       override def typeName: String = "PullRequestReviewState"
     }
@@ -2117,16 +2118,16 @@ object Github {
     case object OPEN   extends PullRequestState
 
     implicit val decoder: ScalarDecoder[PullRequestState] = {
-      case StringValue("CLOSED") => Right(PullRequestState.CLOSED)
-      case StringValue("MERGED") => Right(PullRequestState.MERGED)
-      case StringValue("OPEN")   => Right(PullRequestState.OPEN)
-      case other                 => Left(DecodingError(s"Can't build PullRequestState from input $other"))
+      case __StringValue("CLOSED") => Right(PullRequestState.CLOSED)
+      case __StringValue("MERGED") => Right(PullRequestState.MERGED)
+      case __StringValue("OPEN")   => Right(PullRequestState.OPEN)
+      case other                   => Left(DecodingError(s"Can't build PullRequestState from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestState] = new ArgEncoder[PullRequestState] {
-      override def encode(value: PullRequestState): Value = value match {
-        case PullRequestState.CLOSED => EnumValue("CLOSED")
-        case PullRequestState.MERGED => EnumValue("MERGED")
-        case PullRequestState.OPEN   => EnumValue("OPEN")
+      override def encode(value: PullRequestState): __Value = value match {
+        case PullRequestState.CLOSED => __EnumValue("CLOSED")
+        case PullRequestState.MERGED => __EnumValue("MERGED")
+        case PullRequestState.OPEN   => __EnumValue("OPEN")
       }
       override def typeName: String = "PullRequestState"
     }
@@ -2187,134 +2188,138 @@ object Github {
     case object USER_BLOCKED_EVENT                    extends PullRequestTimelineItemsItemType
 
     implicit val decoder: ScalarDecoder[PullRequestTimelineItemsItemType] = {
-      case StringValue("ADDED_TO_PROJECT_EVENT") => Right(PullRequestTimelineItemsItemType.ADDED_TO_PROJECT_EVENT)
-      case StringValue("ASSIGNED_EVENT")         => Right(PullRequestTimelineItemsItemType.ASSIGNED_EVENT)
-      case StringValue("AUTOMATIC_BASE_CHANGE_FAILED_EVENT") =>
+      case __StringValue("ADDED_TO_PROJECT_EVENT") => Right(PullRequestTimelineItemsItemType.ADDED_TO_PROJECT_EVENT)
+      case __StringValue("ASSIGNED_EVENT")         => Right(PullRequestTimelineItemsItemType.ASSIGNED_EVENT)
+      case __StringValue("AUTOMATIC_BASE_CHANGE_FAILED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.AUTOMATIC_BASE_CHANGE_FAILED_EVENT)
-      case StringValue("AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT") =>
+      case __StringValue("AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT)
-      case StringValue("BASE_REF_CHANGED_EVENT") => Right(PullRequestTimelineItemsItemType.BASE_REF_CHANGED_EVENT)
-      case StringValue("BASE_REF_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.BASE_REF_DELETED_EVENT)
-      case StringValue("BASE_REF_FORCE_PUSHED_EVENT") =>
+      case __StringValue("BASE_REF_CHANGED_EVENT") => Right(PullRequestTimelineItemsItemType.BASE_REF_CHANGED_EVENT)
+      case __StringValue("BASE_REF_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.BASE_REF_DELETED_EVENT)
+      case __StringValue("BASE_REF_FORCE_PUSHED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.BASE_REF_FORCE_PUSHED_EVENT)
-      case StringValue("CLOSED_EVENT")          => Right(PullRequestTimelineItemsItemType.CLOSED_EVENT)
-      case StringValue("COMMENT_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.COMMENT_DELETED_EVENT)
-      case StringValue("CONNECTED_EVENT")       => Right(PullRequestTimelineItemsItemType.CONNECTED_EVENT)
-      case StringValue("CONVERTED_NOTE_TO_ISSUE_EVENT") =>
+      case __StringValue("CLOSED_EVENT")          => Right(PullRequestTimelineItemsItemType.CLOSED_EVENT)
+      case __StringValue("COMMENT_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.COMMENT_DELETED_EVENT)
+      case __StringValue("CONNECTED_EVENT")       => Right(PullRequestTimelineItemsItemType.CONNECTED_EVENT)
+      case __StringValue("CONVERTED_NOTE_TO_ISSUE_EVENT") =>
         Right(PullRequestTimelineItemsItemType.CONVERTED_NOTE_TO_ISSUE_EVENT)
-      case StringValue("CONVERT_TO_DRAFT_EVENT") => Right(PullRequestTimelineItemsItemType.CONVERT_TO_DRAFT_EVENT)
-      case StringValue("CROSS_REFERENCED_EVENT") => Right(PullRequestTimelineItemsItemType.CROSS_REFERENCED_EVENT)
-      case StringValue("DEMILESTONED_EVENT")     => Right(PullRequestTimelineItemsItemType.DEMILESTONED_EVENT)
-      case StringValue("DEPLOYED_EVENT")         => Right(PullRequestTimelineItemsItemType.DEPLOYED_EVENT)
-      case StringValue("DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT") =>
+      case __StringValue("CONVERT_TO_DRAFT_EVENT") => Right(PullRequestTimelineItemsItemType.CONVERT_TO_DRAFT_EVENT)
+      case __StringValue("CROSS_REFERENCED_EVENT") => Right(PullRequestTimelineItemsItemType.CROSS_REFERENCED_EVENT)
+      case __StringValue("DEMILESTONED_EVENT")     => Right(PullRequestTimelineItemsItemType.DEMILESTONED_EVENT)
+      case __StringValue("DEPLOYED_EVENT")         => Right(PullRequestTimelineItemsItemType.DEPLOYED_EVENT)
+      case __StringValue("DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT)
-      case StringValue("DISCONNECTED_EVENT")     => Right(PullRequestTimelineItemsItemType.DISCONNECTED_EVENT)
-      case StringValue("HEAD_REF_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.HEAD_REF_DELETED_EVENT)
-      case StringValue("HEAD_REF_FORCE_PUSHED_EVENT") =>
+      case __StringValue("DISCONNECTED_EVENT")     => Right(PullRequestTimelineItemsItemType.DISCONNECTED_EVENT)
+      case __StringValue("HEAD_REF_DELETED_EVENT") => Right(PullRequestTimelineItemsItemType.HEAD_REF_DELETED_EVENT)
+      case __StringValue("HEAD_REF_FORCE_PUSHED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.HEAD_REF_FORCE_PUSHED_EVENT)
-      case StringValue("HEAD_REF_RESTORED_EVENT")   => Right(PullRequestTimelineItemsItemType.HEAD_REF_RESTORED_EVENT)
-      case StringValue("ISSUE_COMMENT")             => Right(PullRequestTimelineItemsItemType.ISSUE_COMMENT)
-      case StringValue("LABELED_EVENT")             => Right(PullRequestTimelineItemsItemType.LABELED_EVENT)
-      case StringValue("LOCKED_EVENT")              => Right(PullRequestTimelineItemsItemType.LOCKED_EVENT)
-      case StringValue("MARKED_AS_DUPLICATE_EVENT") => Right(PullRequestTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT)
-      case StringValue("MENTIONED_EVENT")           => Right(PullRequestTimelineItemsItemType.MENTIONED_EVENT)
-      case StringValue("MERGED_EVENT")              => Right(PullRequestTimelineItemsItemType.MERGED_EVENT)
-      case StringValue("MILESTONED_EVENT")          => Right(PullRequestTimelineItemsItemType.MILESTONED_EVENT)
-      case StringValue("MOVED_COLUMNS_IN_PROJECT_EVENT") =>
+      case __StringValue("HEAD_REF_RESTORED_EVENT") => Right(PullRequestTimelineItemsItemType.HEAD_REF_RESTORED_EVENT)
+      case __StringValue("ISSUE_COMMENT")           => Right(PullRequestTimelineItemsItemType.ISSUE_COMMENT)
+      case __StringValue("LABELED_EVENT")           => Right(PullRequestTimelineItemsItemType.LABELED_EVENT)
+      case __StringValue("LOCKED_EVENT")            => Right(PullRequestTimelineItemsItemType.LOCKED_EVENT)
+      case __StringValue("MARKED_AS_DUPLICATE_EVENT") =>
+        Right(PullRequestTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT)
+      case __StringValue("MENTIONED_EVENT")  => Right(PullRequestTimelineItemsItemType.MENTIONED_EVENT)
+      case __StringValue("MERGED_EVENT")     => Right(PullRequestTimelineItemsItemType.MERGED_EVENT)
+      case __StringValue("MILESTONED_EVENT") => Right(PullRequestTimelineItemsItemType.MILESTONED_EVENT)
+      case __StringValue("MOVED_COLUMNS_IN_PROJECT_EVENT") =>
         Right(PullRequestTimelineItemsItemType.MOVED_COLUMNS_IN_PROJECT_EVENT)
-      case StringValue("PINNED_EVENT")        => Right(PullRequestTimelineItemsItemType.PINNED_EVENT)
-      case StringValue("PULL_REQUEST_COMMIT") => Right(PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT)
-      case StringValue("PULL_REQUEST_COMMIT_COMMENT_THREAD") =>
+      case __StringValue("PINNED_EVENT")        => Right(PullRequestTimelineItemsItemType.PINNED_EVENT)
+      case __StringValue("PULL_REQUEST_COMMIT") => Right(PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT)
+      case __StringValue("PULL_REQUEST_COMMIT_COMMENT_THREAD") =>
         Right(PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT_COMMENT_THREAD)
-      case StringValue("PULL_REQUEST_REVIEW") => Right(PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW)
-      case StringValue("PULL_REQUEST_REVIEW_THREAD") =>
+      case __StringValue("PULL_REQUEST_REVIEW") => Right(PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW)
+      case __StringValue("PULL_REQUEST_REVIEW_THREAD") =>
         Right(PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW_THREAD)
-      case StringValue("PULL_REQUEST_REVISION_MARKER") =>
+      case __StringValue("PULL_REQUEST_REVISION_MARKER") =>
         Right(PullRequestTimelineItemsItemType.PULL_REQUEST_REVISION_MARKER)
-      case StringValue("READY_FOR_REVIEW_EVENT") => Right(PullRequestTimelineItemsItemType.READY_FOR_REVIEW_EVENT)
-      case StringValue("REFERENCED_EVENT")       => Right(PullRequestTimelineItemsItemType.REFERENCED_EVENT)
-      case StringValue("REMOVED_FROM_PROJECT_EVENT") =>
+      case __StringValue("READY_FOR_REVIEW_EVENT") => Right(PullRequestTimelineItemsItemType.READY_FOR_REVIEW_EVENT)
+      case __StringValue("REFERENCED_EVENT")       => Right(PullRequestTimelineItemsItemType.REFERENCED_EVENT)
+      case __StringValue("REMOVED_FROM_PROJECT_EVENT") =>
         Right(PullRequestTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT)
-      case StringValue("RENAMED_TITLE_EVENT")    => Right(PullRequestTimelineItemsItemType.RENAMED_TITLE_EVENT)
-      case StringValue("REOPENED_EVENT")         => Right(PullRequestTimelineItemsItemType.REOPENED_EVENT)
-      case StringValue("REVIEW_DISMISSED_EVENT") => Right(PullRequestTimelineItemsItemType.REVIEW_DISMISSED_EVENT)
-      case StringValue("REVIEW_REQUESTED_EVENT") => Right(PullRequestTimelineItemsItemType.REVIEW_REQUESTED_EVENT)
-      case StringValue("REVIEW_REQUEST_REMOVED_EVENT") =>
+      case __StringValue("RENAMED_TITLE_EVENT")    => Right(PullRequestTimelineItemsItemType.RENAMED_TITLE_EVENT)
+      case __StringValue("REOPENED_EVENT")         => Right(PullRequestTimelineItemsItemType.REOPENED_EVENT)
+      case __StringValue("REVIEW_DISMISSED_EVENT") => Right(PullRequestTimelineItemsItemType.REVIEW_DISMISSED_EVENT)
+      case __StringValue("REVIEW_REQUESTED_EVENT") => Right(PullRequestTimelineItemsItemType.REVIEW_REQUESTED_EVENT)
+      case __StringValue("REVIEW_REQUEST_REMOVED_EVENT") =>
         Right(PullRequestTimelineItemsItemType.REVIEW_REQUEST_REMOVED_EVENT)
-      case StringValue("SUBSCRIBED_EVENT")  => Right(PullRequestTimelineItemsItemType.SUBSCRIBED_EVENT)
-      case StringValue("TRANSFERRED_EVENT") => Right(PullRequestTimelineItemsItemType.TRANSFERRED_EVENT)
-      case StringValue("UNASSIGNED_EVENT")  => Right(PullRequestTimelineItemsItemType.UNASSIGNED_EVENT)
-      case StringValue("UNLABELED_EVENT")   => Right(PullRequestTimelineItemsItemType.UNLABELED_EVENT)
-      case StringValue("UNLOCKED_EVENT")    => Right(PullRequestTimelineItemsItemType.UNLOCKED_EVENT)
-      case StringValue("UNMARKED_AS_DUPLICATE_EVENT") =>
+      case __StringValue("SUBSCRIBED_EVENT")  => Right(PullRequestTimelineItemsItemType.SUBSCRIBED_EVENT)
+      case __StringValue("TRANSFERRED_EVENT") => Right(PullRequestTimelineItemsItemType.TRANSFERRED_EVENT)
+      case __StringValue("UNASSIGNED_EVENT")  => Right(PullRequestTimelineItemsItemType.UNASSIGNED_EVENT)
+      case __StringValue("UNLABELED_EVENT")   => Right(PullRequestTimelineItemsItemType.UNLABELED_EVENT)
+      case __StringValue("UNLOCKED_EVENT")    => Right(PullRequestTimelineItemsItemType.UNLOCKED_EVENT)
+      case __StringValue("UNMARKED_AS_DUPLICATE_EVENT") =>
         Right(PullRequestTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT)
-      case StringValue("UNPINNED_EVENT")     => Right(PullRequestTimelineItemsItemType.UNPINNED_EVENT)
-      case StringValue("UNSUBSCRIBED_EVENT") => Right(PullRequestTimelineItemsItemType.UNSUBSCRIBED_EVENT)
-      case StringValue("USER_BLOCKED_EVENT") => Right(PullRequestTimelineItemsItemType.USER_BLOCKED_EVENT)
-      case other                             => Left(DecodingError(s"Can't build PullRequestTimelineItemsItemType from input $other"))
+      case __StringValue("UNPINNED_EVENT")     => Right(PullRequestTimelineItemsItemType.UNPINNED_EVENT)
+      case __StringValue("UNSUBSCRIBED_EVENT") => Right(PullRequestTimelineItemsItemType.UNSUBSCRIBED_EVENT)
+      case __StringValue("USER_BLOCKED_EVENT") => Right(PullRequestTimelineItemsItemType.USER_BLOCKED_EVENT)
+      case other                               => Left(DecodingError(s"Can't build PullRequestTimelineItemsItemType from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestTimelineItemsItemType] =
       new ArgEncoder[PullRequestTimelineItemsItemType] {
-        override def encode(value: PullRequestTimelineItemsItemType): Value = value match {
-          case PullRequestTimelineItemsItemType.ADDED_TO_PROJECT_EVENT => EnumValue("ADDED_TO_PROJECT_EVENT")
-          case PullRequestTimelineItemsItemType.ASSIGNED_EVENT         => EnumValue("ASSIGNED_EVENT")
+        override def encode(value: PullRequestTimelineItemsItemType): __Value = value match {
+          case PullRequestTimelineItemsItemType.ADDED_TO_PROJECT_EVENT => __EnumValue("ADDED_TO_PROJECT_EVENT")
+          case PullRequestTimelineItemsItemType.ASSIGNED_EVENT         => __EnumValue("ASSIGNED_EVENT")
           case PullRequestTimelineItemsItemType.AUTOMATIC_BASE_CHANGE_FAILED_EVENT =>
-            EnumValue("AUTOMATIC_BASE_CHANGE_FAILED_EVENT")
+            __EnumValue("AUTOMATIC_BASE_CHANGE_FAILED_EVENT")
           case PullRequestTimelineItemsItemType.AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT =>
-            EnumValue("AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT")
-          case PullRequestTimelineItemsItemType.BASE_REF_CHANGED_EVENT      => EnumValue("BASE_REF_CHANGED_EVENT")
-          case PullRequestTimelineItemsItemType.BASE_REF_DELETED_EVENT      => EnumValue("BASE_REF_DELETED_EVENT")
-          case PullRequestTimelineItemsItemType.BASE_REF_FORCE_PUSHED_EVENT => EnumValue("BASE_REF_FORCE_PUSHED_EVENT")
-          case PullRequestTimelineItemsItemType.CLOSED_EVENT                => EnumValue("CLOSED_EVENT")
-          case PullRequestTimelineItemsItemType.COMMENT_DELETED_EVENT       => EnumValue("COMMENT_DELETED_EVENT")
-          case PullRequestTimelineItemsItemType.CONNECTED_EVENT             => EnumValue("CONNECTED_EVENT")
+            __EnumValue("AUTOMATIC_BASE_CHANGE_SUCCEEDED_EVENT")
+          case PullRequestTimelineItemsItemType.BASE_REF_CHANGED_EVENT => __EnumValue("BASE_REF_CHANGED_EVENT")
+          case PullRequestTimelineItemsItemType.BASE_REF_DELETED_EVENT => __EnumValue("BASE_REF_DELETED_EVENT")
+          case PullRequestTimelineItemsItemType.BASE_REF_FORCE_PUSHED_EVENT =>
+            __EnumValue("BASE_REF_FORCE_PUSHED_EVENT")
+          case PullRequestTimelineItemsItemType.CLOSED_EVENT          => __EnumValue("CLOSED_EVENT")
+          case PullRequestTimelineItemsItemType.COMMENT_DELETED_EVENT => __EnumValue("COMMENT_DELETED_EVENT")
+          case PullRequestTimelineItemsItemType.CONNECTED_EVENT       => __EnumValue("CONNECTED_EVENT")
           case PullRequestTimelineItemsItemType.CONVERTED_NOTE_TO_ISSUE_EVENT =>
-            EnumValue("CONVERTED_NOTE_TO_ISSUE_EVENT")
-          case PullRequestTimelineItemsItemType.CONVERT_TO_DRAFT_EVENT => EnumValue("CONVERT_TO_DRAFT_EVENT")
-          case PullRequestTimelineItemsItemType.CROSS_REFERENCED_EVENT => EnumValue("CROSS_REFERENCED_EVENT")
-          case PullRequestTimelineItemsItemType.DEMILESTONED_EVENT     => EnumValue("DEMILESTONED_EVENT")
-          case PullRequestTimelineItemsItemType.DEPLOYED_EVENT         => EnumValue("DEPLOYED_EVENT")
+            __EnumValue("CONVERTED_NOTE_TO_ISSUE_EVENT")
+          case PullRequestTimelineItemsItemType.CONVERT_TO_DRAFT_EVENT => __EnumValue("CONVERT_TO_DRAFT_EVENT")
+          case PullRequestTimelineItemsItemType.CROSS_REFERENCED_EVENT => __EnumValue("CROSS_REFERENCED_EVENT")
+          case PullRequestTimelineItemsItemType.DEMILESTONED_EVENT     => __EnumValue("DEMILESTONED_EVENT")
+          case PullRequestTimelineItemsItemType.DEPLOYED_EVENT         => __EnumValue("DEPLOYED_EVENT")
           case PullRequestTimelineItemsItemType.DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT =>
-            EnumValue("DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT")
-          case PullRequestTimelineItemsItemType.DISCONNECTED_EVENT          => EnumValue("DISCONNECTED_EVENT")
-          case PullRequestTimelineItemsItemType.HEAD_REF_DELETED_EVENT      => EnumValue("HEAD_REF_DELETED_EVENT")
-          case PullRequestTimelineItemsItemType.HEAD_REF_FORCE_PUSHED_EVENT => EnumValue("HEAD_REF_FORCE_PUSHED_EVENT")
-          case PullRequestTimelineItemsItemType.HEAD_REF_RESTORED_EVENT     => EnumValue("HEAD_REF_RESTORED_EVENT")
-          case PullRequestTimelineItemsItemType.ISSUE_COMMENT               => EnumValue("ISSUE_COMMENT")
-          case PullRequestTimelineItemsItemType.LABELED_EVENT               => EnumValue("LABELED_EVENT")
-          case PullRequestTimelineItemsItemType.LOCKED_EVENT                => EnumValue("LOCKED_EVENT")
-          case PullRequestTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT   => EnumValue("MARKED_AS_DUPLICATE_EVENT")
-          case PullRequestTimelineItemsItemType.MENTIONED_EVENT             => EnumValue("MENTIONED_EVENT")
-          case PullRequestTimelineItemsItemType.MERGED_EVENT                => EnumValue("MERGED_EVENT")
-          case PullRequestTimelineItemsItemType.MILESTONED_EVENT            => EnumValue("MILESTONED_EVENT")
+            __EnumValue("DEPLOYMENT_ENVIRONMENT_CHANGED_EVENT")
+          case PullRequestTimelineItemsItemType.DISCONNECTED_EVENT     => __EnumValue("DISCONNECTED_EVENT")
+          case PullRequestTimelineItemsItemType.HEAD_REF_DELETED_EVENT => __EnumValue("HEAD_REF_DELETED_EVENT")
+          case PullRequestTimelineItemsItemType.HEAD_REF_FORCE_PUSHED_EVENT =>
+            __EnumValue("HEAD_REF_FORCE_PUSHED_EVENT")
+          case PullRequestTimelineItemsItemType.HEAD_REF_RESTORED_EVENT   => __EnumValue("HEAD_REF_RESTORED_EVENT")
+          case PullRequestTimelineItemsItemType.ISSUE_COMMENT             => __EnumValue("ISSUE_COMMENT")
+          case PullRequestTimelineItemsItemType.LABELED_EVENT             => __EnumValue("LABELED_EVENT")
+          case PullRequestTimelineItemsItemType.LOCKED_EVENT              => __EnumValue("LOCKED_EVENT")
+          case PullRequestTimelineItemsItemType.MARKED_AS_DUPLICATE_EVENT => __EnumValue("MARKED_AS_DUPLICATE_EVENT")
+          case PullRequestTimelineItemsItemType.MENTIONED_EVENT           => __EnumValue("MENTIONED_EVENT")
+          case PullRequestTimelineItemsItemType.MERGED_EVENT              => __EnumValue("MERGED_EVENT")
+          case PullRequestTimelineItemsItemType.MILESTONED_EVENT          => __EnumValue("MILESTONED_EVENT")
           case PullRequestTimelineItemsItemType.MOVED_COLUMNS_IN_PROJECT_EVENT =>
-            EnumValue("MOVED_COLUMNS_IN_PROJECT_EVENT")
-          case PullRequestTimelineItemsItemType.PINNED_EVENT        => EnumValue("PINNED_EVENT")
-          case PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT => EnumValue("PULL_REQUEST_COMMIT")
+            __EnumValue("MOVED_COLUMNS_IN_PROJECT_EVENT")
+          case PullRequestTimelineItemsItemType.PINNED_EVENT        => __EnumValue("PINNED_EVENT")
+          case PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT => __EnumValue("PULL_REQUEST_COMMIT")
           case PullRequestTimelineItemsItemType.PULL_REQUEST_COMMIT_COMMENT_THREAD =>
-            EnumValue("PULL_REQUEST_COMMIT_COMMENT_THREAD")
-          case PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW        => EnumValue("PULL_REQUEST_REVIEW")
-          case PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW_THREAD => EnumValue("PULL_REQUEST_REVIEW_THREAD")
+            __EnumValue("PULL_REQUEST_COMMIT_COMMENT_THREAD")
+          case PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW        => __EnumValue("PULL_REQUEST_REVIEW")
+          case PullRequestTimelineItemsItemType.PULL_REQUEST_REVIEW_THREAD => __EnumValue("PULL_REQUEST_REVIEW_THREAD")
           case PullRequestTimelineItemsItemType.PULL_REQUEST_REVISION_MARKER =>
-            EnumValue("PULL_REQUEST_REVISION_MARKER")
-          case PullRequestTimelineItemsItemType.READY_FOR_REVIEW_EVENT     => EnumValue("READY_FOR_REVIEW_EVENT")
-          case PullRequestTimelineItemsItemType.REFERENCED_EVENT           => EnumValue("REFERENCED_EVENT")
-          case PullRequestTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT => EnumValue("REMOVED_FROM_PROJECT_EVENT")
-          case PullRequestTimelineItemsItemType.RENAMED_TITLE_EVENT        => EnumValue("RENAMED_TITLE_EVENT")
-          case PullRequestTimelineItemsItemType.REOPENED_EVENT             => EnumValue("REOPENED_EVENT")
-          case PullRequestTimelineItemsItemType.REVIEW_DISMISSED_EVENT     => EnumValue("REVIEW_DISMISSED_EVENT")
-          case PullRequestTimelineItemsItemType.REVIEW_REQUESTED_EVENT     => EnumValue("REVIEW_REQUESTED_EVENT")
+            __EnumValue("PULL_REQUEST_REVISION_MARKER")
+          case PullRequestTimelineItemsItemType.READY_FOR_REVIEW_EVENT     => __EnumValue("READY_FOR_REVIEW_EVENT")
+          case PullRequestTimelineItemsItemType.REFERENCED_EVENT           => __EnumValue("REFERENCED_EVENT")
+          case PullRequestTimelineItemsItemType.REMOVED_FROM_PROJECT_EVENT => __EnumValue("REMOVED_FROM_PROJECT_EVENT")
+          case PullRequestTimelineItemsItemType.RENAMED_TITLE_EVENT        => __EnumValue("RENAMED_TITLE_EVENT")
+          case PullRequestTimelineItemsItemType.REOPENED_EVENT             => __EnumValue("REOPENED_EVENT")
+          case PullRequestTimelineItemsItemType.REVIEW_DISMISSED_EVENT     => __EnumValue("REVIEW_DISMISSED_EVENT")
+          case PullRequestTimelineItemsItemType.REVIEW_REQUESTED_EVENT     => __EnumValue("REVIEW_REQUESTED_EVENT")
           case PullRequestTimelineItemsItemType.REVIEW_REQUEST_REMOVED_EVENT =>
-            EnumValue("REVIEW_REQUEST_REMOVED_EVENT")
-          case PullRequestTimelineItemsItemType.SUBSCRIBED_EVENT            => EnumValue("SUBSCRIBED_EVENT")
-          case PullRequestTimelineItemsItemType.TRANSFERRED_EVENT           => EnumValue("TRANSFERRED_EVENT")
-          case PullRequestTimelineItemsItemType.UNASSIGNED_EVENT            => EnumValue("UNASSIGNED_EVENT")
-          case PullRequestTimelineItemsItemType.UNLABELED_EVENT             => EnumValue("UNLABELED_EVENT")
-          case PullRequestTimelineItemsItemType.UNLOCKED_EVENT              => EnumValue("UNLOCKED_EVENT")
-          case PullRequestTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT => EnumValue("UNMARKED_AS_DUPLICATE_EVENT")
-          case PullRequestTimelineItemsItemType.UNPINNED_EVENT              => EnumValue("UNPINNED_EVENT")
-          case PullRequestTimelineItemsItemType.UNSUBSCRIBED_EVENT          => EnumValue("UNSUBSCRIBED_EVENT")
-          case PullRequestTimelineItemsItemType.USER_BLOCKED_EVENT          => EnumValue("USER_BLOCKED_EVENT")
+            __EnumValue("REVIEW_REQUEST_REMOVED_EVENT")
+          case PullRequestTimelineItemsItemType.SUBSCRIBED_EVENT  => __EnumValue("SUBSCRIBED_EVENT")
+          case PullRequestTimelineItemsItemType.TRANSFERRED_EVENT => __EnumValue("TRANSFERRED_EVENT")
+          case PullRequestTimelineItemsItemType.UNASSIGNED_EVENT  => __EnumValue("UNASSIGNED_EVENT")
+          case PullRequestTimelineItemsItemType.UNLABELED_EVENT   => __EnumValue("UNLABELED_EVENT")
+          case PullRequestTimelineItemsItemType.UNLOCKED_EVENT    => __EnumValue("UNLOCKED_EVENT")
+          case PullRequestTimelineItemsItemType.UNMARKED_AS_DUPLICATE_EVENT =>
+            __EnumValue("UNMARKED_AS_DUPLICATE_EVENT")
+          case PullRequestTimelineItemsItemType.UNPINNED_EVENT     => __EnumValue("UNPINNED_EVENT")
+          case PullRequestTimelineItemsItemType.UNSUBSCRIBED_EVENT => __EnumValue("UNSUBSCRIBED_EVENT")
+          case PullRequestTimelineItemsItemType.USER_BLOCKED_EVENT => __EnumValue("USER_BLOCKED_EVENT")
         }
         override def typeName: String = "PullRequestTimelineItemsItemType"
       }
@@ -2326,14 +2331,14 @@ object Github {
     case object OPEN   extends PullRequestUpdateState
 
     implicit val decoder: ScalarDecoder[PullRequestUpdateState] = {
-      case StringValue("CLOSED") => Right(PullRequestUpdateState.CLOSED)
-      case StringValue("OPEN")   => Right(PullRequestUpdateState.OPEN)
-      case other                 => Left(DecodingError(s"Can't build PullRequestUpdateState from input $other"))
+      case __StringValue("CLOSED") => Right(PullRequestUpdateState.CLOSED)
+      case __StringValue("OPEN")   => Right(PullRequestUpdateState.OPEN)
+      case other                   => Left(DecodingError(s"Can't build PullRequestUpdateState from input $other"))
     }
     implicit val encoder: ArgEncoder[PullRequestUpdateState] = new ArgEncoder[PullRequestUpdateState] {
-      override def encode(value: PullRequestUpdateState): Value = value match {
-        case PullRequestUpdateState.CLOSED => EnumValue("CLOSED")
-        case PullRequestUpdateState.OPEN   => EnumValue("OPEN")
+      override def encode(value: PullRequestUpdateState): __Value = value match {
+        case PullRequestUpdateState.CLOSED => __EnumValue("CLOSED")
+        case PullRequestUpdateState.OPEN   => __EnumValue("OPEN")
       }
       override def typeName: String = "PullRequestUpdateState"
     }
@@ -2351,26 +2356,26 @@ object Github {
     case object THUMBS_UP   extends ReactionContent
 
     implicit val decoder: ScalarDecoder[ReactionContent] = {
-      case StringValue("CONFUSED")    => Right(ReactionContent.CONFUSED)
-      case StringValue("EYES")        => Right(ReactionContent.EYES)
-      case StringValue("HEART")       => Right(ReactionContent.HEART)
-      case StringValue("HOORAY")      => Right(ReactionContent.HOORAY)
-      case StringValue("LAUGH")       => Right(ReactionContent.LAUGH)
-      case StringValue("ROCKET")      => Right(ReactionContent.ROCKET)
-      case StringValue("THUMBS_DOWN") => Right(ReactionContent.THUMBS_DOWN)
-      case StringValue("THUMBS_UP")   => Right(ReactionContent.THUMBS_UP)
-      case other                      => Left(DecodingError(s"Can't build ReactionContent from input $other"))
+      case __StringValue("CONFUSED")    => Right(ReactionContent.CONFUSED)
+      case __StringValue("EYES")        => Right(ReactionContent.EYES)
+      case __StringValue("HEART")       => Right(ReactionContent.HEART)
+      case __StringValue("HOORAY")      => Right(ReactionContent.HOORAY)
+      case __StringValue("LAUGH")       => Right(ReactionContent.LAUGH)
+      case __StringValue("ROCKET")      => Right(ReactionContent.ROCKET)
+      case __StringValue("THUMBS_DOWN") => Right(ReactionContent.THUMBS_DOWN)
+      case __StringValue("THUMBS_UP")   => Right(ReactionContent.THUMBS_UP)
+      case other                        => Left(DecodingError(s"Can't build ReactionContent from input $other"))
     }
     implicit val encoder: ArgEncoder[ReactionContent] = new ArgEncoder[ReactionContent] {
-      override def encode(value: ReactionContent): Value = value match {
-        case ReactionContent.CONFUSED    => EnumValue("CONFUSED")
-        case ReactionContent.EYES        => EnumValue("EYES")
-        case ReactionContent.HEART       => EnumValue("HEART")
-        case ReactionContent.HOORAY      => EnumValue("HOORAY")
-        case ReactionContent.LAUGH       => EnumValue("LAUGH")
-        case ReactionContent.ROCKET      => EnumValue("ROCKET")
-        case ReactionContent.THUMBS_DOWN => EnumValue("THUMBS_DOWN")
-        case ReactionContent.THUMBS_UP   => EnumValue("THUMBS_UP")
+      override def encode(value: ReactionContent): __Value = value match {
+        case ReactionContent.CONFUSED    => __EnumValue("CONFUSED")
+        case ReactionContent.EYES        => __EnumValue("EYES")
+        case ReactionContent.HEART       => __EnumValue("HEART")
+        case ReactionContent.HOORAY      => __EnumValue("HOORAY")
+        case ReactionContent.LAUGH       => __EnumValue("LAUGH")
+        case ReactionContent.ROCKET      => __EnumValue("ROCKET")
+        case ReactionContent.THUMBS_DOWN => __EnumValue("THUMBS_DOWN")
+        case ReactionContent.THUMBS_UP   => __EnumValue("THUMBS_UP")
       }
       override def typeName: String = "ReactionContent"
     }
@@ -2381,12 +2386,12 @@ object Github {
     case object CREATED_AT extends ReactionOrderField
 
     implicit val decoder: ScalarDecoder[ReactionOrderField] = {
-      case StringValue("CREATED_AT") => Right(ReactionOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build ReactionOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(ReactionOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build ReactionOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[ReactionOrderField] = new ArgEncoder[ReactionOrderField] {
-      override def encode(value: ReactionOrderField): Value = value match {
-        case ReactionOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: ReactionOrderField): __Value = value match {
+        case ReactionOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "ReactionOrderField"
     }
@@ -2398,14 +2403,14 @@ object Github {
     case object TAG_COMMIT_DATE extends RefOrderField
 
     implicit val decoder: ScalarDecoder[RefOrderField] = {
-      case StringValue("ALPHABETICAL")    => Right(RefOrderField.ALPHABETICAL)
-      case StringValue("TAG_COMMIT_DATE") => Right(RefOrderField.TAG_COMMIT_DATE)
-      case other                          => Left(DecodingError(s"Can't build RefOrderField from input $other"))
+      case __StringValue("ALPHABETICAL")    => Right(RefOrderField.ALPHABETICAL)
+      case __StringValue("TAG_COMMIT_DATE") => Right(RefOrderField.TAG_COMMIT_DATE)
+      case other                            => Left(DecodingError(s"Can't build RefOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[RefOrderField] = new ArgEncoder[RefOrderField] {
-      override def encode(value: RefOrderField): Value = value match {
-        case RefOrderField.ALPHABETICAL    => EnumValue("ALPHABETICAL")
-        case RefOrderField.TAG_COMMIT_DATE => EnumValue("TAG_COMMIT_DATE")
+      override def encode(value: RefOrderField): __Value = value match {
+        case RefOrderField.ALPHABETICAL    => __EnumValue("ALPHABETICAL")
+        case RefOrderField.TAG_COMMIT_DATE => __EnumValue("TAG_COMMIT_DATE")
       }
       override def typeName: String = "RefOrderField"
     }
@@ -2417,14 +2422,14 @@ object Github {
     case object NAME       extends ReleaseOrderField
 
     implicit val decoder: ScalarDecoder[ReleaseOrderField] = {
-      case StringValue("CREATED_AT") => Right(ReleaseOrderField.CREATED_AT)
-      case StringValue("NAME")       => Right(ReleaseOrderField.NAME)
-      case other                     => Left(DecodingError(s"Can't build ReleaseOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(ReleaseOrderField.CREATED_AT)
+      case __StringValue("NAME")       => Right(ReleaseOrderField.NAME)
+      case other                       => Left(DecodingError(s"Can't build ReleaseOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[ReleaseOrderField] = new ArgEncoder[ReleaseOrderField] {
-      override def encode(value: ReleaseOrderField): Value = value match {
-        case ReleaseOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case ReleaseOrderField.NAME       => EnumValue("NAME")
+      override def encode(value: ReleaseOrderField): __Value = value match {
+        case ReleaseOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case ReleaseOrderField.NAME       => __EnumValue("NAME")
       }
       override def typeName: String = "ReleaseOrderField"
     }
@@ -2437,16 +2442,16 @@ object Github {
     case object PUBLIC   extends RepoAccessAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoAccessAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoAccessAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoAccessAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoAccessAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoAccessAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoAccessAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoAccessAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoAccessAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoAccessAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoAccessAuditEntryVisibility] = new ArgEncoder[RepoAccessAuditEntryVisibility] {
-      override def encode(value: RepoAccessAuditEntryVisibility): Value = value match {
-        case RepoAccessAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-        case RepoAccessAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-        case RepoAccessAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+      override def encode(value: RepoAccessAuditEntryVisibility): __Value = value match {
+        case RepoAccessAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+        case RepoAccessAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+        case RepoAccessAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
       }
       override def typeName: String = "RepoAccessAuditEntryVisibility"
     }
@@ -2459,17 +2464,17 @@ object Github {
     case object PUBLIC   extends RepoAddMemberAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoAddMemberAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoAddMemberAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoAddMemberAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoAddMemberAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoAddMemberAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoAddMemberAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoAddMemberAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoAddMemberAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoAddMemberAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoAddMemberAuditEntryVisibility] =
       new ArgEncoder[RepoAddMemberAuditEntryVisibility] {
-        override def encode(value: RepoAddMemberAuditEntryVisibility): Value = value match {
-          case RepoAddMemberAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-          case RepoAddMemberAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-          case RepoAddMemberAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+        override def encode(value: RepoAddMemberAuditEntryVisibility): __Value = value match {
+          case RepoAddMemberAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+          case RepoAddMemberAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+          case RepoAddMemberAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
         }
         override def typeName: String = "RepoAddMemberAuditEntryVisibility"
       }
@@ -2482,17 +2487,17 @@ object Github {
     case object PUBLIC   extends RepoArchivedAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoArchivedAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoArchivedAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoArchivedAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoArchivedAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoArchivedAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoArchivedAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoArchivedAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoArchivedAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoArchivedAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoArchivedAuditEntryVisibility] =
       new ArgEncoder[RepoArchivedAuditEntryVisibility] {
-        override def encode(value: RepoArchivedAuditEntryVisibility): Value = value match {
-          case RepoArchivedAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-          case RepoArchivedAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-          case RepoArchivedAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+        override def encode(value: RepoArchivedAuditEntryVisibility): __Value = value match {
+          case RepoArchivedAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+          case RepoArchivedAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+          case RepoArchivedAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
         }
         override def typeName: String = "RepoArchivedAuditEntryVisibility"
       }
@@ -2505,17 +2510,17 @@ object Github {
     case object SQUASH extends RepoChangeMergeSettingAuditEntryMergeType
 
     implicit val decoder: ScalarDecoder[RepoChangeMergeSettingAuditEntryMergeType] = {
-      case StringValue("MERGE")  => Right(RepoChangeMergeSettingAuditEntryMergeType.MERGE)
-      case StringValue("REBASE") => Right(RepoChangeMergeSettingAuditEntryMergeType.REBASE)
-      case StringValue("SQUASH") => Right(RepoChangeMergeSettingAuditEntryMergeType.SQUASH)
-      case other                 => Left(DecodingError(s"Can't build RepoChangeMergeSettingAuditEntryMergeType from input $other"))
+      case __StringValue("MERGE")  => Right(RepoChangeMergeSettingAuditEntryMergeType.MERGE)
+      case __StringValue("REBASE") => Right(RepoChangeMergeSettingAuditEntryMergeType.REBASE)
+      case __StringValue("SQUASH") => Right(RepoChangeMergeSettingAuditEntryMergeType.SQUASH)
+      case other                   => Left(DecodingError(s"Can't build RepoChangeMergeSettingAuditEntryMergeType from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoChangeMergeSettingAuditEntryMergeType] =
       new ArgEncoder[RepoChangeMergeSettingAuditEntryMergeType] {
-        override def encode(value: RepoChangeMergeSettingAuditEntryMergeType): Value = value match {
-          case RepoChangeMergeSettingAuditEntryMergeType.MERGE  => EnumValue("MERGE")
-          case RepoChangeMergeSettingAuditEntryMergeType.REBASE => EnumValue("REBASE")
-          case RepoChangeMergeSettingAuditEntryMergeType.SQUASH => EnumValue("SQUASH")
+        override def encode(value: RepoChangeMergeSettingAuditEntryMergeType): __Value = value match {
+          case RepoChangeMergeSettingAuditEntryMergeType.MERGE  => __EnumValue("MERGE")
+          case RepoChangeMergeSettingAuditEntryMergeType.REBASE => __EnumValue("REBASE")
+          case RepoChangeMergeSettingAuditEntryMergeType.SQUASH => __EnumValue("SQUASH")
         }
         override def typeName: String = "RepoChangeMergeSettingAuditEntryMergeType"
       }
@@ -2528,16 +2533,16 @@ object Github {
     case object PUBLIC   extends RepoCreateAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoCreateAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoCreateAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoCreateAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoCreateAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoCreateAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoCreateAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoCreateAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoCreateAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoCreateAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoCreateAuditEntryVisibility] = new ArgEncoder[RepoCreateAuditEntryVisibility] {
-      override def encode(value: RepoCreateAuditEntryVisibility): Value = value match {
-        case RepoCreateAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-        case RepoCreateAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-        case RepoCreateAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+      override def encode(value: RepoCreateAuditEntryVisibility): __Value = value match {
+        case RepoCreateAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+        case RepoCreateAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+        case RepoCreateAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
       }
       override def typeName: String = "RepoCreateAuditEntryVisibility"
     }
@@ -2550,17 +2555,17 @@ object Github {
     case object PUBLIC   extends RepoDestroyAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoDestroyAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoDestroyAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoDestroyAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoDestroyAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoDestroyAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoDestroyAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoDestroyAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoDestroyAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoDestroyAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoDestroyAuditEntryVisibility] =
       new ArgEncoder[RepoDestroyAuditEntryVisibility] {
-        override def encode(value: RepoDestroyAuditEntryVisibility): Value = value match {
-          case RepoDestroyAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-          case RepoDestroyAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-          case RepoDestroyAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+        override def encode(value: RepoDestroyAuditEntryVisibility): __Value = value match {
+          case RepoDestroyAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+          case RepoDestroyAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+          case RepoDestroyAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
         }
         override def typeName: String = "RepoDestroyAuditEntryVisibility"
       }
@@ -2573,17 +2578,17 @@ object Github {
     case object PUBLIC   extends RepoRemoveMemberAuditEntryVisibility
 
     implicit val decoder: ScalarDecoder[RepoRemoveMemberAuditEntryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepoRemoveMemberAuditEntryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepoRemoveMemberAuditEntryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepoRemoveMemberAuditEntryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepoRemoveMemberAuditEntryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepoRemoveMemberAuditEntryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepoRemoveMemberAuditEntryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepoRemoveMemberAuditEntryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepoRemoveMemberAuditEntryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepoRemoveMemberAuditEntryVisibility] =
       new ArgEncoder[RepoRemoveMemberAuditEntryVisibility] {
-        override def encode(value: RepoRemoveMemberAuditEntryVisibility): Value = value match {
-          case RepoRemoveMemberAuditEntryVisibility.INTERNAL => EnumValue("INTERNAL")
-          case RepoRemoveMemberAuditEntryVisibility.PRIVATE  => EnumValue("PRIVATE")
-          case RepoRemoveMemberAuditEntryVisibility.PUBLIC   => EnumValue("PUBLIC")
+        override def encode(value: RepoRemoveMemberAuditEntryVisibility): __Value = value match {
+          case RepoRemoveMemberAuditEntryVisibility.INTERNAL => __EnumValue("INTERNAL")
+          case RepoRemoveMemberAuditEntryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+          case RepoRemoveMemberAuditEntryVisibility.PUBLIC   => __EnumValue("PUBLIC")
         }
         override def typeName: String = "RepoRemoveMemberAuditEntryVisibility"
       }
@@ -2599,22 +2604,22 @@ object Github {
     case object SPAM      extends ReportedContentClassifiers
 
     implicit val decoder: ScalarDecoder[ReportedContentClassifiers] = {
-      case StringValue("ABUSE")     => Right(ReportedContentClassifiers.ABUSE)
-      case StringValue("DUPLICATE") => Right(ReportedContentClassifiers.DUPLICATE)
-      case StringValue("OFF_TOPIC") => Right(ReportedContentClassifiers.OFF_TOPIC)
-      case StringValue("OUTDATED")  => Right(ReportedContentClassifiers.OUTDATED)
-      case StringValue("RESOLVED")  => Right(ReportedContentClassifiers.RESOLVED)
-      case StringValue("SPAM")      => Right(ReportedContentClassifiers.SPAM)
-      case other                    => Left(DecodingError(s"Can't build ReportedContentClassifiers from input $other"))
+      case __StringValue("ABUSE")     => Right(ReportedContentClassifiers.ABUSE)
+      case __StringValue("DUPLICATE") => Right(ReportedContentClassifiers.DUPLICATE)
+      case __StringValue("OFF_TOPIC") => Right(ReportedContentClassifiers.OFF_TOPIC)
+      case __StringValue("OUTDATED")  => Right(ReportedContentClassifiers.OUTDATED)
+      case __StringValue("RESOLVED")  => Right(ReportedContentClassifiers.RESOLVED)
+      case __StringValue("SPAM")      => Right(ReportedContentClassifiers.SPAM)
+      case other                      => Left(DecodingError(s"Can't build ReportedContentClassifiers from input $other"))
     }
     implicit val encoder: ArgEncoder[ReportedContentClassifiers] = new ArgEncoder[ReportedContentClassifiers] {
-      override def encode(value: ReportedContentClassifiers): Value = value match {
-        case ReportedContentClassifiers.ABUSE     => EnumValue("ABUSE")
-        case ReportedContentClassifiers.DUPLICATE => EnumValue("DUPLICATE")
-        case ReportedContentClassifiers.OFF_TOPIC => EnumValue("OFF_TOPIC")
-        case ReportedContentClassifiers.OUTDATED  => EnumValue("OUTDATED")
-        case ReportedContentClassifiers.RESOLVED  => EnumValue("RESOLVED")
-        case ReportedContentClassifiers.SPAM      => EnumValue("SPAM")
+      override def encode(value: ReportedContentClassifiers): __Value = value match {
+        case ReportedContentClassifiers.ABUSE     => __EnumValue("ABUSE")
+        case ReportedContentClassifiers.DUPLICATE => __EnumValue("DUPLICATE")
+        case ReportedContentClassifiers.OFF_TOPIC => __EnumValue("OFF_TOPIC")
+        case ReportedContentClassifiers.OUTDATED  => __EnumValue("OUTDATED")
+        case ReportedContentClassifiers.RESOLVED  => __EnumValue("RESOLVED")
+        case ReportedContentClassifiers.SPAM      => __EnumValue("SPAM")
       }
       override def typeName: String = "ReportedContentClassifiers"
     }
@@ -2627,16 +2632,16 @@ object Github {
     case object OWNER               extends RepositoryAffiliation
 
     implicit val decoder: ScalarDecoder[RepositoryAffiliation] = {
-      case StringValue("COLLABORATOR")        => Right(RepositoryAffiliation.COLLABORATOR)
-      case StringValue("ORGANIZATION_MEMBER") => Right(RepositoryAffiliation.ORGANIZATION_MEMBER)
-      case StringValue("OWNER")               => Right(RepositoryAffiliation.OWNER)
-      case other                              => Left(DecodingError(s"Can't build RepositoryAffiliation from input $other"))
+      case __StringValue("COLLABORATOR")        => Right(RepositoryAffiliation.COLLABORATOR)
+      case __StringValue("ORGANIZATION_MEMBER") => Right(RepositoryAffiliation.ORGANIZATION_MEMBER)
+      case __StringValue("OWNER")               => Right(RepositoryAffiliation.OWNER)
+      case other                                => Left(DecodingError(s"Can't build RepositoryAffiliation from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryAffiliation] = new ArgEncoder[RepositoryAffiliation] {
-      override def encode(value: RepositoryAffiliation): Value = value match {
-        case RepositoryAffiliation.COLLABORATOR        => EnumValue("COLLABORATOR")
-        case RepositoryAffiliation.ORGANIZATION_MEMBER => EnumValue("ORGANIZATION_MEMBER")
-        case RepositoryAffiliation.OWNER               => EnumValue("OWNER")
+      override def encode(value: RepositoryAffiliation): __Value = value match {
+        case RepositoryAffiliation.COLLABORATOR        => __EnumValue("COLLABORATOR")
+        case RepositoryAffiliation.ORGANIZATION_MEMBER => __EnumValue("ORGANIZATION_MEMBER")
+        case RepositoryAffiliation.OWNER               => __EnumValue("OWNER")
       }
       override def typeName: String = "RepositoryAffiliation"
     }
@@ -2651,20 +2656,20 @@ object Github {
     case object REPOSITORY          extends RepositoryContributionType
 
     implicit val decoder: ScalarDecoder[RepositoryContributionType] = {
-      case StringValue("COMMIT")              => Right(RepositoryContributionType.COMMIT)
-      case StringValue("ISSUE")               => Right(RepositoryContributionType.ISSUE)
-      case StringValue("PULL_REQUEST")        => Right(RepositoryContributionType.PULL_REQUEST)
-      case StringValue("PULL_REQUEST_REVIEW") => Right(RepositoryContributionType.PULL_REQUEST_REVIEW)
-      case StringValue("REPOSITORY")          => Right(RepositoryContributionType.REPOSITORY)
-      case other                              => Left(DecodingError(s"Can't build RepositoryContributionType from input $other"))
+      case __StringValue("COMMIT")              => Right(RepositoryContributionType.COMMIT)
+      case __StringValue("ISSUE")               => Right(RepositoryContributionType.ISSUE)
+      case __StringValue("PULL_REQUEST")        => Right(RepositoryContributionType.PULL_REQUEST)
+      case __StringValue("PULL_REQUEST_REVIEW") => Right(RepositoryContributionType.PULL_REQUEST_REVIEW)
+      case __StringValue("REPOSITORY")          => Right(RepositoryContributionType.REPOSITORY)
+      case other                                => Left(DecodingError(s"Can't build RepositoryContributionType from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryContributionType] = new ArgEncoder[RepositoryContributionType] {
-      override def encode(value: RepositoryContributionType): Value = value match {
-        case RepositoryContributionType.COMMIT              => EnumValue("COMMIT")
-        case RepositoryContributionType.ISSUE               => EnumValue("ISSUE")
-        case RepositoryContributionType.PULL_REQUEST        => EnumValue("PULL_REQUEST")
-        case RepositoryContributionType.PULL_REQUEST_REVIEW => EnumValue("PULL_REQUEST_REVIEW")
-        case RepositoryContributionType.REPOSITORY          => EnumValue("REPOSITORY")
+      override def encode(value: RepositoryContributionType): __Value = value match {
+        case RepositoryContributionType.COMMIT              => __EnumValue("COMMIT")
+        case RepositoryContributionType.ISSUE               => __EnumValue("ISSUE")
+        case RepositoryContributionType.PULL_REQUEST        => __EnumValue("PULL_REQUEST")
+        case RepositoryContributionType.PULL_REQUEST_REVIEW => __EnumValue("PULL_REQUEST_REVIEW")
+        case RepositoryContributionType.REPOSITORY          => __EnumValue("REPOSITORY")
       }
       override def typeName: String = "RepositoryContributionType"
     }
@@ -2676,14 +2681,14 @@ object Github {
     case object INVITEE_LOGIN extends RepositoryInvitationOrderField
 
     implicit val decoder: ScalarDecoder[RepositoryInvitationOrderField] = {
-      case StringValue("CREATED_AT")    => Right(RepositoryInvitationOrderField.CREATED_AT)
-      case StringValue("INVITEE_LOGIN") => Right(RepositoryInvitationOrderField.INVITEE_LOGIN)
-      case other                        => Left(DecodingError(s"Can't build RepositoryInvitationOrderField from input $other"))
+      case __StringValue("CREATED_AT")    => Right(RepositoryInvitationOrderField.CREATED_AT)
+      case __StringValue("INVITEE_LOGIN") => Right(RepositoryInvitationOrderField.INVITEE_LOGIN)
+      case other                          => Left(DecodingError(s"Can't build RepositoryInvitationOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryInvitationOrderField] = new ArgEncoder[RepositoryInvitationOrderField] {
-      override def encode(value: RepositoryInvitationOrderField): Value = value match {
-        case RepositoryInvitationOrderField.CREATED_AT    => EnumValue("CREATED_AT")
-        case RepositoryInvitationOrderField.INVITEE_LOGIN => EnumValue("INVITEE_LOGIN")
+      override def encode(value: RepositoryInvitationOrderField): __Value = value match {
+        case RepositoryInvitationOrderField.CREATED_AT    => __EnumValue("CREATED_AT")
+        case RepositoryInvitationOrderField.INVITEE_LOGIN => __EnumValue("INVITEE_LOGIN")
       }
       override def typeName: String = "RepositoryInvitationOrderField"
     }
@@ -2697,18 +2702,18 @@ object Github {
     case object RENAME    extends RepositoryLockReason
 
     implicit val decoder: ScalarDecoder[RepositoryLockReason] = {
-      case StringValue("BILLING")   => Right(RepositoryLockReason.BILLING)
-      case StringValue("MIGRATING") => Right(RepositoryLockReason.MIGRATING)
-      case StringValue("MOVING")    => Right(RepositoryLockReason.MOVING)
-      case StringValue("RENAME")    => Right(RepositoryLockReason.RENAME)
-      case other                    => Left(DecodingError(s"Can't build RepositoryLockReason from input $other"))
+      case __StringValue("BILLING")   => Right(RepositoryLockReason.BILLING)
+      case __StringValue("MIGRATING") => Right(RepositoryLockReason.MIGRATING)
+      case __StringValue("MOVING")    => Right(RepositoryLockReason.MOVING)
+      case __StringValue("RENAME")    => Right(RepositoryLockReason.RENAME)
+      case other                      => Left(DecodingError(s"Can't build RepositoryLockReason from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryLockReason] = new ArgEncoder[RepositoryLockReason] {
-      override def encode(value: RepositoryLockReason): Value = value match {
-        case RepositoryLockReason.BILLING   => EnumValue("BILLING")
-        case RepositoryLockReason.MIGRATING => EnumValue("MIGRATING")
-        case RepositoryLockReason.MOVING    => EnumValue("MOVING")
-        case RepositoryLockReason.RENAME    => EnumValue("RENAME")
+      override def encode(value: RepositoryLockReason): __Value = value match {
+        case RepositoryLockReason.BILLING   => __EnumValue("BILLING")
+        case RepositoryLockReason.MIGRATING => __EnumValue("MIGRATING")
+        case RepositoryLockReason.MOVING    => __EnumValue("MOVING")
+        case RepositoryLockReason.RENAME    => __EnumValue("RENAME")
       }
       override def typeName: String = "RepositoryLockReason"
     }
@@ -2723,20 +2728,20 @@ object Github {
     case object UPDATED_AT extends RepositoryOrderField
 
     implicit val decoder: ScalarDecoder[RepositoryOrderField] = {
-      case StringValue("CREATED_AT") => Right(RepositoryOrderField.CREATED_AT)
-      case StringValue("NAME")       => Right(RepositoryOrderField.NAME)
-      case StringValue("PUSHED_AT")  => Right(RepositoryOrderField.PUSHED_AT)
-      case StringValue("STARGAZERS") => Right(RepositoryOrderField.STARGAZERS)
-      case StringValue("UPDATED_AT") => Right(RepositoryOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build RepositoryOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(RepositoryOrderField.CREATED_AT)
+      case __StringValue("NAME")       => Right(RepositoryOrderField.NAME)
+      case __StringValue("PUSHED_AT")  => Right(RepositoryOrderField.PUSHED_AT)
+      case __StringValue("STARGAZERS") => Right(RepositoryOrderField.STARGAZERS)
+      case __StringValue("UPDATED_AT") => Right(RepositoryOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build RepositoryOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryOrderField] = new ArgEncoder[RepositoryOrderField] {
-      override def encode(value: RepositoryOrderField): Value = value match {
-        case RepositoryOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case RepositoryOrderField.NAME       => EnumValue("NAME")
-        case RepositoryOrderField.PUSHED_AT  => EnumValue("PUSHED_AT")
-        case RepositoryOrderField.STARGAZERS => EnumValue("STARGAZERS")
-        case RepositoryOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: RepositoryOrderField): __Value = value match {
+        case RepositoryOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case RepositoryOrderField.NAME       => __EnumValue("NAME")
+        case RepositoryOrderField.PUSHED_AT  => __EnumValue("PUSHED_AT")
+        case RepositoryOrderField.STARGAZERS => __EnumValue("STARGAZERS")
+        case RepositoryOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "RepositoryOrderField"
     }
@@ -2751,20 +2756,20 @@ object Github {
     case object WRITE    extends RepositoryPermission
 
     implicit val decoder: ScalarDecoder[RepositoryPermission] = {
-      case StringValue("ADMIN")    => Right(RepositoryPermission.ADMIN)
-      case StringValue("MAINTAIN") => Right(RepositoryPermission.MAINTAIN)
-      case StringValue("READ")     => Right(RepositoryPermission.READ)
-      case StringValue("TRIAGE")   => Right(RepositoryPermission.TRIAGE)
-      case StringValue("WRITE")    => Right(RepositoryPermission.WRITE)
-      case other                   => Left(DecodingError(s"Can't build RepositoryPermission from input $other"))
+      case __StringValue("ADMIN")    => Right(RepositoryPermission.ADMIN)
+      case __StringValue("MAINTAIN") => Right(RepositoryPermission.MAINTAIN)
+      case __StringValue("READ")     => Right(RepositoryPermission.READ)
+      case __StringValue("TRIAGE")   => Right(RepositoryPermission.TRIAGE)
+      case __StringValue("WRITE")    => Right(RepositoryPermission.WRITE)
+      case other                     => Left(DecodingError(s"Can't build RepositoryPermission from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryPermission] = new ArgEncoder[RepositoryPermission] {
-      override def encode(value: RepositoryPermission): Value = value match {
-        case RepositoryPermission.ADMIN    => EnumValue("ADMIN")
-        case RepositoryPermission.MAINTAIN => EnumValue("MAINTAIN")
-        case RepositoryPermission.READ     => EnumValue("READ")
-        case RepositoryPermission.TRIAGE   => EnumValue("TRIAGE")
-        case RepositoryPermission.WRITE    => EnumValue("WRITE")
+      override def encode(value: RepositoryPermission): __Value = value match {
+        case RepositoryPermission.ADMIN    => __EnumValue("ADMIN")
+        case RepositoryPermission.MAINTAIN => __EnumValue("MAINTAIN")
+        case RepositoryPermission.READ     => __EnumValue("READ")
+        case RepositoryPermission.TRIAGE   => __EnumValue("TRIAGE")
+        case RepositoryPermission.WRITE    => __EnumValue("WRITE")
       }
       override def typeName: String = "RepositoryPermission"
     }
@@ -2776,14 +2781,14 @@ object Github {
     case object PUBLIC  extends RepositoryPrivacy
 
     implicit val decoder: ScalarDecoder[RepositoryPrivacy] = {
-      case StringValue("PRIVATE") => Right(RepositoryPrivacy.PRIVATE)
-      case StringValue("PUBLIC")  => Right(RepositoryPrivacy.PUBLIC)
-      case other                  => Left(DecodingError(s"Can't build RepositoryPrivacy from input $other"))
+      case __StringValue("PRIVATE") => Right(RepositoryPrivacy.PRIVATE)
+      case __StringValue("PUBLIC")  => Right(RepositoryPrivacy.PUBLIC)
+      case other                    => Left(DecodingError(s"Can't build RepositoryPrivacy from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryPrivacy] = new ArgEncoder[RepositoryPrivacy] {
-      override def encode(value: RepositoryPrivacy): Value = value match {
-        case RepositoryPrivacy.PRIVATE => EnumValue("PRIVATE")
-        case RepositoryPrivacy.PUBLIC  => EnumValue("PUBLIC")
+      override def encode(value: RepositoryPrivacy): __Value = value match {
+        case RepositoryPrivacy.PRIVATE => __EnumValue("PRIVATE")
+        case RepositoryPrivacy.PUBLIC  => __EnumValue("PUBLIC")
       }
       override def typeName: String = "RepositoryPrivacy"
     }
@@ -2796,16 +2801,16 @@ object Github {
     case object PUBLIC   extends RepositoryVisibility
 
     implicit val decoder: ScalarDecoder[RepositoryVisibility] = {
-      case StringValue("INTERNAL") => Right(RepositoryVisibility.INTERNAL)
-      case StringValue("PRIVATE")  => Right(RepositoryVisibility.PRIVATE)
-      case StringValue("PUBLIC")   => Right(RepositoryVisibility.PUBLIC)
-      case other                   => Left(DecodingError(s"Can't build RepositoryVisibility from input $other"))
+      case __StringValue("INTERNAL") => Right(RepositoryVisibility.INTERNAL)
+      case __StringValue("PRIVATE")  => Right(RepositoryVisibility.PRIVATE)
+      case __StringValue("PUBLIC")   => Right(RepositoryVisibility.PUBLIC)
+      case other                     => Left(DecodingError(s"Can't build RepositoryVisibility from input $other"))
     }
     implicit val encoder: ArgEncoder[RepositoryVisibility] = new ArgEncoder[RepositoryVisibility] {
-      override def encode(value: RepositoryVisibility): Value = value match {
-        case RepositoryVisibility.INTERNAL => EnumValue("INTERNAL")
-        case RepositoryVisibility.PRIVATE  => EnumValue("PRIVATE")
-        case RepositoryVisibility.PUBLIC   => EnumValue("PUBLIC")
+      override def encode(value: RepositoryVisibility): __Value = value match {
+        case RepositoryVisibility.INTERNAL => __EnumValue("INTERNAL")
+        case RepositoryVisibility.PRIVATE  => __EnumValue("PRIVATE")
+        case RepositoryVisibility.PUBLIC   => __EnumValue("PUBLIC")
       }
       override def typeName: String = "RepositoryVisibility"
     }
@@ -2818,16 +2823,16 @@ object Github {
     case object QUEUED      extends RequestableCheckStatusState
 
     implicit val decoder: ScalarDecoder[RequestableCheckStatusState] = {
-      case StringValue("COMPLETED")   => Right(RequestableCheckStatusState.COMPLETED)
-      case StringValue("IN_PROGRESS") => Right(RequestableCheckStatusState.IN_PROGRESS)
-      case StringValue("QUEUED")      => Right(RequestableCheckStatusState.QUEUED)
-      case other                      => Left(DecodingError(s"Can't build RequestableCheckStatusState from input $other"))
+      case __StringValue("COMPLETED")   => Right(RequestableCheckStatusState.COMPLETED)
+      case __StringValue("IN_PROGRESS") => Right(RequestableCheckStatusState.IN_PROGRESS)
+      case __StringValue("QUEUED")      => Right(RequestableCheckStatusState.QUEUED)
+      case other                        => Left(DecodingError(s"Can't build RequestableCheckStatusState from input $other"))
     }
     implicit val encoder: ArgEncoder[RequestableCheckStatusState] = new ArgEncoder[RequestableCheckStatusState] {
-      override def encode(value: RequestableCheckStatusState): Value = value match {
-        case RequestableCheckStatusState.COMPLETED   => EnumValue("COMPLETED")
-        case RequestableCheckStatusState.IN_PROGRESS => EnumValue("IN_PROGRESS")
-        case RequestableCheckStatusState.QUEUED      => EnumValue("QUEUED")
+      override def encode(value: RequestableCheckStatusState): __Value = value match {
+        case RequestableCheckStatusState.COMPLETED   => __EnumValue("COMPLETED")
+        case RequestableCheckStatusState.IN_PROGRESS => __EnumValue("IN_PROGRESS")
+        case RequestableCheckStatusState.QUEUED      => __EnumValue("QUEUED")
       }
       override def typeName: String = "RequestableCheckStatusState"
     }
@@ -2841,18 +2846,18 @@ object Github {
     case object SHA512 extends SamlDigestAlgorithm
 
     implicit val decoder: ScalarDecoder[SamlDigestAlgorithm] = {
-      case StringValue("SHA1")   => Right(SamlDigestAlgorithm.SHA1)
-      case StringValue("SHA256") => Right(SamlDigestAlgorithm.SHA256)
-      case StringValue("SHA384") => Right(SamlDigestAlgorithm.SHA384)
-      case StringValue("SHA512") => Right(SamlDigestAlgorithm.SHA512)
-      case other                 => Left(DecodingError(s"Can't build SamlDigestAlgorithm from input $other"))
+      case __StringValue("SHA1")   => Right(SamlDigestAlgorithm.SHA1)
+      case __StringValue("SHA256") => Right(SamlDigestAlgorithm.SHA256)
+      case __StringValue("SHA384") => Right(SamlDigestAlgorithm.SHA384)
+      case __StringValue("SHA512") => Right(SamlDigestAlgorithm.SHA512)
+      case other                   => Left(DecodingError(s"Can't build SamlDigestAlgorithm from input $other"))
     }
     implicit val encoder: ArgEncoder[SamlDigestAlgorithm] = new ArgEncoder[SamlDigestAlgorithm] {
-      override def encode(value: SamlDigestAlgorithm): Value = value match {
-        case SamlDigestAlgorithm.SHA1   => EnumValue("SHA1")
-        case SamlDigestAlgorithm.SHA256 => EnumValue("SHA256")
-        case SamlDigestAlgorithm.SHA384 => EnumValue("SHA384")
-        case SamlDigestAlgorithm.SHA512 => EnumValue("SHA512")
+      override def encode(value: SamlDigestAlgorithm): __Value = value match {
+        case SamlDigestAlgorithm.SHA1   => __EnumValue("SHA1")
+        case SamlDigestAlgorithm.SHA256 => __EnumValue("SHA256")
+        case SamlDigestAlgorithm.SHA384 => __EnumValue("SHA384")
+        case SamlDigestAlgorithm.SHA512 => __EnumValue("SHA512")
       }
       override def typeName: String = "SamlDigestAlgorithm"
     }
@@ -2866,18 +2871,18 @@ object Github {
     case object RSA_SHA512 extends SamlSignatureAlgorithm
 
     implicit val decoder: ScalarDecoder[SamlSignatureAlgorithm] = {
-      case StringValue("RSA_SHA1")   => Right(SamlSignatureAlgorithm.RSA_SHA1)
-      case StringValue("RSA_SHA256") => Right(SamlSignatureAlgorithm.RSA_SHA256)
-      case StringValue("RSA_SHA384") => Right(SamlSignatureAlgorithm.RSA_SHA384)
-      case StringValue("RSA_SHA512") => Right(SamlSignatureAlgorithm.RSA_SHA512)
-      case other                     => Left(DecodingError(s"Can't build SamlSignatureAlgorithm from input $other"))
+      case __StringValue("RSA_SHA1")   => Right(SamlSignatureAlgorithm.RSA_SHA1)
+      case __StringValue("RSA_SHA256") => Right(SamlSignatureAlgorithm.RSA_SHA256)
+      case __StringValue("RSA_SHA384") => Right(SamlSignatureAlgorithm.RSA_SHA384)
+      case __StringValue("RSA_SHA512") => Right(SamlSignatureAlgorithm.RSA_SHA512)
+      case other                       => Left(DecodingError(s"Can't build SamlSignatureAlgorithm from input $other"))
     }
     implicit val encoder: ArgEncoder[SamlSignatureAlgorithm] = new ArgEncoder[SamlSignatureAlgorithm] {
-      override def encode(value: SamlSignatureAlgorithm): Value = value match {
-        case SamlSignatureAlgorithm.RSA_SHA1   => EnumValue("RSA_SHA1")
-        case SamlSignatureAlgorithm.RSA_SHA256 => EnumValue("RSA_SHA256")
-        case SamlSignatureAlgorithm.RSA_SHA384 => EnumValue("RSA_SHA384")
-        case SamlSignatureAlgorithm.RSA_SHA512 => EnumValue("RSA_SHA512")
+      override def encode(value: SamlSignatureAlgorithm): __Value = value match {
+        case SamlSignatureAlgorithm.RSA_SHA1   => __EnumValue("RSA_SHA1")
+        case SamlSignatureAlgorithm.RSA_SHA256 => __EnumValue("RSA_SHA256")
+        case SamlSignatureAlgorithm.RSA_SHA384 => __EnumValue("RSA_SHA384")
+        case SamlSignatureAlgorithm.RSA_SHA512 => __EnumValue("RSA_SHA512")
       }
       override def typeName: String = "SamlSignatureAlgorithm"
     }
@@ -2888,12 +2893,12 @@ object Github {
     case object UPDATED_AT extends SavedReplyOrderField
 
     implicit val decoder: ScalarDecoder[SavedReplyOrderField] = {
-      case StringValue("UPDATED_AT") => Right(SavedReplyOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build SavedReplyOrderField from input $other"))
+      case __StringValue("UPDATED_AT") => Right(SavedReplyOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build SavedReplyOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[SavedReplyOrderField] = new ArgEncoder[SavedReplyOrderField] {
-      override def encode(value: SavedReplyOrderField): Value = value match {
-        case SavedReplyOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: SavedReplyOrderField): __Value = value match {
+        case SavedReplyOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "SavedReplyOrderField"
     }
@@ -2906,16 +2911,16 @@ object Github {
     case object USER       extends SearchType
 
     implicit val decoder: ScalarDecoder[SearchType] = {
-      case StringValue("ISSUE")      => Right(SearchType.ISSUE)
-      case StringValue("REPOSITORY") => Right(SearchType.REPOSITORY)
-      case StringValue("USER")       => Right(SearchType.USER)
-      case other                     => Left(DecodingError(s"Can't build SearchType from input $other"))
+      case __StringValue("ISSUE")      => Right(SearchType.ISSUE)
+      case __StringValue("REPOSITORY") => Right(SearchType.REPOSITORY)
+      case __StringValue("USER")       => Right(SearchType.USER)
+      case other                       => Left(DecodingError(s"Can't build SearchType from input $other"))
     }
     implicit val encoder: ArgEncoder[SearchType] = new ArgEncoder[SearchType] {
-      override def encode(value: SearchType): Value = value match {
-        case SearchType.ISSUE      => EnumValue("ISSUE")
-        case SearchType.REPOSITORY => EnumValue("REPOSITORY")
-        case SearchType.USER       => EnumValue("USER")
+      override def encode(value: SearchType): __Value = value match {
+        case SearchType.ISSUE      => __EnumValue("ISSUE")
+        case SearchType.REPOSITORY => __EnumValue("REPOSITORY")
+        case SearchType.USER       => __EnumValue("USER")
       }
       override def typeName: String = "SearchType"
     }
@@ -2931,22 +2936,22 @@ object Github {
     case object RUBYGEMS extends SecurityAdvisoryEcosystem
 
     implicit val decoder: ScalarDecoder[SecurityAdvisoryEcosystem] = {
-      case StringValue("COMPOSER") => Right(SecurityAdvisoryEcosystem.COMPOSER)
-      case StringValue("MAVEN")    => Right(SecurityAdvisoryEcosystem.MAVEN)
-      case StringValue("NPM")      => Right(SecurityAdvisoryEcosystem.NPM)
-      case StringValue("NUGET")    => Right(SecurityAdvisoryEcosystem.NUGET)
-      case StringValue("PIP")      => Right(SecurityAdvisoryEcosystem.PIP)
-      case StringValue("RUBYGEMS") => Right(SecurityAdvisoryEcosystem.RUBYGEMS)
-      case other                   => Left(DecodingError(s"Can't build SecurityAdvisoryEcosystem from input $other"))
+      case __StringValue("COMPOSER") => Right(SecurityAdvisoryEcosystem.COMPOSER)
+      case __StringValue("MAVEN")    => Right(SecurityAdvisoryEcosystem.MAVEN)
+      case __StringValue("NPM")      => Right(SecurityAdvisoryEcosystem.NPM)
+      case __StringValue("NUGET")    => Right(SecurityAdvisoryEcosystem.NUGET)
+      case __StringValue("PIP")      => Right(SecurityAdvisoryEcosystem.PIP)
+      case __StringValue("RUBYGEMS") => Right(SecurityAdvisoryEcosystem.RUBYGEMS)
+      case other                     => Left(DecodingError(s"Can't build SecurityAdvisoryEcosystem from input $other"))
     }
     implicit val encoder: ArgEncoder[SecurityAdvisoryEcosystem] = new ArgEncoder[SecurityAdvisoryEcosystem] {
-      override def encode(value: SecurityAdvisoryEcosystem): Value = value match {
-        case SecurityAdvisoryEcosystem.COMPOSER => EnumValue("COMPOSER")
-        case SecurityAdvisoryEcosystem.MAVEN    => EnumValue("MAVEN")
-        case SecurityAdvisoryEcosystem.NPM      => EnumValue("NPM")
-        case SecurityAdvisoryEcosystem.NUGET    => EnumValue("NUGET")
-        case SecurityAdvisoryEcosystem.PIP      => EnumValue("PIP")
-        case SecurityAdvisoryEcosystem.RUBYGEMS => EnumValue("RUBYGEMS")
+      override def encode(value: SecurityAdvisoryEcosystem): __Value = value match {
+        case SecurityAdvisoryEcosystem.COMPOSER => __EnumValue("COMPOSER")
+        case SecurityAdvisoryEcosystem.MAVEN    => __EnumValue("MAVEN")
+        case SecurityAdvisoryEcosystem.NPM      => __EnumValue("NPM")
+        case SecurityAdvisoryEcosystem.NUGET    => __EnumValue("NUGET")
+        case SecurityAdvisoryEcosystem.PIP      => __EnumValue("PIP")
+        case SecurityAdvisoryEcosystem.RUBYGEMS => __EnumValue("RUBYGEMS")
       }
       override def typeName: String = "SecurityAdvisoryEcosystem"
     }
@@ -2958,14 +2963,14 @@ object Github {
     case object GHSA extends SecurityAdvisoryIdentifierType
 
     implicit val decoder: ScalarDecoder[SecurityAdvisoryIdentifierType] = {
-      case StringValue("CVE")  => Right(SecurityAdvisoryIdentifierType.CVE)
-      case StringValue("GHSA") => Right(SecurityAdvisoryIdentifierType.GHSA)
-      case other               => Left(DecodingError(s"Can't build SecurityAdvisoryIdentifierType from input $other"))
+      case __StringValue("CVE")  => Right(SecurityAdvisoryIdentifierType.CVE)
+      case __StringValue("GHSA") => Right(SecurityAdvisoryIdentifierType.GHSA)
+      case other                 => Left(DecodingError(s"Can't build SecurityAdvisoryIdentifierType from input $other"))
     }
     implicit val encoder: ArgEncoder[SecurityAdvisoryIdentifierType] = new ArgEncoder[SecurityAdvisoryIdentifierType] {
-      override def encode(value: SecurityAdvisoryIdentifierType): Value = value match {
-        case SecurityAdvisoryIdentifierType.CVE  => EnumValue("CVE")
-        case SecurityAdvisoryIdentifierType.GHSA => EnumValue("GHSA")
+      override def encode(value: SecurityAdvisoryIdentifierType): __Value = value match {
+        case SecurityAdvisoryIdentifierType.CVE  => __EnumValue("CVE")
+        case SecurityAdvisoryIdentifierType.GHSA => __EnumValue("GHSA")
       }
       override def typeName: String = "SecurityAdvisoryIdentifierType"
     }
@@ -2977,14 +2982,14 @@ object Github {
     case object UPDATED_AT   extends SecurityAdvisoryOrderField
 
     implicit val decoder: ScalarDecoder[SecurityAdvisoryOrderField] = {
-      case StringValue("PUBLISHED_AT") => Right(SecurityAdvisoryOrderField.PUBLISHED_AT)
-      case StringValue("UPDATED_AT")   => Right(SecurityAdvisoryOrderField.UPDATED_AT)
-      case other                       => Left(DecodingError(s"Can't build SecurityAdvisoryOrderField from input $other"))
+      case __StringValue("PUBLISHED_AT") => Right(SecurityAdvisoryOrderField.PUBLISHED_AT)
+      case __StringValue("UPDATED_AT")   => Right(SecurityAdvisoryOrderField.UPDATED_AT)
+      case other                         => Left(DecodingError(s"Can't build SecurityAdvisoryOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[SecurityAdvisoryOrderField] = new ArgEncoder[SecurityAdvisoryOrderField] {
-      override def encode(value: SecurityAdvisoryOrderField): Value = value match {
-        case SecurityAdvisoryOrderField.PUBLISHED_AT => EnumValue("PUBLISHED_AT")
-        case SecurityAdvisoryOrderField.UPDATED_AT   => EnumValue("UPDATED_AT")
+      override def encode(value: SecurityAdvisoryOrderField): __Value = value match {
+        case SecurityAdvisoryOrderField.PUBLISHED_AT => __EnumValue("PUBLISHED_AT")
+        case SecurityAdvisoryOrderField.UPDATED_AT   => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "SecurityAdvisoryOrderField"
     }
@@ -2998,18 +3003,18 @@ object Github {
     case object MODERATE extends SecurityAdvisorySeverity
 
     implicit val decoder: ScalarDecoder[SecurityAdvisorySeverity] = {
-      case StringValue("CRITICAL") => Right(SecurityAdvisorySeverity.CRITICAL)
-      case StringValue("HIGH")     => Right(SecurityAdvisorySeverity.HIGH)
-      case StringValue("LOW")      => Right(SecurityAdvisorySeverity.LOW)
-      case StringValue("MODERATE") => Right(SecurityAdvisorySeverity.MODERATE)
-      case other                   => Left(DecodingError(s"Can't build SecurityAdvisorySeverity from input $other"))
+      case __StringValue("CRITICAL") => Right(SecurityAdvisorySeverity.CRITICAL)
+      case __StringValue("HIGH")     => Right(SecurityAdvisorySeverity.HIGH)
+      case __StringValue("LOW")      => Right(SecurityAdvisorySeverity.LOW)
+      case __StringValue("MODERATE") => Right(SecurityAdvisorySeverity.MODERATE)
+      case other                     => Left(DecodingError(s"Can't build SecurityAdvisorySeverity from input $other"))
     }
     implicit val encoder: ArgEncoder[SecurityAdvisorySeverity] = new ArgEncoder[SecurityAdvisorySeverity] {
-      override def encode(value: SecurityAdvisorySeverity): Value = value match {
-        case SecurityAdvisorySeverity.CRITICAL => EnumValue("CRITICAL")
-        case SecurityAdvisorySeverity.HIGH     => EnumValue("HIGH")
-        case SecurityAdvisorySeverity.LOW      => EnumValue("LOW")
-        case SecurityAdvisorySeverity.MODERATE => EnumValue("MODERATE")
+      override def encode(value: SecurityAdvisorySeverity): __Value = value match {
+        case SecurityAdvisorySeverity.CRITICAL => __EnumValue("CRITICAL")
+        case SecurityAdvisorySeverity.HIGH     => __EnumValue("HIGH")
+        case SecurityAdvisorySeverity.LOW      => __EnumValue("LOW")
+        case SecurityAdvisorySeverity.MODERATE => __EnumValue("MODERATE")
       }
       override def typeName: String = "SecurityAdvisorySeverity"
     }
@@ -3020,13 +3025,13 @@ object Github {
     case object UPDATED_AT extends SecurityVulnerabilityOrderField
 
     implicit val decoder: ScalarDecoder[SecurityVulnerabilityOrderField] = {
-      case StringValue("UPDATED_AT") => Right(SecurityVulnerabilityOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build SecurityVulnerabilityOrderField from input $other"))
+      case __StringValue("UPDATED_AT") => Right(SecurityVulnerabilityOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build SecurityVulnerabilityOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[SecurityVulnerabilityOrderField] =
       new ArgEncoder[SecurityVulnerabilityOrderField] {
-        override def encode(value: SecurityVulnerabilityOrderField): Value = value match {
-          case SecurityVulnerabilityOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+        override def encode(value: SecurityVulnerabilityOrderField): __Value = value match {
+          case SecurityVulnerabilityOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
         }
         override def typeName: String = "SecurityVulnerabilityOrderField"
       }
@@ -3038,14 +3043,14 @@ object Github {
     case object MONTHLY_PRICE_IN_CENTS extends SponsorsTierOrderField
 
     implicit val decoder: ScalarDecoder[SponsorsTierOrderField] = {
-      case StringValue("CREATED_AT")             => Right(SponsorsTierOrderField.CREATED_AT)
-      case StringValue("MONTHLY_PRICE_IN_CENTS") => Right(SponsorsTierOrderField.MONTHLY_PRICE_IN_CENTS)
-      case other                                 => Left(DecodingError(s"Can't build SponsorsTierOrderField from input $other"))
+      case __StringValue("CREATED_AT")             => Right(SponsorsTierOrderField.CREATED_AT)
+      case __StringValue("MONTHLY_PRICE_IN_CENTS") => Right(SponsorsTierOrderField.MONTHLY_PRICE_IN_CENTS)
+      case other                                   => Left(DecodingError(s"Can't build SponsorsTierOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[SponsorsTierOrderField] = new ArgEncoder[SponsorsTierOrderField] {
-      override def encode(value: SponsorsTierOrderField): Value = value match {
-        case SponsorsTierOrderField.CREATED_AT             => EnumValue("CREATED_AT")
-        case SponsorsTierOrderField.MONTHLY_PRICE_IN_CENTS => EnumValue("MONTHLY_PRICE_IN_CENTS")
+      override def encode(value: SponsorsTierOrderField): __Value = value match {
+        case SponsorsTierOrderField.CREATED_AT             => __EnumValue("CREATED_AT")
+        case SponsorsTierOrderField.MONTHLY_PRICE_IN_CENTS => __EnumValue("MONTHLY_PRICE_IN_CENTS")
       }
       override def typeName: String = "SponsorsTierOrderField"
     }
@@ -3056,12 +3061,12 @@ object Github {
     case object CREATED_AT extends SponsorshipOrderField
 
     implicit val decoder: ScalarDecoder[SponsorshipOrderField] = {
-      case StringValue("CREATED_AT") => Right(SponsorshipOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build SponsorshipOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(SponsorshipOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build SponsorshipOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[SponsorshipOrderField] = new ArgEncoder[SponsorshipOrderField] {
-      override def encode(value: SponsorshipOrderField): Value = value match {
-        case SponsorshipOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: SponsorshipOrderField): __Value = value match {
+        case SponsorshipOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "SponsorshipOrderField"
     }
@@ -3073,14 +3078,14 @@ object Github {
     case object PUBLIC  extends SponsorshipPrivacy
 
     implicit val decoder: ScalarDecoder[SponsorshipPrivacy] = {
-      case StringValue("PRIVATE") => Right(SponsorshipPrivacy.PRIVATE)
-      case StringValue("PUBLIC")  => Right(SponsorshipPrivacy.PUBLIC)
-      case other                  => Left(DecodingError(s"Can't build SponsorshipPrivacy from input $other"))
+      case __StringValue("PRIVATE") => Right(SponsorshipPrivacy.PRIVATE)
+      case __StringValue("PUBLIC")  => Right(SponsorshipPrivacy.PUBLIC)
+      case other                    => Left(DecodingError(s"Can't build SponsorshipPrivacy from input $other"))
     }
     implicit val encoder: ArgEncoder[SponsorshipPrivacy] = new ArgEncoder[SponsorshipPrivacy] {
-      override def encode(value: SponsorshipPrivacy): Value = value match {
-        case SponsorshipPrivacy.PRIVATE => EnumValue("PRIVATE")
-        case SponsorshipPrivacy.PUBLIC  => EnumValue("PUBLIC")
+      override def encode(value: SponsorshipPrivacy): __Value = value match {
+        case SponsorshipPrivacy.PRIVATE => __EnumValue("PRIVATE")
+        case SponsorshipPrivacy.PUBLIC  => __EnumValue("PUBLIC")
       }
       override def typeName: String = "SponsorshipPrivacy"
     }
@@ -3091,12 +3096,12 @@ object Github {
     case object STARRED_AT extends StarOrderField
 
     implicit val decoder: ScalarDecoder[StarOrderField] = {
-      case StringValue("STARRED_AT") => Right(StarOrderField.STARRED_AT)
-      case other                     => Left(DecodingError(s"Can't build StarOrderField from input $other"))
+      case __StringValue("STARRED_AT") => Right(StarOrderField.STARRED_AT)
+      case other                       => Left(DecodingError(s"Can't build StarOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[StarOrderField] = new ArgEncoder[StarOrderField] {
-      override def encode(value: StarOrderField): Value = value match {
-        case StarOrderField.STARRED_AT => EnumValue("STARRED_AT")
+      override def encode(value: StarOrderField): __Value = value match {
+        case StarOrderField.STARRED_AT => __EnumValue("STARRED_AT")
       }
       override def typeName: String = "StarOrderField"
     }
@@ -3111,20 +3116,20 @@ object Github {
     case object SUCCESS  extends StatusState
 
     implicit val decoder: ScalarDecoder[StatusState] = {
-      case StringValue("ERROR")    => Right(StatusState.ERROR)
-      case StringValue("EXPECTED") => Right(StatusState.EXPECTED)
-      case StringValue("FAILURE")  => Right(StatusState.FAILURE)
-      case StringValue("PENDING")  => Right(StatusState.PENDING)
-      case StringValue("SUCCESS")  => Right(StatusState.SUCCESS)
-      case other                   => Left(DecodingError(s"Can't build StatusState from input $other"))
+      case __StringValue("ERROR")    => Right(StatusState.ERROR)
+      case __StringValue("EXPECTED") => Right(StatusState.EXPECTED)
+      case __StringValue("FAILURE")  => Right(StatusState.FAILURE)
+      case __StringValue("PENDING")  => Right(StatusState.PENDING)
+      case __StringValue("SUCCESS")  => Right(StatusState.SUCCESS)
+      case other                     => Left(DecodingError(s"Can't build StatusState from input $other"))
     }
     implicit val encoder: ArgEncoder[StatusState] = new ArgEncoder[StatusState] {
-      override def encode(value: StatusState): Value = value match {
-        case StatusState.ERROR    => EnumValue("ERROR")
-        case StatusState.EXPECTED => EnumValue("EXPECTED")
-        case StatusState.FAILURE  => EnumValue("FAILURE")
-        case StatusState.PENDING  => EnumValue("PENDING")
-        case StatusState.SUCCESS  => EnumValue("SUCCESS")
+      override def encode(value: StatusState): __Value = value match {
+        case StatusState.ERROR    => __EnumValue("ERROR")
+        case StatusState.EXPECTED => __EnumValue("EXPECTED")
+        case StatusState.FAILURE  => __EnumValue("FAILURE")
+        case StatusState.PENDING  => __EnumValue("PENDING")
+        case StatusState.SUCCESS  => __EnumValue("SUCCESS")
       }
       override def typeName: String = "StatusState"
     }
@@ -3137,16 +3142,16 @@ object Github {
     case object UNSUBSCRIBED extends SubscriptionState
 
     implicit val decoder: ScalarDecoder[SubscriptionState] = {
-      case StringValue("IGNORED")      => Right(SubscriptionState.IGNORED)
-      case StringValue("SUBSCRIBED")   => Right(SubscriptionState.SUBSCRIBED)
-      case StringValue("UNSUBSCRIBED") => Right(SubscriptionState.UNSUBSCRIBED)
-      case other                       => Left(DecodingError(s"Can't build SubscriptionState from input $other"))
+      case __StringValue("IGNORED")      => Right(SubscriptionState.IGNORED)
+      case __StringValue("SUBSCRIBED")   => Right(SubscriptionState.SUBSCRIBED)
+      case __StringValue("UNSUBSCRIBED") => Right(SubscriptionState.UNSUBSCRIBED)
+      case other                         => Left(DecodingError(s"Can't build SubscriptionState from input $other"))
     }
     implicit val encoder: ArgEncoder[SubscriptionState] = new ArgEncoder[SubscriptionState] {
-      override def encode(value: SubscriptionState): Value = value match {
-        case SubscriptionState.IGNORED      => EnumValue("IGNORED")
-        case SubscriptionState.SUBSCRIBED   => EnumValue("SUBSCRIBED")
-        case SubscriptionState.UNSUBSCRIBED => EnumValue("UNSUBSCRIBED")
+      override def encode(value: SubscriptionState): __Value = value match {
+        case SubscriptionState.IGNORED      => __EnumValue("IGNORED")
+        case SubscriptionState.SUBSCRIBED   => __EnumValue("SUBSCRIBED")
+        case SubscriptionState.UNSUBSCRIBED => __EnumValue("UNSUBSCRIBED")
       }
       override def typeName: String = "SubscriptionState"
     }
@@ -3157,13 +3162,13 @@ object Github {
     case object NUMBER extends TeamDiscussionCommentOrderField
 
     implicit val decoder: ScalarDecoder[TeamDiscussionCommentOrderField] = {
-      case StringValue("NUMBER") => Right(TeamDiscussionCommentOrderField.NUMBER)
-      case other                 => Left(DecodingError(s"Can't build TeamDiscussionCommentOrderField from input $other"))
+      case __StringValue("NUMBER") => Right(TeamDiscussionCommentOrderField.NUMBER)
+      case other                   => Left(DecodingError(s"Can't build TeamDiscussionCommentOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamDiscussionCommentOrderField] =
       new ArgEncoder[TeamDiscussionCommentOrderField] {
-        override def encode(value: TeamDiscussionCommentOrderField): Value = value match {
-          case TeamDiscussionCommentOrderField.NUMBER => EnumValue("NUMBER")
+        override def encode(value: TeamDiscussionCommentOrderField): __Value = value match {
+          case TeamDiscussionCommentOrderField.NUMBER => __EnumValue("NUMBER")
         }
         override def typeName: String = "TeamDiscussionCommentOrderField"
       }
@@ -3174,12 +3179,12 @@ object Github {
     case object CREATED_AT extends TeamDiscussionOrderField
 
     implicit val decoder: ScalarDecoder[TeamDiscussionOrderField] = {
-      case StringValue("CREATED_AT") => Right(TeamDiscussionOrderField.CREATED_AT)
-      case other                     => Left(DecodingError(s"Can't build TeamDiscussionOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(TeamDiscussionOrderField.CREATED_AT)
+      case other                       => Left(DecodingError(s"Can't build TeamDiscussionOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamDiscussionOrderField] = new ArgEncoder[TeamDiscussionOrderField] {
-      override def encode(value: TeamDiscussionOrderField): Value = value match {
-        case TeamDiscussionOrderField.CREATED_AT => EnumValue("CREATED_AT")
+      override def encode(value: TeamDiscussionOrderField): __Value = value match {
+        case TeamDiscussionOrderField.CREATED_AT => __EnumValue("CREATED_AT")
       }
       override def typeName: String = "TeamDiscussionOrderField"
     }
@@ -3191,14 +3196,14 @@ object Github {
     case object LOGIN      extends TeamMemberOrderField
 
     implicit val decoder: ScalarDecoder[TeamMemberOrderField] = {
-      case StringValue("CREATED_AT") => Right(TeamMemberOrderField.CREATED_AT)
-      case StringValue("LOGIN")      => Right(TeamMemberOrderField.LOGIN)
-      case other                     => Left(DecodingError(s"Can't build TeamMemberOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(TeamMemberOrderField.CREATED_AT)
+      case __StringValue("LOGIN")      => Right(TeamMemberOrderField.LOGIN)
+      case other                       => Left(DecodingError(s"Can't build TeamMemberOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamMemberOrderField] = new ArgEncoder[TeamMemberOrderField] {
-      override def encode(value: TeamMemberOrderField): Value = value match {
-        case TeamMemberOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case TeamMemberOrderField.LOGIN      => EnumValue("LOGIN")
+      override def encode(value: TeamMemberOrderField): __Value = value match {
+        case TeamMemberOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case TeamMemberOrderField.LOGIN      => __EnumValue("LOGIN")
       }
       override def typeName: String = "TeamMemberOrderField"
     }
@@ -3210,14 +3215,14 @@ object Github {
     case object MEMBER     extends TeamMemberRole
 
     implicit val decoder: ScalarDecoder[TeamMemberRole] = {
-      case StringValue("MAINTAINER") => Right(TeamMemberRole.MAINTAINER)
-      case StringValue("MEMBER")     => Right(TeamMemberRole.MEMBER)
-      case other                     => Left(DecodingError(s"Can't build TeamMemberRole from input $other"))
+      case __StringValue("MAINTAINER") => Right(TeamMemberRole.MAINTAINER)
+      case __StringValue("MEMBER")     => Right(TeamMemberRole.MEMBER)
+      case other                       => Left(DecodingError(s"Can't build TeamMemberRole from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamMemberRole] = new ArgEncoder[TeamMemberRole] {
-      override def encode(value: TeamMemberRole): Value = value match {
-        case TeamMemberRole.MAINTAINER => EnumValue("MAINTAINER")
-        case TeamMemberRole.MEMBER     => EnumValue("MEMBER")
+      override def encode(value: TeamMemberRole): __Value = value match {
+        case TeamMemberRole.MAINTAINER => __EnumValue("MAINTAINER")
+        case TeamMemberRole.MEMBER     => __EnumValue("MEMBER")
       }
       override def typeName: String = "TeamMemberRole"
     }
@@ -3230,16 +3235,16 @@ object Github {
     case object IMMEDIATE  extends TeamMembershipType
 
     implicit val decoder: ScalarDecoder[TeamMembershipType] = {
-      case StringValue("ALL")        => Right(TeamMembershipType.ALL)
-      case StringValue("CHILD_TEAM") => Right(TeamMembershipType.CHILD_TEAM)
-      case StringValue("IMMEDIATE")  => Right(TeamMembershipType.IMMEDIATE)
-      case other                     => Left(DecodingError(s"Can't build TeamMembershipType from input $other"))
+      case __StringValue("ALL")        => Right(TeamMembershipType.ALL)
+      case __StringValue("CHILD_TEAM") => Right(TeamMembershipType.CHILD_TEAM)
+      case __StringValue("IMMEDIATE")  => Right(TeamMembershipType.IMMEDIATE)
+      case other                       => Left(DecodingError(s"Can't build TeamMembershipType from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamMembershipType] = new ArgEncoder[TeamMembershipType] {
-      override def encode(value: TeamMembershipType): Value = value match {
-        case TeamMembershipType.ALL        => EnumValue("ALL")
-        case TeamMembershipType.CHILD_TEAM => EnumValue("CHILD_TEAM")
-        case TeamMembershipType.IMMEDIATE  => EnumValue("IMMEDIATE")
+      override def encode(value: TeamMembershipType): __Value = value match {
+        case TeamMembershipType.ALL        => __EnumValue("ALL")
+        case TeamMembershipType.CHILD_TEAM => __EnumValue("CHILD_TEAM")
+        case TeamMembershipType.IMMEDIATE  => __EnumValue("IMMEDIATE")
       }
       override def typeName: String = "TeamMembershipType"
     }
@@ -3250,12 +3255,12 @@ object Github {
     case object NAME extends TeamOrderField
 
     implicit val decoder: ScalarDecoder[TeamOrderField] = {
-      case StringValue("NAME") => Right(TeamOrderField.NAME)
-      case other               => Left(DecodingError(s"Can't build TeamOrderField from input $other"))
+      case __StringValue("NAME") => Right(TeamOrderField.NAME)
+      case other                 => Left(DecodingError(s"Can't build TeamOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamOrderField] = new ArgEncoder[TeamOrderField] {
-      override def encode(value: TeamOrderField): Value = value match {
-        case TeamOrderField.NAME => EnumValue("NAME")
+      override def encode(value: TeamOrderField): __Value = value match {
+        case TeamOrderField.NAME => __EnumValue("NAME")
       }
       override def typeName: String = "TeamOrderField"
     }
@@ -3267,14 +3272,14 @@ object Github {
     case object VISIBLE extends TeamPrivacy
 
     implicit val decoder: ScalarDecoder[TeamPrivacy] = {
-      case StringValue("SECRET")  => Right(TeamPrivacy.SECRET)
-      case StringValue("VISIBLE") => Right(TeamPrivacy.VISIBLE)
-      case other                  => Left(DecodingError(s"Can't build TeamPrivacy from input $other"))
+      case __StringValue("SECRET")  => Right(TeamPrivacy.SECRET)
+      case __StringValue("VISIBLE") => Right(TeamPrivacy.VISIBLE)
+      case other                    => Left(DecodingError(s"Can't build TeamPrivacy from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamPrivacy] = new ArgEncoder[TeamPrivacy] {
-      override def encode(value: TeamPrivacy): Value = value match {
-        case TeamPrivacy.SECRET  => EnumValue("SECRET")
-        case TeamPrivacy.VISIBLE => EnumValue("VISIBLE")
+      override def encode(value: TeamPrivacy): __Value = value match {
+        case TeamPrivacy.SECRET  => __EnumValue("SECRET")
+        case TeamPrivacy.VISIBLE => __EnumValue("VISIBLE")
       }
       override def typeName: String = "TeamPrivacy"
     }
@@ -3290,22 +3295,22 @@ object Github {
     case object UPDATED_AT extends TeamRepositoryOrderField
 
     implicit val decoder: ScalarDecoder[TeamRepositoryOrderField] = {
-      case StringValue("CREATED_AT") => Right(TeamRepositoryOrderField.CREATED_AT)
-      case StringValue("NAME")       => Right(TeamRepositoryOrderField.NAME)
-      case StringValue("PERMISSION") => Right(TeamRepositoryOrderField.PERMISSION)
-      case StringValue("PUSHED_AT")  => Right(TeamRepositoryOrderField.PUSHED_AT)
-      case StringValue("STARGAZERS") => Right(TeamRepositoryOrderField.STARGAZERS)
-      case StringValue("UPDATED_AT") => Right(TeamRepositoryOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build TeamRepositoryOrderField from input $other"))
+      case __StringValue("CREATED_AT") => Right(TeamRepositoryOrderField.CREATED_AT)
+      case __StringValue("NAME")       => Right(TeamRepositoryOrderField.NAME)
+      case __StringValue("PERMISSION") => Right(TeamRepositoryOrderField.PERMISSION)
+      case __StringValue("PUSHED_AT")  => Right(TeamRepositoryOrderField.PUSHED_AT)
+      case __StringValue("STARGAZERS") => Right(TeamRepositoryOrderField.STARGAZERS)
+      case __StringValue("UPDATED_AT") => Right(TeamRepositoryOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build TeamRepositoryOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamRepositoryOrderField] = new ArgEncoder[TeamRepositoryOrderField] {
-      override def encode(value: TeamRepositoryOrderField): Value = value match {
-        case TeamRepositoryOrderField.CREATED_AT => EnumValue("CREATED_AT")
-        case TeamRepositoryOrderField.NAME       => EnumValue("NAME")
-        case TeamRepositoryOrderField.PERMISSION => EnumValue("PERMISSION")
-        case TeamRepositoryOrderField.PUSHED_AT  => EnumValue("PUSHED_AT")
-        case TeamRepositoryOrderField.STARGAZERS => EnumValue("STARGAZERS")
-        case TeamRepositoryOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: TeamRepositoryOrderField): __Value = value match {
+        case TeamRepositoryOrderField.CREATED_AT => __EnumValue("CREATED_AT")
+        case TeamRepositoryOrderField.NAME       => __EnumValue("NAME")
+        case TeamRepositoryOrderField.PERMISSION => __EnumValue("PERMISSION")
+        case TeamRepositoryOrderField.PUSHED_AT  => __EnumValue("PUSHED_AT")
+        case TeamRepositoryOrderField.STARGAZERS => __EnumValue("STARGAZERS")
+        case TeamRepositoryOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "TeamRepositoryOrderField"
     }
@@ -3317,14 +3322,14 @@ object Github {
     case object ROUND_ROBIN  extends TeamReviewAssignmentAlgorithm
 
     implicit val decoder: ScalarDecoder[TeamReviewAssignmentAlgorithm] = {
-      case StringValue("LOAD_BALANCE") => Right(TeamReviewAssignmentAlgorithm.LOAD_BALANCE)
-      case StringValue("ROUND_ROBIN")  => Right(TeamReviewAssignmentAlgorithm.ROUND_ROBIN)
-      case other                       => Left(DecodingError(s"Can't build TeamReviewAssignmentAlgorithm from input $other"))
+      case __StringValue("LOAD_BALANCE") => Right(TeamReviewAssignmentAlgorithm.LOAD_BALANCE)
+      case __StringValue("ROUND_ROBIN")  => Right(TeamReviewAssignmentAlgorithm.ROUND_ROBIN)
+      case other                         => Left(DecodingError(s"Can't build TeamReviewAssignmentAlgorithm from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamReviewAssignmentAlgorithm] = new ArgEncoder[TeamReviewAssignmentAlgorithm] {
-      override def encode(value: TeamReviewAssignmentAlgorithm): Value = value match {
-        case TeamReviewAssignmentAlgorithm.LOAD_BALANCE => EnumValue("LOAD_BALANCE")
-        case TeamReviewAssignmentAlgorithm.ROUND_ROBIN  => EnumValue("ROUND_ROBIN")
+      override def encode(value: TeamReviewAssignmentAlgorithm): __Value = value match {
+        case TeamReviewAssignmentAlgorithm.LOAD_BALANCE => __EnumValue("LOAD_BALANCE")
+        case TeamReviewAssignmentAlgorithm.ROUND_ROBIN  => __EnumValue("ROUND_ROBIN")
       }
       override def typeName: String = "TeamReviewAssignmentAlgorithm"
     }
@@ -3336,14 +3341,14 @@ object Github {
     case object MEMBER extends TeamRole
 
     implicit val decoder: ScalarDecoder[TeamRole] = {
-      case StringValue("ADMIN")  => Right(TeamRole.ADMIN)
-      case StringValue("MEMBER") => Right(TeamRole.MEMBER)
-      case other                 => Left(DecodingError(s"Can't build TeamRole from input $other"))
+      case __StringValue("ADMIN")  => Right(TeamRole.ADMIN)
+      case __StringValue("MEMBER") => Right(TeamRole.MEMBER)
+      case other                   => Left(DecodingError(s"Can't build TeamRole from input $other"))
     }
     implicit val encoder: ArgEncoder[TeamRole] = new ArgEncoder[TeamRole] {
-      override def encode(value: TeamRole): Value = value match {
-        case TeamRole.ADMIN  => EnumValue("ADMIN")
-        case TeamRole.MEMBER => EnumValue("MEMBER")
+      override def encode(value: TeamRole): __Value = value match {
+        case TeamRole.ADMIN  => __EnumValue("ADMIN")
+        case TeamRole.MEMBER => __EnumValue("MEMBER")
       }
       override def typeName: String = "TeamRole"
     }
@@ -3357,18 +3362,18 @@ object Github {
     case object TOO_SPECIFIC        extends TopicSuggestionDeclineReason
 
     implicit val decoder: ScalarDecoder[TopicSuggestionDeclineReason] = {
-      case StringValue("NOT_RELEVANT")        => Right(TopicSuggestionDeclineReason.NOT_RELEVANT)
-      case StringValue("PERSONAL_PREFERENCE") => Right(TopicSuggestionDeclineReason.PERSONAL_PREFERENCE)
-      case StringValue("TOO_GENERAL")         => Right(TopicSuggestionDeclineReason.TOO_GENERAL)
-      case StringValue("TOO_SPECIFIC")        => Right(TopicSuggestionDeclineReason.TOO_SPECIFIC)
-      case other                              => Left(DecodingError(s"Can't build TopicSuggestionDeclineReason from input $other"))
+      case __StringValue("NOT_RELEVANT")        => Right(TopicSuggestionDeclineReason.NOT_RELEVANT)
+      case __StringValue("PERSONAL_PREFERENCE") => Right(TopicSuggestionDeclineReason.PERSONAL_PREFERENCE)
+      case __StringValue("TOO_GENERAL")         => Right(TopicSuggestionDeclineReason.TOO_GENERAL)
+      case __StringValue("TOO_SPECIFIC")        => Right(TopicSuggestionDeclineReason.TOO_SPECIFIC)
+      case other                                => Left(DecodingError(s"Can't build TopicSuggestionDeclineReason from input $other"))
     }
     implicit val encoder: ArgEncoder[TopicSuggestionDeclineReason] = new ArgEncoder[TopicSuggestionDeclineReason] {
-      override def encode(value: TopicSuggestionDeclineReason): Value = value match {
-        case TopicSuggestionDeclineReason.NOT_RELEVANT        => EnumValue("NOT_RELEVANT")
-        case TopicSuggestionDeclineReason.PERSONAL_PREFERENCE => EnumValue("PERSONAL_PREFERENCE")
-        case TopicSuggestionDeclineReason.TOO_GENERAL         => EnumValue("TOO_GENERAL")
-        case TopicSuggestionDeclineReason.TOO_SPECIFIC        => EnumValue("TOO_SPECIFIC")
+      override def encode(value: TopicSuggestionDeclineReason): __Value = value match {
+        case TopicSuggestionDeclineReason.NOT_RELEVANT        => __EnumValue("NOT_RELEVANT")
+        case TopicSuggestionDeclineReason.PERSONAL_PREFERENCE => __EnumValue("PERSONAL_PREFERENCE")
+        case TopicSuggestionDeclineReason.TOO_GENERAL         => __EnumValue("TOO_GENERAL")
+        case TopicSuggestionDeclineReason.TOO_SPECIFIC        => __EnumValue("TOO_SPECIFIC")
       }
       override def typeName: String = "TopicSuggestionDeclineReason"
     }
@@ -3383,20 +3388,20 @@ object Github {
     case object THREE_DAYS extends UserBlockDuration
 
     implicit val decoder: ScalarDecoder[UserBlockDuration] = {
-      case StringValue("ONE_DAY")    => Right(UserBlockDuration.ONE_DAY)
-      case StringValue("ONE_MONTH")  => Right(UserBlockDuration.ONE_MONTH)
-      case StringValue("ONE_WEEK")   => Right(UserBlockDuration.ONE_WEEK)
-      case StringValue("PERMANENT")  => Right(UserBlockDuration.PERMANENT)
-      case StringValue("THREE_DAYS") => Right(UserBlockDuration.THREE_DAYS)
-      case other                     => Left(DecodingError(s"Can't build UserBlockDuration from input $other"))
+      case __StringValue("ONE_DAY")    => Right(UserBlockDuration.ONE_DAY)
+      case __StringValue("ONE_MONTH")  => Right(UserBlockDuration.ONE_MONTH)
+      case __StringValue("ONE_WEEK")   => Right(UserBlockDuration.ONE_WEEK)
+      case __StringValue("PERMANENT")  => Right(UserBlockDuration.PERMANENT)
+      case __StringValue("THREE_DAYS") => Right(UserBlockDuration.THREE_DAYS)
+      case other                       => Left(DecodingError(s"Can't build UserBlockDuration from input $other"))
     }
     implicit val encoder: ArgEncoder[UserBlockDuration] = new ArgEncoder[UserBlockDuration] {
-      override def encode(value: UserBlockDuration): Value = value match {
-        case UserBlockDuration.ONE_DAY    => EnumValue("ONE_DAY")
-        case UserBlockDuration.ONE_MONTH  => EnumValue("ONE_MONTH")
-        case UserBlockDuration.ONE_WEEK   => EnumValue("ONE_WEEK")
-        case UserBlockDuration.PERMANENT  => EnumValue("PERMANENT")
-        case UserBlockDuration.THREE_DAYS => EnumValue("THREE_DAYS")
+      override def encode(value: UserBlockDuration): __Value = value match {
+        case UserBlockDuration.ONE_DAY    => __EnumValue("ONE_DAY")
+        case UserBlockDuration.ONE_MONTH  => __EnumValue("ONE_MONTH")
+        case UserBlockDuration.ONE_WEEK   => __EnumValue("ONE_WEEK")
+        case UserBlockDuration.PERMANENT  => __EnumValue("PERMANENT")
+        case UserBlockDuration.THREE_DAYS => __EnumValue("THREE_DAYS")
       }
       override def typeName: String = "UserBlockDuration"
     }
@@ -3407,12 +3412,12 @@ object Github {
     case object UPDATED_AT extends UserStatusOrderField
 
     implicit val decoder: ScalarDecoder[UserStatusOrderField] = {
-      case StringValue("UPDATED_AT") => Right(UserStatusOrderField.UPDATED_AT)
-      case other                     => Left(DecodingError(s"Can't build UserStatusOrderField from input $other"))
+      case __StringValue("UPDATED_AT") => Right(UserStatusOrderField.UPDATED_AT)
+      case other                       => Left(DecodingError(s"Can't build UserStatusOrderField from input $other"))
     }
     implicit val encoder: ArgEncoder[UserStatusOrderField] = new ArgEncoder[UserStatusOrderField] {
-      override def encode(value: UserStatusOrderField): Value = value match {
-        case UserStatusOrderField.UPDATED_AT => EnumValue("UPDATED_AT")
+      override def encode(value: UserStatusOrderField): __Value = value match {
+        case UserStatusOrderField.UPDATED_AT => __EnumValue("UPDATED_AT")
       }
       override def typeName: String = "UserStatusOrderField"
     }
@@ -36580,10 +36585,10 @@ either curated or that have been selected automatically based on popularity.
   object AcceptEnterpriseAdministratorInvitationInput {
     implicit val encoder: ArgEncoder[AcceptEnterpriseAdministratorInvitationInput] =
       new ArgEncoder[AcceptEnterpriseAdministratorInvitationInput] {
-        override def encode(value: AcceptEnterpriseAdministratorInvitationInput): Value =
-          ObjectValue(
+        override def encode(value: AcceptEnterpriseAdministratorInvitationInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "invitationId" -> implicitly[ArgEncoder[String]].encode(value.invitationId)
@@ -36595,10 +36600,10 @@ either curated or that have been selected automatically based on popularity.
   case class AcceptTopicSuggestionInput(clientMutationId: Option[String] = None, name: String, repositoryId: String)
   object AcceptTopicSuggestionInput {
     implicit val encoder: ArgEncoder[AcceptTopicSuggestionInput] = new ArgEncoder[AcceptTopicSuggestionInput] {
-      override def encode(value: AcceptTopicSuggestionInput): Value =
-        ObjectValue(
+      override def encode(value: AcceptTopicSuggestionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"         -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -36615,12 +36620,12 @@ either curated or that have been selected automatically based on popularity.
   )
   object AddAssigneesToAssignableInput {
     implicit val encoder: ArgEncoder[AddAssigneesToAssignableInput] = new ArgEncoder[AddAssigneesToAssignableInput] {
-      override def encode(value: AddAssigneesToAssignableInput): Value =
-        ObjectValue(
+      override def encode(value: AddAssigneesToAssignableInput): __Value =
+        __ObjectValue(
           List(
             "assignableId" -> implicitly[ArgEncoder[String]].encode(value.assignableId),
-            "assigneeIds"  -> ListValue(value.assigneeIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "assigneeIds"  -> __ListValue(value.assigneeIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             )
           )
@@ -36631,11 +36636,11 @@ either curated or that have been selected automatically based on popularity.
   case class AddCommentInput(body: String, clientMutationId: Option[String] = None, subjectId: String)
   object AddCommentInput {
     implicit val encoder: ArgEncoder[AddCommentInput] = new ArgEncoder[AddCommentInput] {
-      override def encode(value: AddCommentInput): Value =
-        ObjectValue(
+      override def encode(value: AddCommentInput): __Value =
+        __ObjectValue(
           List(
             "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "subjectId" -> implicitly[ArgEncoder[String]].encode(value.subjectId)
@@ -36651,13 +36656,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object AddLabelsToLabelableInput {
     implicit val encoder: ArgEncoder[AddLabelsToLabelableInput] = new ArgEncoder[AddLabelsToLabelableInput] {
-      override def encode(value: AddLabelsToLabelableInput): Value =
-        ObjectValue(
+      override def encode(value: AddLabelsToLabelableInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "labelIds"    -> ListValue(value.labelIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
+            "labelIds"    -> __ListValue(value.labelIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
             "labelableId" -> implicitly[ArgEncoder[String]].encode(value.labelableId)
           )
         )
@@ -36672,15 +36677,16 @@ either curated or that have been selected automatically based on popularity.
   )
   object AddProjectCardInput {
     implicit val encoder: ArgEncoder[AddProjectCardInput] = new ArgEncoder[AddProjectCardInput] {
-      override def encode(value: AddProjectCardInput): Value =
-        ObjectValue(
+      override def encode(value: AddProjectCardInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "contentId" -> value.contentId
-              .fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "note"            -> value.note.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "contentId" -> value.contentId.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            ),
+            "note"            -> value.note.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "projectColumnId" -> implicitly[ArgEncoder[String]].encode(value.projectColumnId)
           )
         )
@@ -36690,10 +36696,10 @@ either curated or that have been selected automatically based on popularity.
   case class AddProjectColumnInput(clientMutationId: Option[String] = None, name: String, projectId: String)
   object AddProjectColumnInput {
     implicit val encoder: ArgEncoder[AddProjectColumnInput] = new ArgEncoder[AddProjectColumnInput] {
-      override def encode(value: AddProjectColumnInput): Value =
-        ObjectValue(
+      override def encode(value: AddProjectColumnInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"      -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -36716,25 +36722,27 @@ either curated or that have been selected automatically based on popularity.
   object AddPullRequestReviewCommentInput {
     implicit val encoder: ArgEncoder[AddPullRequestReviewCommentInput] =
       new ArgEncoder[AddPullRequestReviewCommentInput] {
-        override def encode(value: AddPullRequestReviewCommentInput): Value =
-          ObjectValue(
+        override def encode(value: AddPullRequestReviewCommentInput): __Value =
+          __ObjectValue(
             List(
               "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "commitOID" -> value.commitOID.fold(NullValue: Value)(value =>
+              "commitOID" -> value.commitOID.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[GitObjectID]].encode(value)
               ),
-              "inReplyTo" -> value.inReplyTo.fold(NullValue: Value)(value =>
+              "inReplyTo" -> value.inReplyTo.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "path"     -> value.path.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-              "position" -> value.position.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-              "pullRequestId" -> value.pullRequestId.fold(NullValue: Value)(value =>
+              "path" -> value.path.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+              "position" -> value.position.fold(__NullValue: __Value)(value =>
+                implicitly[ArgEncoder[Int]].encode(value)
+              ),
+              "pullRequestId" -> value.pullRequestId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "pullRequestReviewId" -> value.pullRequestReviewId.fold(NullValue: Value)(value =>
+              "pullRequestReviewId" -> value.pullRequestReviewId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               )
             )
@@ -36753,33 +36761,33 @@ either curated or that have been selected automatically based on popularity.
   )
   object AddPullRequestReviewInput {
     implicit val encoder: ArgEncoder[AddPullRequestReviewInput] = new ArgEncoder[AddPullRequestReviewInput] {
-      override def encode(value: AddPullRequestReviewInput): Value =
-        ObjectValue(
+      override def encode(value: AddPullRequestReviewInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "comments" -> value.comments.fold(NullValue: Value)(value =>
-              ListValue(
+            "comments" -> value.comments.fold(__NullValue: __Value)(value =>
+              __ListValue(
                 value.map(value =>
-                  value.fold(NullValue: Value)(value =>
+                  value.fold(__NullValue: __Value)(value =>
                     implicitly[ArgEncoder[DraftPullRequestReviewComment]].encode(value)
                   )
                 )
               )
             ),
-            "commitOID" -> value.commitOID.fold(NullValue: Value)(value =>
+            "commitOID" -> value.commitOID.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[GitObjectID]].encode(value)
             ),
-            "event" -> value.event.fold(NullValue: Value)(value =>
+            "event" -> value.event.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PullRequestReviewEvent]].encode(value)
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId),
-            "threads" -> value.threads.fold(NullValue: Value)(value =>
-              ListValue(
+            "threads" -> value.threads.fold(__NullValue: __Value)(value =>
+              __ListValue(
                 value.map(value =>
-                  value.fold(NullValue: Value)(value =>
+                  value.fold(__NullValue: __Value)(value =>
                     implicitly[ArgEncoder[DraftPullRequestReviewThread]].encode(value)
                   )
                 )
@@ -36804,24 +36812,26 @@ either curated or that have been selected automatically based on popularity.
   object AddPullRequestReviewThreadInput {
     implicit val encoder: ArgEncoder[AddPullRequestReviewThreadInput] =
       new ArgEncoder[AddPullRequestReviewThreadInput] {
-        override def encode(value: AddPullRequestReviewThreadInput): Value =
-          ObjectValue(
+        override def encode(value: AddPullRequestReviewThreadInput): __Value =
+          __ObjectValue(
             List(
               "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "line" -> implicitly[ArgEncoder[Int]].encode(value.line),
               "path" -> implicitly[ArgEncoder[String]].encode(value.path),
-              "pullRequestId" -> value.pullRequestId.fold(NullValue: Value)(value =>
+              "pullRequestId" -> value.pullRequestId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "pullRequestReviewId" -> value.pullRequestReviewId.fold(NullValue: Value)(value =>
+              "pullRequestReviewId" -> value.pullRequestReviewId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "side"      -> value.side.fold(NullValue: Value)(value => implicitly[ArgEncoder[DiffSide]].encode(value)),
-              "startLine" -> value.startLine.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-              "startSide" -> value.startSide.fold(NullValue: Value)(value =>
+              "side" -> value.side.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[DiffSide]].encode(value)),
+              "startLine" -> value.startLine.fold(__NullValue: __Value)(value =>
+                implicitly[ArgEncoder[Int]].encode(value)
+              ),
+              "startSide" -> value.startSide.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[DiffSide]].encode(value)
               )
             )
@@ -36832,10 +36842,10 @@ either curated or that have been selected automatically based on popularity.
   case class AddReactionInput(clientMutationId: Option[String] = None, content: ReactionContent, subjectId: String)
   object AddReactionInput {
     implicit val encoder: ArgEncoder[AddReactionInput] = new ArgEncoder[AddReactionInput] {
-      override def encode(value: AddReactionInput): Value =
-        ObjectValue(
+      override def encode(value: AddReactionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "content"   -> implicitly[ArgEncoder[ReactionContent]].encode(value.content),
@@ -36848,10 +36858,10 @@ either curated or that have been selected automatically based on popularity.
   case class AddStarInput(clientMutationId: Option[String] = None, starrableId: String)
   object AddStarInput {
     implicit val encoder: ArgEncoder[AddStarInput] = new ArgEncoder[AddStarInput] {
-      override def encode(value: AddStarInput): Value =
-        ObjectValue(
+      override def encode(value: AddStarInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "starrableId" -> implicitly[ArgEncoder[String]].encode(value.starrableId)
@@ -36863,10 +36873,10 @@ either curated or that have been selected automatically based on popularity.
   case class ArchiveRepositoryInput(clientMutationId: Option[String] = None, repositoryId: String)
   object ArchiveRepositoryInput {
     implicit val encoder: ArgEncoder[ArchiveRepositoryInput] = new ArgEncoder[ArchiveRepositoryInput] {
-      override def encode(value: ArchiveRepositoryInput): Value =
-        ObjectValue(
+      override def encode(value: ArchiveRepositoryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId)
@@ -36878,13 +36888,13 @@ either curated or that have been selected automatically based on popularity.
   case class AuditLogOrder(direction: Option[OrderDirection] = None, field: Option[AuditLogOrderField] = None)
   object AuditLogOrder {
     implicit val encoder: ArgEncoder[AuditLogOrder] = new ArgEncoder[AuditLogOrder] {
-      override def encode(value: AuditLogOrder): Value =
-        ObjectValue(
+      override def encode(value: AuditLogOrder): __Value =
+        __ObjectValue(
           List(
-            "direction" -> value.direction.fold(NullValue: Value)(value =>
+            "direction" -> value.direction.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[OrderDirection]].encode(value)
             ),
-            "field" -> value.field.fold(NullValue: Value)(value =>
+            "field" -> value.field.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[AuditLogOrderField]].encode(value)
             )
           )
@@ -36896,10 +36906,10 @@ either curated or that have been selected automatically based on popularity.
   object CancelEnterpriseAdminInvitationInput {
     implicit val encoder: ArgEncoder[CancelEnterpriseAdminInvitationInput] =
       new ArgEncoder[CancelEnterpriseAdminInvitationInput] {
-        override def encode(value: CancelEnterpriseAdminInvitationInput): Value =
-          ObjectValue(
+        override def encode(value: CancelEnterpriseAdminInvitationInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "invitationId" -> implicitly[ArgEncoder[String]].encode(value.invitationId)
@@ -36918,21 +36928,22 @@ either curated or that have been selected automatically based on popularity.
   )
   object ChangeUserStatusInput {
     implicit val encoder: ArgEncoder[ChangeUserStatusInput] = new ArgEncoder[ChangeUserStatusInput] {
-      override def encode(value: ChangeUserStatusInput): Value =
-        ObjectValue(
+      override def encode(value: ChangeUserStatusInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "emoji" -> value.emoji.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "expiresAt" -> value.expiresAt.fold(NullValue: Value)(value =>
+            "emoji" -> value.emoji.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "expiresAt" -> value.expiresAt.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DateTime]].encode(value)
             ),
-            "limitedAvailability" -> value.limitedAvailability.fold(NullValue: Value)(value =>
+            "limitedAvailability" -> value.limitedAvailability.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "message" -> value.message.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "organizationId" -> value.organizationId.fold(NullValue: Value)(value =>
+            "message" -> value.message
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "organizationId" -> value.organizationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             )
           )
@@ -36950,17 +36961,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object CheckAnnotationData {
     implicit val encoder: ArgEncoder[CheckAnnotationData] = new ArgEncoder[CheckAnnotationData] {
-      override def encode(value: CheckAnnotationData): Value =
-        ObjectValue(
+      override def encode(value: CheckAnnotationData): __Value =
+        __ObjectValue(
           List(
             "annotationLevel" -> implicitly[ArgEncoder[CheckAnnotationLevel]].encode(value.annotationLevel),
             "location"        -> implicitly[ArgEncoder[CheckAnnotationRange]].encode(value.location),
             "message"         -> implicitly[ArgEncoder[String]].encode(value.message),
             "path"            -> implicitly[ArgEncoder[String]].encode(value.path),
-            "rawDetails" -> value.rawDetails.fold(NullValue: Value)(value =>
+            "rawDetails" -> value.rawDetails.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "title" -> value.title.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "title" -> value.title.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "CheckAnnotationData"
@@ -36974,12 +36985,14 @@ either curated or that have been selected automatically based on popularity.
   )
   object CheckAnnotationRange {
     implicit val encoder: ArgEncoder[CheckAnnotationRange] = new ArgEncoder[CheckAnnotationRange] {
-      override def encode(value: CheckAnnotationRange): Value =
-        ObjectValue(
+      override def encode(value: CheckAnnotationRange): __Value =
+        __ObjectValue(
           List(
-            "endColumn" -> value.endColumn.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-            "endLine"   -> implicitly[ArgEncoder[Int]].encode(value.endLine),
-            "startColumn" -> value.startColumn.fold(NullValue: Value)(value =>
+            "endColumn" -> value.endColumn.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[Int]].encode(value)
+            ),
+            "endLine" -> implicitly[ArgEncoder[Int]].encode(value.endLine),
+            "startColumn" -> value.startColumn.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Int]].encode(value)
             ),
             "startLine" -> implicitly[ArgEncoder[Int]].encode(value.startLine)
@@ -36991,8 +37004,8 @@ either curated or that have been selected automatically based on popularity.
   case class CheckRunAction(description: String, identifier: String, label: String)
   object CheckRunAction {
     implicit val encoder: ArgEncoder[CheckRunAction] = new ArgEncoder[CheckRunAction] {
-      override def encode(value: CheckRunAction): Value =
-        ObjectValue(
+      override def encode(value: CheckRunAction): __Value =
+        __ObjectValue(
           List(
             "description" -> implicitly[ArgEncoder[String]].encode(value.description),
             "identifier"  -> implicitly[ArgEncoder[String]].encode(value.identifier),
@@ -37010,16 +37023,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object CheckRunFilter {
     implicit val encoder: ArgEncoder[CheckRunFilter] = new ArgEncoder[CheckRunFilter] {
-      override def encode(value: CheckRunFilter): Value =
-        ObjectValue(
+      override def encode(value: CheckRunFilter): __Value =
+        __ObjectValue(
           List(
-            "appId" -> value.appId.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-            "checkName" -> value.checkName
-              .fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "checkType" -> value.checkType.fold(NullValue: Value)(value =>
+            "appId" -> value.appId.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
+            "checkName" -> value.checkName.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            ),
+            "checkType" -> value.checkType.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckRunType]].encode(value)
             ),
-            "status" -> value.status.fold(NullValue: Value)(value =>
+            "status" -> value.status.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckStatusState]].encode(value)
             )
           )
@@ -37036,17 +37050,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object CheckRunOutput {
     implicit val encoder: ArgEncoder[CheckRunOutput] = new ArgEncoder[CheckRunOutput] {
-      override def encode(value: CheckRunOutput): Value =
-        ObjectValue(
+      override def encode(value: CheckRunOutput): __Value =
+        __ObjectValue(
           List(
-            "annotations" -> value.annotations.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[CheckAnnotationData]].encode(value)))
+            "annotations" -> value.annotations.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[CheckAnnotationData]].encode(value)))
             ),
-            "images" -> value.images.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[CheckRunOutputImage]].encode(value)))
+            "images" -> value.images.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[CheckRunOutputImage]].encode(value)))
             ),
             "summary" -> implicitly[ArgEncoder[String]].encode(value.summary),
-            "text"    -> value.text.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "text"    -> value.text.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "title"   -> implicitly[ArgEncoder[String]].encode(value.title)
           )
         )
@@ -37056,11 +37070,12 @@ either curated or that have been selected automatically based on popularity.
   case class CheckRunOutputImage(alt: String, caption: Option[String] = None, imageUrl: URI)
   object CheckRunOutputImage {
     implicit val encoder: ArgEncoder[CheckRunOutputImage] = new ArgEncoder[CheckRunOutputImage] {
-      override def encode(value: CheckRunOutputImage): Value =
-        ObjectValue(
+      override def encode(value: CheckRunOutputImage): __Value =
+        __ObjectValue(
           List(
-            "alt"      -> implicitly[ArgEncoder[String]].encode(value.alt),
-            "caption"  -> value.caption.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "alt" -> implicitly[ArgEncoder[String]].encode(value.alt),
+            "caption" -> value.caption
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "imageUrl" -> implicitly[ArgEncoder[URI]].encode(value.imageUrl)
           )
         )
@@ -37071,8 +37086,8 @@ either curated or that have been selected automatically based on popularity.
   object CheckSuiteAutoTriggerPreference {
     implicit val encoder: ArgEncoder[CheckSuiteAutoTriggerPreference] =
       new ArgEncoder[CheckSuiteAutoTriggerPreference] {
-        override def encode(value: CheckSuiteAutoTriggerPreference): Value =
-          ObjectValue(
+        override def encode(value: CheckSuiteAutoTriggerPreference): __Value =
+          __ObjectValue(
             List(
               "appId"   -> implicitly[ArgEncoder[String]].encode(value.appId),
               "setting" -> implicitly[ArgEncoder[Boolean]].encode(value.setting)
@@ -37084,11 +37099,13 @@ either curated or that have been selected automatically based on popularity.
   case class CheckSuiteFilter(appId: Option[Int] = None, checkName: Option[String] = None)
   object CheckSuiteFilter {
     implicit val encoder: ArgEncoder[CheckSuiteFilter] = new ArgEncoder[CheckSuiteFilter] {
-      override def encode(value: CheckSuiteFilter): Value =
-        ObjectValue(
+      override def encode(value: CheckSuiteFilter): __Value =
+        __ObjectValue(
           List(
-            "appId"     -> value.appId.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-            "checkName" -> value.checkName.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "appId" -> value.appId.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
+            "checkName" -> value.checkName.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            )
           )
         )
       override def typeName: String = "CheckSuiteFilter"
@@ -37097,10 +37114,10 @@ either curated or that have been selected automatically based on popularity.
   case class ClearLabelsFromLabelableInput(clientMutationId: Option[String] = None, labelableId: String)
   object ClearLabelsFromLabelableInput {
     implicit val encoder: ArgEncoder[ClearLabelsFromLabelableInput] = new ArgEncoder[ClearLabelsFromLabelableInput] {
-      override def encode(value: ClearLabelsFromLabelableInput): Value =
-        ObjectValue(
+      override def encode(value: ClearLabelsFromLabelableInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "labelableId" -> implicitly[ArgEncoder[String]].encode(value.labelableId)
@@ -37120,16 +37137,16 @@ either curated or that have been selected automatically based on popularity.
   )
   object CloneProjectInput {
     implicit val encoder: ArgEncoder[CloneProjectInput] = new ArgEncoder[CloneProjectInput] {
-      override def encode(value: CloneProjectInput): Value =
-        ObjectValue(
+      override def encode(value: CloneProjectInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "includeWorkflows" -> implicitly[ArgEncoder[Boolean]].encode(value.includeWorkflows),
             "name"             -> implicitly[ArgEncoder[String]].encode(value.name),
-            "public"           -> value.public.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "public"           -> value.public.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
             "sourceId"         -> implicitly[ArgEncoder[String]].encode(value.sourceId),
             "targetOwnerId"    -> implicitly[ArgEncoder[String]].encode(value.targetOwnerId)
           )
@@ -37148,16 +37165,16 @@ either curated or that have been selected automatically based on popularity.
   )
   object CloneTemplateRepositoryInput {
     implicit val encoder: ArgEncoder[CloneTemplateRepositoryInput] = new ArgEncoder[CloneTemplateRepositoryInput] {
-      override def encode(value: CloneTemplateRepositoryInput): Value =
-        ObjectValue(
+      override def encode(value: CloneTemplateRepositoryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "includeAllBranches" -> value.includeAllBranches.fold(NullValue: Value)(value =>
+            "includeAllBranches" -> value.includeAllBranches.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
             "name"         -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -37172,10 +37189,10 @@ either curated or that have been selected automatically based on popularity.
   case class CloseIssueInput(clientMutationId: Option[String] = None, issueId: String)
   object CloseIssueInput {
     implicit val encoder: ArgEncoder[CloseIssueInput] = new ArgEncoder[CloseIssueInput] {
-      override def encode(value: CloseIssueInput): Value =
-        ObjectValue(
+      override def encode(value: CloseIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId" -> implicitly[ArgEncoder[String]].encode(value.issueId)
@@ -37187,10 +37204,10 @@ either curated or that have been selected automatically based on popularity.
   case class ClosePullRequestInput(clientMutationId: Option[String] = None, pullRequestId: String)
   object ClosePullRequestInput {
     implicit val encoder: ArgEncoder[ClosePullRequestInput] = new ArgEncoder[ClosePullRequestInput] {
-      override def encode(value: ClosePullRequestInput): Value =
-        ObjectValue(
+      override def encode(value: ClosePullRequestInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId)
@@ -37202,13 +37219,13 @@ either curated or that have been selected automatically based on popularity.
   case class CommitAuthor(emails: Option[List[String]] = None, id: Option[String] = None)
   object CommitAuthor {
     implicit val encoder: ArgEncoder[CommitAuthor] = new ArgEncoder[CommitAuthor] {
-      override def encode(value: CommitAuthor): Value =
-        ObjectValue(
+      override def encode(value: CommitAuthor): __Value =
+        __ObjectValue(
           List(
-            "emails" -> value.emails.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "emails" -> value.emails.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "id" -> value.id.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "id" -> value.id.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "CommitAuthor"
@@ -37217,8 +37234,8 @@ either curated or that have been selected automatically based on popularity.
   case class CommitContributionOrder(direction: OrderDirection, field: CommitContributionOrderField)
   object CommitContributionOrder {
     implicit val encoder: ArgEncoder[CommitContributionOrder] = new ArgEncoder[CommitContributionOrder] {
-      override def encode(value: CommitContributionOrder): Value =
-        ObjectValue(
+      override def encode(value: CommitContributionOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[CommitContributionOrderField]].encode(value.field)
@@ -37230,8 +37247,8 @@ either curated or that have been selected automatically based on popularity.
   case class ContributionOrder(direction: OrderDirection)
   object ContributionOrder {
     implicit val encoder: ArgEncoder[ContributionOrder] = new ArgEncoder[ContributionOrder] {
-      override def encode(value: ContributionOrder): Value =
-        ObjectValue(List("direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction)))
+      override def encode(value: ContributionOrder): __Value =
+        __ObjectValue(List("direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction)))
       override def typeName: String = "ContributionOrder"
     }
   }
@@ -37245,16 +37262,16 @@ either curated or that have been selected automatically based on popularity.
   object ConvertProjectCardNoteToIssueInput {
     implicit val encoder: ArgEncoder[ConvertProjectCardNoteToIssueInput] =
       new ArgEncoder[ConvertProjectCardNoteToIssueInput] {
-        override def encode(value: ConvertProjectCardNoteToIssueInput): Value =
-          ObjectValue(
+        override def encode(value: ConvertProjectCardNoteToIssueInput): __Value =
+          __ObjectValue(
             List(
-              "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "projectCardId" -> implicitly[ArgEncoder[String]].encode(value.projectCardId),
               "repositoryId"  -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-              "title"         -> value.title.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+              "title"         -> value.title.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
             )
           )
         override def typeName: String = "ConvertProjectCardNoteToIssueInput"
@@ -37281,52 +37298,52 @@ either curated or that have been selected automatically based on popularity.
   object CreateBranchProtectionRuleInput {
     implicit val encoder: ArgEncoder[CreateBranchProtectionRuleInput] =
       new ArgEncoder[CreateBranchProtectionRuleInput] {
-        override def encode(value: CreateBranchProtectionRuleInput): Value =
-          ObjectValue(
+        override def encode(value: CreateBranchProtectionRuleInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "dismissesStaleReviews" -> value.dismissesStaleReviews.fold(NullValue: Value)(value =>
+              "dismissesStaleReviews" -> value.dismissesStaleReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "isAdminEnforced" -> value.isAdminEnforced.fold(NullValue: Value)(value =>
+              "isAdminEnforced" -> value.isAdminEnforced.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
               "pattern" -> implicitly[ArgEncoder[String]].encode(value.pattern),
-              "pushActorIds" -> value.pushActorIds.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "pushActorIds" -> value.pushActorIds.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               ),
               "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-              "requiredApprovingReviewCount" -> value.requiredApprovingReviewCount.fold(NullValue: Value)(value =>
+              "requiredApprovingReviewCount" -> value.requiredApprovingReviewCount.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Int]].encode(value)
               ),
-              "requiredStatusCheckContexts" -> value.requiredStatusCheckContexts.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "requiredStatusCheckContexts" -> value.requiredStatusCheckContexts.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               ),
-              "requiresApprovingReviews" -> value.requiresApprovingReviews.fold(NullValue: Value)(value =>
+              "requiresApprovingReviews" -> value.requiresApprovingReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresCodeOwnerReviews" -> value.requiresCodeOwnerReviews.fold(NullValue: Value)(value =>
+              "requiresCodeOwnerReviews" -> value.requiresCodeOwnerReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresCommitSignatures" -> value.requiresCommitSignatures.fold(NullValue: Value)(value =>
+              "requiresCommitSignatures" -> value.requiresCommitSignatures.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresStatusChecks" -> value.requiresStatusChecks.fold(NullValue: Value)(value =>
+              "requiresStatusChecks" -> value.requiresStatusChecks.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresStrictStatusChecks" -> value.requiresStrictStatusChecks.fold(NullValue: Value)(value =>
+              "requiresStrictStatusChecks" -> value.requiresStrictStatusChecks.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "restrictsPushes" -> value.restrictsPushes.fold(NullValue: Value)(value =>
+              "restrictsPushes" -> value.restrictsPushes.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "restrictsReviewDismissals" -> value.restrictsReviewDismissals.fold(NullValue: Value)(value =>
+              "restrictsReviewDismissals" -> value.restrictsReviewDismissals.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "reviewDismissalActorIds" -> value.reviewDismissalActorIds.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "reviewDismissalActorIds" -> value.reviewDismissalActorIds.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               )
             )
           )
@@ -37349,35 +37366,37 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateCheckRunInput {
     implicit val encoder: ArgEncoder[CreateCheckRunInput] = new ArgEncoder[CreateCheckRunInput] {
-      override def encode(value: CreateCheckRunInput): Value =
-        ObjectValue(
+      override def encode(value: CreateCheckRunInput): __Value =
+        __ObjectValue(
           List(
-            "actions" -> value.actions.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[CheckRunAction]].encode(value)))
+            "actions" -> value.actions.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[CheckRunAction]].encode(value)))
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "completedAt" -> value.completedAt.fold(NullValue: Value)(value =>
+            "completedAt" -> value.completedAt.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DateTime]].encode(value)
             ),
-            "conclusion" -> value.conclusion.fold(NullValue: Value)(value =>
+            "conclusion" -> value.conclusion.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckConclusionState]].encode(value)
             ),
-            "detailsUrl" -> value.detailsUrl.fold(NullValue: Value)(value => implicitly[ArgEncoder[URI]].encode(value)),
-            "externalId" -> value.externalId.fold(NullValue: Value)(value =>
+            "detailsUrl" -> value.detailsUrl.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[URI]].encode(value)
+            ),
+            "externalId" -> value.externalId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "headSha" -> implicitly[ArgEncoder[GitObjectID]].encode(value.headSha),
             "name"    -> implicitly[ArgEncoder[String]].encode(value.name),
-            "output" -> value.output.fold(NullValue: Value)(value =>
+            "output" -> value.output.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckRunOutput]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-            "startedAt" -> value.startedAt.fold(NullValue: Value)(value =>
+            "startedAt" -> value.startedAt.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DateTime]].encode(value)
             ),
-            "status" -> value.status.fold(NullValue: Value)(value =>
+            "status" -> value.status.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[RequestableCheckStatusState]].encode(value)
             )
           )
@@ -37388,10 +37407,10 @@ either curated or that have been selected automatically based on popularity.
   case class CreateCheckSuiteInput(clientMutationId: Option[String] = None, headSha: GitObjectID, repositoryId: String)
   object CreateCheckSuiteInput {
     implicit val encoder: ArgEncoder[CreateCheckSuiteInput] = new ArgEncoder[CreateCheckSuiteInput] {
-      override def encode(value: CreateCheckSuiteInput): Value =
-        ObjectValue(
+      override def encode(value: CreateCheckSuiteInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "headSha"      -> implicitly[ArgEncoder[GitObjectID]].encode(value.headSha),
@@ -37409,11 +37428,11 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateContentAttachmentInput {
     implicit val encoder: ArgEncoder[CreateContentAttachmentInput] = new ArgEncoder[CreateContentAttachmentInput] {
-      override def encode(value: CreateContentAttachmentInput): Value =
-        ObjectValue(
+      override def encode(value: CreateContentAttachmentInput): __Value =
+        __ObjectValue(
           List(
             "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "contentReferenceId" -> implicitly[ArgEncoder[String]].encode(value.contentReferenceId),
@@ -37436,28 +37455,29 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateDeploymentInput {
     implicit val encoder: ArgEncoder[CreateDeploymentInput] = new ArgEncoder[CreateDeploymentInput] {
-      override def encode(value: CreateDeploymentInput): Value =
-        ObjectValue(
+      override def encode(value: CreateDeploymentInput): __Value =
+        __ObjectValue(
           List(
-            "autoMerge" -> value.autoMerge.fold(NullValue: Value)(value =>
+            "autoMerge" -> value.autoMerge.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "environment" -> value.environment.fold(NullValue: Value)(value =>
+            "environment" -> value.environment.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "payload"      -> value.payload.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "payload" -> value.payload
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "refId"        -> implicitly[ArgEncoder[String]].encode(value.refId),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-            "requiredContexts" -> value.requiredContexts.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "requiredContexts" -> value.requiredContexts.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "task" -> value.task.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "task" -> value.task.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "CreateDeploymentInput"
@@ -37475,26 +37495,26 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateDeploymentStatusInput {
     implicit val encoder: ArgEncoder[CreateDeploymentStatusInput] = new ArgEncoder[CreateDeploymentStatusInput] {
-      override def encode(value: CreateDeploymentStatusInput): Value =
-        ObjectValue(
+      override def encode(value: CreateDeploymentStatusInput): __Value =
+        __ObjectValue(
           List(
-            "autoInactive" -> value.autoInactive.fold(NullValue: Value)(value =>
+            "autoInactive" -> value.autoInactive.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "deploymentId" -> implicitly[ArgEncoder[String]].encode(value.deploymentId),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "environment" -> value.environment.fold(NullValue: Value)(value =>
+            "environment" -> value.environment.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "environmentUrl" -> value.environmentUrl.fold(NullValue: Value)(value =>
+            "environmentUrl" -> value.environmentUrl.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "logUrl" -> value.logUrl.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "logUrl" -> value.logUrl.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "state"  -> implicitly[ArgEncoder[DeploymentStatusState]].encode(value.state)
           )
         )
@@ -37512,12 +37532,14 @@ either curated or that have been selected automatically based on popularity.
   object CreateEnterpriseOrganizationInput {
     implicit val encoder: ArgEncoder[CreateEnterpriseOrganizationInput] =
       new ArgEncoder[CreateEnterpriseOrganizationInput] {
-        override def encode(value: CreateEnterpriseOrganizationInput): Value =
-          ObjectValue(
+        override def encode(value: CreateEnterpriseOrganizationInput): __Value =
+          __ObjectValue(
             List(
-              "adminLogins"  -> ListValue(value.adminLogins.map(value => implicitly[ArgEncoder[String]].encode(value))),
+              "adminLogins" -> __ListValue(
+                value.adminLogins.map(value => implicitly[ArgEncoder[String]].encode(value))
+              ),
               "billingEmail" -> implicitly[ArgEncoder[String]].encode(value.billingEmail),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -37537,15 +37559,15 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateIpAllowListEntryInput {
     implicit val encoder: ArgEncoder[CreateIpAllowListEntryInput] = new ArgEncoder[CreateIpAllowListEntryInput] {
-      override def encode(value: CreateIpAllowListEntryInput): Value =
-        ObjectValue(
+      override def encode(value: CreateIpAllowListEntryInput): __Value =
+        __ObjectValue(
           List(
             "allowListValue" -> implicitly[ArgEncoder[String]].encode(value.allowListValue),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "isActive" -> implicitly[ArgEncoder[Boolean]].encode(value.isActive),
-            "name"     -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "name"     -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "ownerId"  -> implicitly[ArgEncoder[String]].encode(value.ownerId)
           )
         )
@@ -37565,27 +37587,27 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateIssueInput {
     implicit val encoder: ArgEncoder[CreateIssueInput] = new ArgEncoder[CreateIssueInput] {
-      override def encode(value: CreateIssueInput): Value =
-        ObjectValue(
+      override def encode(value: CreateIssueInput): __Value =
+        __ObjectValue(
           List(
-            "assigneeIds" -> value.assigneeIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "assigneeIds" -> value.assigneeIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "issueTemplate" -> value.issueTemplate.fold(NullValue: Value)(value =>
+            "issueTemplate" -> value.issueTemplate.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "labelIds" -> value.labelIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "labelIds" -> value.labelIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "milestoneId" -> value.milestoneId.fold(NullValue: Value)(value =>
+            "milestoneId" -> value.milestoneId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "projectIds" -> value.projectIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "projectIds" -> value.projectIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
             "title"        -> implicitly[ArgEncoder[String]].encode(value.title)
@@ -37603,14 +37625,14 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateLabelInput {
     implicit val encoder: ArgEncoder[CreateLabelInput] = new ArgEncoder[CreateLabelInput] {
-      override def encode(value: CreateLabelInput): Value =
-        ObjectValue(
+      override def encode(value: CreateLabelInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "color" -> implicitly[ArgEncoder[String]].encode(value.color),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"         -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -37630,19 +37652,19 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateProjectInput {
     implicit val encoder: ArgEncoder[CreateProjectInput] = new ArgEncoder[CreateProjectInput] {
-      override def encode(value: CreateProjectInput): Value =
-        ObjectValue(
+      override def encode(value: CreateProjectInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"    -> implicitly[ArgEncoder[String]].encode(value.name),
             "ownerId" -> implicitly[ArgEncoder[String]].encode(value.ownerId),
-            "repositoryIds" -> value.repositoryIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "repositoryIds" -> value.repositoryIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "template" -> value.template.fold(NullValue: Value)(value =>
+            "template" -> value.template.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[ProjectTemplate]].encode(value)
             )
           )
@@ -37662,17 +37684,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreatePullRequestInput {
     implicit val encoder: ArgEncoder[CreatePullRequestInput] = new ArgEncoder[CreatePullRequestInput] {
-      override def encode(value: CreatePullRequestInput): Value =
-        ObjectValue(
+      override def encode(value: CreatePullRequestInput): __Value =
+        __ObjectValue(
           List(
             "baseRefName" -> implicitly[ArgEncoder[String]].encode(value.baseRefName),
-            "body"        -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body"        -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "draft"       -> value.draft.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "draft"       -> value.draft.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
             "headRefName" -> implicitly[ArgEncoder[String]].encode(value.headRefName),
-            "maintainerCanModify" -> value.maintainerCanModify.fold(NullValue: Value)(value =>
+            "maintainerCanModify" -> value.maintainerCanModify.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
@@ -37690,10 +37712,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateRefInput {
     implicit val encoder: ArgEncoder[CreateRefInput] = new ArgEncoder[CreateRefInput] {
-      override def encode(value: CreateRefInput): Value =
-        ObjectValue(
+      override def encode(value: CreateRefInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"         -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -37718,28 +37740,31 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateRepositoryInput {
     implicit val encoder: ArgEncoder[CreateRepositoryInput] = new ArgEncoder[CreateRepositoryInput] {
-      override def encode(value: CreateRepositoryInput): Value =
-        ObjectValue(
+      override def encode(value: CreateRepositoryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "hasIssuesEnabled" -> value.hasIssuesEnabled.fold(NullValue: Value)(value =>
+            "hasIssuesEnabled" -> value.hasIssuesEnabled.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "hasWikiEnabled" -> value.hasWikiEnabled.fold(NullValue: Value)(value =>
+            "hasWikiEnabled" -> value.hasWikiEnabled.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "homepageUrl" -> value.homepageUrl.fold(NullValue: Value)(value =>
+            "homepageUrl" -> value.homepageUrl.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[URI]].encode(value)
             ),
-            "name"       -> implicitly[ArgEncoder[String]].encode(value.name),
-            "ownerId"    -> value.ownerId.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "teamId"     -> value.teamId.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "template"   -> value.template.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "name" -> implicitly[ArgEncoder[String]].encode(value.name),
+            "ownerId" -> value.ownerId
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "teamId" -> value.teamId.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "template" -> value.template.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[Boolean]].encode(value)
+            ),
             "visibility" -> implicitly[ArgEncoder[RepositoryVisibility]].encode(value.visibility)
           )
         )
@@ -37754,11 +37779,11 @@ either curated or that have been selected automatically based on popularity.
   object CreateTeamDiscussionCommentInput {
     implicit val encoder: ArgEncoder[CreateTeamDiscussionCommentInput] =
       new ArgEncoder[CreateTeamDiscussionCommentInput] {
-        override def encode(value: CreateTeamDiscussionCommentInput): Value =
-          ObjectValue(
+        override def encode(value: CreateTeamDiscussionCommentInput): __Value =
+          __ObjectValue(
             List(
               "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "discussionId" -> implicitly[ArgEncoder[String]].encode(value.discussionId)
@@ -37776,16 +37801,18 @@ either curated or that have been selected automatically based on popularity.
   )
   object CreateTeamDiscussionInput {
     implicit val encoder: ArgEncoder[CreateTeamDiscussionInput] = new ArgEncoder[CreateTeamDiscussionInput] {
-      override def encode(value: CreateTeamDiscussionInput): Value =
-        ObjectValue(
+      override def encode(value: CreateTeamDiscussionInput): __Value =
+        __ObjectValue(
           List(
             "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "private" -> value.`private`.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
-            "teamId"  -> implicitly[ArgEncoder[String]].encode(value.teamId),
-            "title"   -> implicitly[ArgEncoder[String]].encode(value.title)
+            "private" -> value.`private`.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[Boolean]].encode(value)
+            ),
+            "teamId" -> implicitly[ArgEncoder[String]].encode(value.teamId),
+            "title"  -> implicitly[ArgEncoder[String]].encode(value.title)
           )
         )
       override def typeName: String = "CreateTeamDiscussionInput"
@@ -37799,10 +37826,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object DeclineTopicSuggestionInput {
     implicit val encoder: ArgEncoder[DeclineTopicSuggestionInput] = new ArgEncoder[DeclineTopicSuggestionInput] {
-      override def encode(value: DeclineTopicSuggestionInput): Value =
-        ObjectValue(
+      override def encode(value: DeclineTopicSuggestionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"         -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -37817,11 +37844,11 @@ either curated or that have been selected automatically based on popularity.
   object DeleteBranchProtectionRuleInput {
     implicit val encoder: ArgEncoder[DeleteBranchProtectionRuleInput] =
       new ArgEncoder[DeleteBranchProtectionRuleInput] {
-        override def encode(value: DeleteBranchProtectionRuleInput): Value =
-          ObjectValue(
+        override def encode(value: DeleteBranchProtectionRuleInput): __Value =
+          __ObjectValue(
             List(
               "branchProtectionRuleId" -> implicitly[ArgEncoder[String]].encode(value.branchProtectionRuleId),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               )
             )
@@ -37832,10 +37859,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteDeploymentInput(clientMutationId: Option[String] = None, id: String)
   object DeleteDeploymentInput {
     implicit val encoder: ArgEncoder[DeleteDeploymentInput] = new ArgEncoder[DeleteDeploymentInput] {
-      override def encode(value: DeleteDeploymentInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteDeploymentInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -37847,10 +37874,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteIpAllowListEntryInput(clientMutationId: Option[String] = None, ipAllowListEntryId: String)
   object DeleteIpAllowListEntryInput {
     implicit val encoder: ArgEncoder[DeleteIpAllowListEntryInput] = new ArgEncoder[DeleteIpAllowListEntryInput] {
-      override def encode(value: DeleteIpAllowListEntryInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteIpAllowListEntryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "ipAllowListEntryId" -> implicitly[ArgEncoder[String]].encode(value.ipAllowListEntryId)
@@ -37862,10 +37889,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteIssueCommentInput(clientMutationId: Option[String] = None, id: String)
   object DeleteIssueCommentInput {
     implicit val encoder: ArgEncoder[DeleteIssueCommentInput] = new ArgEncoder[DeleteIssueCommentInput] {
-      override def encode(value: DeleteIssueCommentInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteIssueCommentInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -37877,10 +37904,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteIssueInput(clientMutationId: Option[String] = None, issueId: String)
   object DeleteIssueInput {
     implicit val encoder: ArgEncoder[DeleteIssueInput] = new ArgEncoder[DeleteIssueInput] {
-      override def encode(value: DeleteIssueInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId" -> implicitly[ArgEncoder[String]].encode(value.issueId)
@@ -37892,10 +37919,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteLabelInput(clientMutationId: Option[String] = None, id: String)
   object DeleteLabelInput {
     implicit val encoder: ArgEncoder[DeleteLabelInput] = new ArgEncoder[DeleteLabelInput] {
-      override def encode(value: DeleteLabelInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteLabelInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -37907,10 +37934,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeletePackageVersionInput(clientMutationId: Option[String] = None, packageVersionId: String)
   object DeletePackageVersionInput {
     implicit val encoder: ArgEncoder[DeletePackageVersionInput] = new ArgEncoder[DeletePackageVersionInput] {
-      override def encode(value: DeletePackageVersionInput): Value =
-        ObjectValue(
+      override def encode(value: DeletePackageVersionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "packageVersionId" -> implicitly[ArgEncoder[String]].encode(value.packageVersionId)
@@ -37922,11 +37949,11 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteProjectCardInput(cardId: String, clientMutationId: Option[String] = None)
   object DeleteProjectCardInput {
     implicit val encoder: ArgEncoder[DeleteProjectCardInput] = new ArgEncoder[DeleteProjectCardInput] {
-      override def encode(value: DeleteProjectCardInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteProjectCardInput): __Value =
+        __ObjectValue(
           List(
             "cardId" -> implicitly[ArgEncoder[String]].encode(value.cardId),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             )
           )
@@ -37937,10 +37964,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteProjectColumnInput(clientMutationId: Option[String] = None, columnId: String)
   object DeleteProjectColumnInput {
     implicit val encoder: ArgEncoder[DeleteProjectColumnInput] = new ArgEncoder[DeleteProjectColumnInput] {
-      override def encode(value: DeleteProjectColumnInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteProjectColumnInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "columnId" -> implicitly[ArgEncoder[String]].encode(value.columnId)
@@ -37952,10 +37979,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteProjectInput(clientMutationId: Option[String] = None, projectId: String)
   object DeleteProjectInput {
     implicit val encoder: ArgEncoder[DeleteProjectInput] = new ArgEncoder[DeleteProjectInput] {
-      override def encode(value: DeleteProjectInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteProjectInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "projectId" -> implicitly[ArgEncoder[String]].encode(value.projectId)
@@ -37968,10 +37995,10 @@ either curated or that have been selected automatically based on popularity.
   object DeletePullRequestReviewCommentInput {
     implicit val encoder: ArgEncoder[DeletePullRequestReviewCommentInput] =
       new ArgEncoder[DeletePullRequestReviewCommentInput] {
-        override def encode(value: DeletePullRequestReviewCommentInput): Value =
-          ObjectValue(
+        override def encode(value: DeletePullRequestReviewCommentInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -37983,10 +38010,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeletePullRequestReviewInput(clientMutationId: Option[String] = None, pullRequestReviewId: String)
   object DeletePullRequestReviewInput {
     implicit val encoder: ArgEncoder[DeletePullRequestReviewInput] = new ArgEncoder[DeletePullRequestReviewInput] {
-      override def encode(value: DeletePullRequestReviewInput): Value =
-        ObjectValue(
+      override def encode(value: DeletePullRequestReviewInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "pullRequestReviewId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestReviewId)
@@ -37998,10 +38025,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteRefInput(clientMutationId: Option[String] = None, refId: String)
   object DeleteRefInput {
     implicit val encoder: ArgEncoder[DeleteRefInput] = new ArgEncoder[DeleteRefInput] {
-      override def encode(value: DeleteRefInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteRefInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "refId" -> implicitly[ArgEncoder[String]].encode(value.refId)
@@ -38014,10 +38041,10 @@ either curated or that have been selected automatically based on popularity.
   object DeleteTeamDiscussionCommentInput {
     implicit val encoder: ArgEncoder[DeleteTeamDiscussionCommentInput] =
       new ArgEncoder[DeleteTeamDiscussionCommentInput] {
-        override def encode(value: DeleteTeamDiscussionCommentInput): Value =
-          ObjectValue(
+        override def encode(value: DeleteTeamDiscussionCommentInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -38029,10 +38056,10 @@ either curated or that have been selected automatically based on popularity.
   case class DeleteTeamDiscussionInput(clientMutationId: Option[String] = None, id: String)
   object DeleteTeamDiscussionInput {
     implicit val encoder: ArgEncoder[DeleteTeamDiscussionInput] = new ArgEncoder[DeleteTeamDiscussionInput] {
-      override def encode(value: DeleteTeamDiscussionInput): Value =
-        ObjectValue(
+      override def encode(value: DeleteTeamDiscussionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -38044,8 +38071,8 @@ either curated or that have been selected automatically based on popularity.
   case class DeploymentOrder(direction: OrderDirection, field: DeploymentOrderField)
   object DeploymentOrder {
     implicit val encoder: ArgEncoder[DeploymentOrder] = new ArgEncoder[DeploymentOrder] {
-      override def encode(value: DeploymentOrder): Value =
-        ObjectValue(
+      override def encode(value: DeploymentOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[DeploymentOrderField]].encode(value.field)
@@ -38061,10 +38088,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object DismissPullRequestReviewInput {
     implicit val encoder: ArgEncoder[DismissPullRequestReviewInput] = new ArgEncoder[DismissPullRequestReviewInput] {
-      override def encode(value: DismissPullRequestReviewInput): Value =
-        ObjectValue(
+      override def encode(value: DismissPullRequestReviewInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "message"             -> implicitly[ArgEncoder[String]].encode(value.message),
@@ -38077,8 +38104,8 @@ either curated or that have been selected automatically based on popularity.
   case class DraftPullRequestReviewComment(body: String, path: String, position: Int)
   object DraftPullRequestReviewComment {
     implicit val encoder: ArgEncoder[DraftPullRequestReviewComment] = new ArgEncoder[DraftPullRequestReviewComment] {
-      override def encode(value: DraftPullRequestReviewComment): Value =
-        ObjectValue(
+      override def encode(value: DraftPullRequestReviewComment): __Value =
+        __ObjectValue(
           List(
             "body"     -> implicitly[ArgEncoder[String]].encode(value.body),
             "path"     -> implicitly[ArgEncoder[String]].encode(value.path),
@@ -38098,15 +38125,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object DraftPullRequestReviewThread {
     implicit val encoder: ArgEncoder[DraftPullRequestReviewThread] = new ArgEncoder[DraftPullRequestReviewThread] {
-      override def encode(value: DraftPullRequestReviewThread): Value =
-        ObjectValue(
+      override def encode(value: DraftPullRequestReviewThread): __Value =
+        __ObjectValue(
           List(
-            "body"      -> implicitly[ArgEncoder[String]].encode(value.body),
-            "line"      -> implicitly[ArgEncoder[Int]].encode(value.line),
-            "path"      -> implicitly[ArgEncoder[String]].encode(value.path),
-            "side"      -> value.side.fold(NullValue: Value)(value => implicitly[ArgEncoder[DiffSide]].encode(value)),
-            "startLine" -> value.startLine.fold(NullValue: Value)(value => implicitly[ArgEncoder[Int]].encode(value)),
-            "startSide" -> value.startSide.fold(NullValue: Value)(value =>
+            "body" -> implicitly[ArgEncoder[String]].encode(value.body),
+            "line" -> implicitly[ArgEncoder[Int]].encode(value.line),
+            "path" -> implicitly[ArgEncoder[String]].encode(value.path),
+            "side" -> value.side.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[DiffSide]].encode(value)),
+            "startLine" -> value.startLine.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[Int]].encode(value)
+            ),
+            "startSide" -> value.startSide.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DiffSide]].encode(value)
             )
           )
@@ -38121,8 +38150,8 @@ either curated or that have been selected automatically based on popularity.
   object EnterpriseAdministratorInvitationOrder {
     implicit val encoder: ArgEncoder[EnterpriseAdministratorInvitationOrder] =
       new ArgEncoder[EnterpriseAdministratorInvitationOrder] {
-        override def encode(value: EnterpriseAdministratorInvitationOrder): Value =
-          ObjectValue(
+        override def encode(value: EnterpriseAdministratorInvitationOrder): __Value =
+          __ObjectValue(
             List(
               "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
               "field"     -> implicitly[ArgEncoder[EnterpriseAdministratorInvitationOrderField]].encode(value.field)
@@ -38134,8 +38163,8 @@ either curated or that have been selected automatically based on popularity.
   case class EnterpriseMemberOrder(direction: OrderDirection, field: EnterpriseMemberOrderField)
   object EnterpriseMemberOrder {
     implicit val encoder: ArgEncoder[EnterpriseMemberOrder] = new ArgEncoder[EnterpriseMemberOrder] {
-      override def encode(value: EnterpriseMemberOrder): Value =
-        ObjectValue(
+      override def encode(value: EnterpriseMemberOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[EnterpriseMemberOrderField]].encode(value.field)
@@ -38148,8 +38177,8 @@ either curated or that have been selected automatically based on popularity.
   object EnterpriseServerInstallationOrder {
     implicit val encoder: ArgEncoder[EnterpriseServerInstallationOrder] =
       new ArgEncoder[EnterpriseServerInstallationOrder] {
-        override def encode(value: EnterpriseServerInstallationOrder): Value =
-          ObjectValue(
+        override def encode(value: EnterpriseServerInstallationOrder): __Value =
+          __ObjectValue(
             List(
               "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
               "field"     -> implicitly[ArgEncoder[EnterpriseServerInstallationOrderField]].encode(value.field)
@@ -38165,8 +38194,8 @@ either curated or that have been selected automatically based on popularity.
   object EnterpriseServerUserAccountEmailOrder {
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountEmailOrder] =
       new ArgEncoder[EnterpriseServerUserAccountEmailOrder] {
-        override def encode(value: EnterpriseServerUserAccountEmailOrder): Value =
-          ObjectValue(
+        override def encode(value: EnterpriseServerUserAccountEmailOrder): __Value =
+          __ObjectValue(
             List(
               "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
               "field"     -> implicitly[ArgEncoder[EnterpriseServerUserAccountEmailOrderField]].encode(value.field)
@@ -38179,8 +38208,8 @@ either curated or that have been selected automatically based on popularity.
   object EnterpriseServerUserAccountOrder {
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountOrder] =
       new ArgEncoder[EnterpriseServerUserAccountOrder] {
-        override def encode(value: EnterpriseServerUserAccountOrder): Value =
-          ObjectValue(
+        override def encode(value: EnterpriseServerUserAccountOrder): __Value =
+          __ObjectValue(
             List(
               "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
               "field"     -> implicitly[ArgEncoder[EnterpriseServerUserAccountOrderField]].encode(value.field)
@@ -38196,8 +38225,8 @@ either curated or that have been selected automatically based on popularity.
   object EnterpriseServerUserAccountsUploadOrder {
     implicit val encoder: ArgEncoder[EnterpriseServerUserAccountsUploadOrder] =
       new ArgEncoder[EnterpriseServerUserAccountsUploadOrder] {
-        override def encode(value: EnterpriseServerUserAccountsUploadOrder): Value =
-          ObjectValue(
+        override def encode(value: EnterpriseServerUserAccountsUploadOrder): __Value =
+          __ObjectValue(
             List(
               "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
               "field"     -> implicitly[ArgEncoder[EnterpriseServerUserAccountsUploadOrderField]].encode(value.field)
@@ -38209,10 +38238,10 @@ either curated or that have been selected automatically based on popularity.
   case class FollowUserInput(clientMutationId: Option[String] = None, userId: String)
   object FollowUserInput {
     implicit val encoder: ArgEncoder[FollowUserInput] = new ArgEncoder[FollowUserInput] {
-      override def encode(value: FollowUserInput): Value =
-        ObjectValue(
+      override def encode(value: FollowUserInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "userId" -> implicitly[ArgEncoder[String]].encode(value.userId)
@@ -38224,8 +38253,8 @@ either curated or that have been selected automatically based on popularity.
   case class GistOrder(direction: OrderDirection, field: GistOrderField)
   object GistOrder {
     implicit val encoder: ArgEncoder[GistOrder] = new ArgEncoder[GistOrder] {
-      override def encode(value: GistOrder): Value =
-        ObjectValue(
+      override def encode(value: GistOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[GistOrderField]].encode(value.field)
@@ -38244,19 +38273,19 @@ either curated or that have been selected automatically based on popularity.
   )
   object ImportProjectInput {
     implicit val encoder: ArgEncoder[ImportProjectInput] = new ArgEncoder[ImportProjectInput] {
-      override def encode(value: ImportProjectInput): Value =
-        ObjectValue(
+      override def encode(value: ImportProjectInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "columnImports" -> ListValue(
+            "columnImports" -> __ListValue(
               value.columnImports.map(value => implicitly[ArgEncoder[ProjectColumnImport]].encode(value))
             ),
             "name"      -> implicitly[ArgEncoder[String]].encode(value.name),
             "ownerName" -> implicitly[ArgEncoder[String]].encode(value.ownerName),
-            "public"    -> value.public.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value))
+            "public"    -> value.public.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value))
           )
         )
       override def typeName: String = "ImportProjectInput"
@@ -38271,16 +38300,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object InviteEnterpriseAdminInput {
     implicit val encoder: ArgEncoder[InviteEnterpriseAdminInput] = new ArgEncoder[InviteEnterpriseAdminInput] {
-      override def encode(value: InviteEnterpriseAdminInput): Value =
-        ObjectValue(
+      override def encode(value: InviteEnterpriseAdminInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "email"        -> value.email.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "email"        -> value.email.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
-            "invitee"      -> value.invitee.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "role" -> value.role.fold(NullValue: Value)(value =>
+            "invitee" -> value.invitee
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "role" -> value.role.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[EnterpriseAdministratorRole]].encode(value)
             )
           )
@@ -38291,8 +38321,8 @@ either curated or that have been selected automatically based on popularity.
   case class IpAllowListEntryOrder(direction: OrderDirection, field: IpAllowListEntryOrderField)
   object IpAllowListEntryOrder {
     implicit val encoder: ArgEncoder[IpAllowListEntryOrder] = new ArgEncoder[IpAllowListEntryOrder] {
-      override def encode(value: IpAllowListEntryOrder): Value =
-        ObjectValue(
+      override def encode(value: IpAllowListEntryOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[IpAllowListEntryOrderField]].encode(value.field)
@@ -38313,24 +38343,29 @@ either curated or that have been selected automatically based on popularity.
   )
   object IssueFilters {
     implicit val encoder: ArgEncoder[IssueFilters] = new ArgEncoder[IssueFilters] {
-      override def encode(value: IssueFilters): Value =
-        ObjectValue(
+      override def encode(value: IssueFilters): __Value =
+        __ObjectValue(
           List(
-            "assignee" -> value.assignee.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "createdBy" -> value.createdBy
-              .fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "labels" -> value.labels.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "assignee" -> value.assignee.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
             ),
-            "mentioned" -> value.mentioned
-              .fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "milestone" -> value.milestone
-              .fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "since" -> value.since.fold(NullValue: Value)(value => implicitly[ArgEncoder[DateTime]].encode(value)),
-            "states" -> value.states.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[IssueState]].encode(value)))
+            "createdBy" -> value.createdBy.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
             ),
-            "viewerSubscribed" -> value.viewerSubscribed.fold(NullValue: Value)(value =>
+            "labels" -> value.labels.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            ),
+            "mentioned" -> value.mentioned.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            ),
+            "milestone" -> value.milestone.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            ),
+            "since" -> value.since.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[DateTime]].encode(value)),
+            "states" -> value.states.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[IssueState]].encode(value)))
+            ),
+            "viewerSubscribed" -> value.viewerSubscribed.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             )
           )
@@ -38341,8 +38376,8 @@ either curated or that have been selected automatically based on popularity.
   case class IssueOrder(direction: OrderDirection, field: IssueOrderField)
   object IssueOrder {
     implicit val encoder: ArgEncoder[IssueOrder] = new ArgEncoder[IssueOrder] {
-      override def encode(value: IssueOrder): Value =
-        ObjectValue(
+      override def encode(value: IssueOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[IssueOrderField]].encode(value.field)
@@ -38354,8 +38389,8 @@ either curated or that have been selected automatically based on popularity.
   case class LabelOrder(direction: OrderDirection, field: LabelOrderField)
   object LabelOrder {
     implicit val encoder: ArgEncoder[LabelOrder] = new ArgEncoder[LabelOrder] {
-      override def encode(value: LabelOrder): Value =
-        ObjectValue(
+      override def encode(value: LabelOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[LabelOrderField]].encode(value.field)
@@ -38367,8 +38402,8 @@ either curated or that have been selected automatically based on popularity.
   case class LanguageOrder(direction: OrderDirection, field: LanguageOrderField)
   object LanguageOrder {
     implicit val encoder: ArgEncoder[LanguageOrder] = new ArgEncoder[LanguageOrder] {
-      override def encode(value: LanguageOrder): Value =
-        ObjectValue(
+      override def encode(value: LanguageOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[LanguageOrderField]].encode(value.field)
@@ -38384,10 +38419,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object LinkRepositoryToProjectInput {
     implicit val encoder: ArgEncoder[LinkRepositoryToProjectInput] = new ArgEncoder[LinkRepositoryToProjectInput] {
-      override def encode(value: LinkRepositoryToProjectInput): Value =
-        ObjectValue(
+      override def encode(value: LinkRepositoryToProjectInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "projectId"    -> implicitly[ArgEncoder[String]].encode(value.projectId),
@@ -38404,13 +38439,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object LockLockableInput {
     implicit val encoder: ArgEncoder[LockLockableInput] = new ArgEncoder[LockLockableInput] {
-      override def encode(value: LockLockableInput): Value =
-        ObjectValue(
+      override def encode(value: LockLockableInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "lockReason" -> value.lockReason.fold(NullValue: Value)(value =>
+            "lockReason" -> value.lockReason.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[LockReason]].encode(value)
             ),
             "lockableId" -> implicitly[ArgEncoder[String]].encode(value.lockableId)
@@ -38422,10 +38457,10 @@ either curated or that have been selected automatically based on popularity.
   case class MarkFileAsViewedInput(clientMutationId: Option[String] = None, path: String, pullRequestId: String)
   object MarkFileAsViewedInput {
     implicit val encoder: ArgEncoder[MarkFileAsViewedInput] = new ArgEncoder[MarkFileAsViewedInput] {
-      override def encode(value: MarkFileAsViewedInput): Value =
-        ObjectValue(
+      override def encode(value: MarkFileAsViewedInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "path"          -> implicitly[ArgEncoder[String]].encode(value.path),
@@ -38439,10 +38474,10 @@ either curated or that have been selected automatically based on popularity.
   object MarkPullRequestReadyForReviewInput {
     implicit val encoder: ArgEncoder[MarkPullRequestReadyForReviewInput] =
       new ArgEncoder[MarkPullRequestReadyForReviewInput] {
-        override def encode(value: MarkPullRequestReadyForReviewInput): Value =
-          ObjectValue(
+        override def encode(value: MarkPullRequestReadyForReviewInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId)
@@ -38461,17 +38496,17 @@ either curated or that have been selected automatically based on popularity.
   )
   object MergeBranchInput {
     implicit val encoder: ArgEncoder[MergeBranchInput] = new ArgEncoder[MergeBranchInput] {
-      override def encode(value: MergeBranchInput): Value =
-        ObjectValue(
+      override def encode(value: MergeBranchInput): __Value =
+        __ObjectValue(
           List(
-            "authorEmail" -> value.authorEmail.fold(NullValue: Value)(value =>
+            "authorEmail" -> value.authorEmail.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "base" -> implicitly[ArgEncoder[String]].encode(value.base),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "commitMessage" -> value.commitMessage.fold(NullValue: Value)(value =>
+            "commitMessage" -> value.commitMessage.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "head"         -> implicitly[ArgEncoder[String]].encode(value.head),
@@ -38492,25 +38527,25 @@ either curated or that have been selected automatically based on popularity.
   )
   object MergePullRequestInput {
     implicit val encoder: ArgEncoder[MergePullRequestInput] = new ArgEncoder[MergePullRequestInput] {
-      override def encode(value: MergePullRequestInput): Value =
-        ObjectValue(
+      override def encode(value: MergePullRequestInput): __Value =
+        __ObjectValue(
           List(
-            "authorEmail" -> value.authorEmail.fold(NullValue: Value)(value =>
+            "authorEmail" -> value.authorEmail.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "commitBody" -> value.commitBody.fold(NullValue: Value)(value =>
+            "commitBody" -> value.commitBody.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "commitHeadline" -> value.commitHeadline.fold(NullValue: Value)(value =>
+            "commitHeadline" -> value.commitHeadline.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "expectedHeadOid" -> value.expectedHeadOid.fold(NullValue: Value)(value =>
+            "expectedHeadOid" -> value.expectedHeadOid.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[GitObjectID]].encode(value)
             ),
-            "mergeMethod" -> value.mergeMethod.fold(NullValue: Value)(value =>
+            "mergeMethod" -> value.mergeMethod.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PullRequestMergeMethod]].encode(value)
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId)
@@ -38522,8 +38557,8 @@ either curated or that have been selected automatically based on popularity.
   case class MilestoneOrder(direction: OrderDirection, field: MilestoneOrderField)
   object MilestoneOrder {
     implicit val encoder: ArgEncoder[MilestoneOrder] = new ArgEncoder[MilestoneOrder] {
-      override def encode(value: MilestoneOrder): Value =
-        ObjectValue(
+      override def encode(value: MilestoneOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[MilestoneOrderField]].encode(value.field)
@@ -38539,11 +38574,11 @@ either curated or that have been selected automatically based on popularity.
   )
   object MinimizeCommentInput {
     implicit val encoder: ArgEncoder[MinimizeCommentInput] = new ArgEncoder[MinimizeCommentInput] {
-      override def encode(value: MinimizeCommentInput): Value =
-        ObjectValue(
+      override def encode(value: MinimizeCommentInput): __Value =
+        __ObjectValue(
           List(
             "classifier" -> implicitly[ArgEncoder[ReportedContentClassifiers]].encode(value.classifier),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "subjectId" -> implicitly[ArgEncoder[String]].encode(value.subjectId)
@@ -38560,14 +38595,14 @@ either curated or that have been selected automatically based on popularity.
   )
   object MoveProjectCardInput {
     implicit val encoder: ArgEncoder[MoveProjectCardInput] = new ArgEncoder[MoveProjectCardInput] {
-      override def encode(value: MoveProjectCardInput): Value =
-        ObjectValue(
+      override def encode(value: MoveProjectCardInput): __Value =
+        __ObjectValue(
           List(
-            "afterCardId" -> value.afterCardId.fold(NullValue: Value)(value =>
+            "afterCardId" -> value.afterCardId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "cardId" -> implicitly[ArgEncoder[String]].encode(value.cardId),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "columnId" -> implicitly[ArgEncoder[String]].encode(value.columnId)
@@ -38583,13 +38618,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object MoveProjectColumnInput {
     implicit val encoder: ArgEncoder[MoveProjectColumnInput] = new ArgEncoder[MoveProjectColumnInput] {
-      override def encode(value: MoveProjectColumnInput): Value =
-        ObjectValue(
+      override def encode(value: MoveProjectColumnInput): __Value =
+        __ObjectValue(
           List(
-            "afterColumnId" -> value.afterColumnId.fold(NullValue: Value)(value =>
+            "afterColumnId" -> value.afterColumnId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "columnId" -> implicitly[ArgEncoder[String]].encode(value.columnId)
@@ -38601,8 +38636,8 @@ either curated or that have been selected automatically based on popularity.
   case class OrganizationOrder(direction: OrderDirection, field: OrganizationOrderField)
   object OrganizationOrder {
     implicit val encoder: ArgEncoder[OrganizationOrder] = new ArgEncoder[OrganizationOrder] {
-      override def encode(value: OrganizationOrder): Value =
-        ObjectValue(
+      override def encode(value: OrganizationOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[OrganizationOrderField]].encode(value.field)
@@ -38614,13 +38649,13 @@ either curated or that have been selected automatically based on popularity.
   case class PackageFileOrder(direction: Option[OrderDirection] = None, field: Option[PackageFileOrderField] = None)
   object PackageFileOrder {
     implicit val encoder: ArgEncoder[PackageFileOrder] = new ArgEncoder[PackageFileOrder] {
-      override def encode(value: PackageFileOrder): Value =
-        ObjectValue(
+      override def encode(value: PackageFileOrder): __Value =
+        __ObjectValue(
           List(
-            "direction" -> value.direction.fold(NullValue: Value)(value =>
+            "direction" -> value.direction.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[OrderDirection]].encode(value)
             ),
-            "field" -> value.field.fold(NullValue: Value)(value =>
+            "field" -> value.field.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PackageFileOrderField]].encode(value)
             )
           )
@@ -38631,13 +38666,13 @@ either curated or that have been selected automatically based on popularity.
   case class PackageOrder(direction: Option[OrderDirection] = None, field: Option[PackageOrderField] = None)
   object PackageOrder {
     implicit val encoder: ArgEncoder[PackageOrder] = new ArgEncoder[PackageOrder] {
-      override def encode(value: PackageOrder): Value =
-        ObjectValue(
+      override def encode(value: PackageOrder): __Value =
+        __ObjectValue(
           List(
-            "direction" -> value.direction.fold(NullValue: Value)(value =>
+            "direction" -> value.direction.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[OrderDirection]].encode(value)
             ),
-            "field" -> value.field.fold(NullValue: Value)(value =>
+            "field" -> value.field.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PackageOrderField]].encode(value)
             )
           )
@@ -38651,13 +38686,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object PackageVersionOrder {
     implicit val encoder: ArgEncoder[PackageVersionOrder] = new ArgEncoder[PackageVersionOrder] {
-      override def encode(value: PackageVersionOrder): Value =
-        ObjectValue(
+      override def encode(value: PackageVersionOrder): __Value =
+        __ObjectValue(
           List(
-            "direction" -> value.direction.fold(NullValue: Value)(value =>
+            "direction" -> value.direction.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[OrderDirection]].encode(value)
             ),
-            "field" -> value.field.fold(NullValue: Value)(value =>
+            "field" -> value.field.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PackageVersionOrderField]].encode(value)
             )
           )
@@ -38668,10 +38703,10 @@ either curated or that have been selected automatically based on popularity.
   case class PinIssueInput(clientMutationId: Option[String] = None, issueId: String)
   object PinIssueInput {
     implicit val encoder: ArgEncoder[PinIssueInput] = new ArgEncoder[PinIssueInput] {
-      override def encode(value: PinIssueInput): Value =
-        ObjectValue(
+      override def encode(value: PinIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId" -> implicitly[ArgEncoder[String]].encode(value.issueId)
@@ -38683,8 +38718,8 @@ either curated or that have been selected automatically based on popularity.
   case class ProjectCardImport(number: Int, repository: String)
   object ProjectCardImport {
     implicit val encoder: ArgEncoder[ProjectCardImport] = new ArgEncoder[ProjectCardImport] {
-      override def encode(value: ProjectCardImport): Value =
-        ObjectValue(
+      override def encode(value: ProjectCardImport): __Value =
+        __ObjectValue(
           List(
             "number"     -> implicitly[ArgEncoder[Int]].encode(value.number),
             "repository" -> implicitly[ArgEncoder[String]].encode(value.repository)
@@ -38696,12 +38731,12 @@ either curated or that have been selected automatically based on popularity.
   case class ProjectColumnImport(columnName: String, issues: Option[List[ProjectCardImport]] = None, position: Int)
   object ProjectColumnImport {
     implicit val encoder: ArgEncoder[ProjectColumnImport] = new ArgEncoder[ProjectColumnImport] {
-      override def encode(value: ProjectColumnImport): Value =
-        ObjectValue(
+      override def encode(value: ProjectColumnImport): __Value =
+        __ObjectValue(
           List(
             "columnName" -> implicitly[ArgEncoder[String]].encode(value.columnName),
-            "issues" -> value.issues.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[ProjectCardImport]].encode(value)))
+            "issues" -> value.issues.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[ProjectCardImport]].encode(value)))
             ),
             "position" -> implicitly[ArgEncoder[Int]].encode(value.position)
           )
@@ -38712,8 +38747,8 @@ either curated or that have been selected automatically based on popularity.
   case class ProjectOrder(direction: OrderDirection, field: ProjectOrderField)
   object ProjectOrder {
     implicit val encoder: ArgEncoder[ProjectOrder] = new ArgEncoder[ProjectOrder] {
-      override def encode(value: ProjectOrder): Value =
-        ObjectValue(
+      override def encode(value: ProjectOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[ProjectOrderField]].encode(value.field)
@@ -38725,8 +38760,8 @@ either curated or that have been selected automatically based on popularity.
   case class PullRequestOrder(direction: OrderDirection, field: PullRequestOrderField)
   object PullRequestOrder {
     implicit val encoder: ArgEncoder[PullRequestOrder] = new ArgEncoder[PullRequestOrder] {
-      override def encode(value: PullRequestOrder): Value =
-        ObjectValue(
+      override def encode(value: PullRequestOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[PullRequestOrderField]].encode(value.field)
@@ -38738,8 +38773,8 @@ either curated or that have been selected automatically based on popularity.
   case class ReactionOrder(direction: OrderDirection, field: ReactionOrderField)
   object ReactionOrder {
     implicit val encoder: ArgEncoder[ReactionOrder] = new ArgEncoder[ReactionOrder] {
-      override def encode(value: ReactionOrder): Value =
-        ObjectValue(
+      override def encode(value: ReactionOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[ReactionOrderField]].encode(value.field)
@@ -38751,8 +38786,8 @@ either curated or that have been selected automatically based on popularity.
   case class RefOrder(direction: OrderDirection, field: RefOrderField)
   object RefOrder {
     implicit val encoder: ArgEncoder[RefOrder] = new ArgEncoder[RefOrder] {
-      override def encode(value: RefOrder): Value =
-        ObjectValue(
+      override def encode(value: RefOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[RefOrderField]].encode(value.field)
@@ -38769,14 +38804,14 @@ either curated or that have been selected automatically based on popularity.
   )
   object RefUpdate {
     implicit val encoder: ArgEncoder[RefUpdate] = new ArgEncoder[RefUpdate] {
-      override def encode(value: RefUpdate): Value =
-        ObjectValue(
+      override def encode(value: RefUpdate): __Value =
+        __ObjectValue(
           List(
             "afterOid" -> implicitly[ArgEncoder[GitObjectID]].encode(value.afterOid),
-            "beforeOid" -> value.beforeOid.fold(NullValue: Value)(value =>
+            "beforeOid" -> value.beforeOid.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[GitObjectID]].encode(value)
             ),
-            "force" -> value.force.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "force" -> value.force.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
             "name"  -> implicitly[ArgEncoder[GitRefname]].encode(value.name)
           )
         )
@@ -38790,10 +38825,10 @@ either curated or that have been selected automatically based on popularity.
   object RegenerateEnterpriseIdentityProviderRecoveryCodesInput {
     implicit val encoder: ArgEncoder[RegenerateEnterpriseIdentityProviderRecoveryCodesInput] =
       new ArgEncoder[RegenerateEnterpriseIdentityProviderRecoveryCodesInput] {
-        override def encode(value: RegenerateEnterpriseIdentityProviderRecoveryCodesInput): Value =
-          ObjectValue(
+        override def encode(value: RegenerateEnterpriseIdentityProviderRecoveryCodesInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId)
@@ -38805,8 +38840,8 @@ either curated or that have been selected automatically based on popularity.
   case class ReleaseOrder(direction: OrderDirection, field: ReleaseOrderField)
   object ReleaseOrder {
     implicit val encoder: ArgEncoder[ReleaseOrder] = new ArgEncoder[ReleaseOrder] {
-      override def encode(value: ReleaseOrder): Value =
-        ObjectValue(
+      override def encode(value: ReleaseOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[ReleaseOrderField]].encode(value.field)
@@ -38823,12 +38858,14 @@ either curated or that have been selected automatically based on popularity.
   object RemoveAssigneesFromAssignableInput {
     implicit val encoder: ArgEncoder[RemoveAssigneesFromAssignableInput] =
       new ArgEncoder[RemoveAssigneesFromAssignableInput] {
-        override def encode(value: RemoveAssigneesFromAssignableInput): Value =
-          ObjectValue(
+        override def encode(value: RemoveAssigneesFromAssignableInput): __Value =
+          __ObjectValue(
             List(
               "assignableId" -> implicitly[ArgEncoder[String]].encode(value.assignableId),
-              "assigneeIds"  -> ListValue(value.assigneeIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "assigneeIds" -> __ListValue(
+                value.assigneeIds.map(value => implicitly[ArgEncoder[String]].encode(value))
+              ),
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               )
             )
@@ -38839,10 +38876,10 @@ either curated or that have been selected automatically based on popularity.
   case class RemoveEnterpriseAdminInput(clientMutationId: Option[String] = None, enterpriseId: String, login: String)
   object RemoveEnterpriseAdminInput {
     implicit val encoder: ArgEncoder[RemoveEnterpriseAdminInput] = new ArgEncoder[RemoveEnterpriseAdminInput] {
-      override def encode(value: RemoveEnterpriseAdminInput): Value =
-        ObjectValue(
+      override def encode(value: RemoveEnterpriseAdminInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -38856,10 +38893,10 @@ either curated or that have been selected automatically based on popularity.
   object RemoveEnterpriseIdentityProviderInput {
     implicit val encoder: ArgEncoder[RemoveEnterpriseIdentityProviderInput] =
       new ArgEncoder[RemoveEnterpriseIdentityProviderInput] {
-        override def encode(value: RemoveEnterpriseIdentityProviderInput): Value =
-          ObjectValue(
+        override def encode(value: RemoveEnterpriseIdentityProviderInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId)
@@ -38876,10 +38913,10 @@ either curated or that have been selected automatically based on popularity.
   object RemoveEnterpriseOrganizationInput {
     implicit val encoder: ArgEncoder[RemoveEnterpriseOrganizationInput] =
       new ArgEncoder[RemoveEnterpriseOrganizationInput] {
-        override def encode(value: RemoveEnterpriseOrganizationInput): Value =
-          ObjectValue(
+        override def encode(value: RemoveEnterpriseOrganizationInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId"   -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -38896,13 +38933,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object RemoveLabelsFromLabelableInput {
     implicit val encoder: ArgEncoder[RemoveLabelsFromLabelableInput] = new ArgEncoder[RemoveLabelsFromLabelableInput] {
-      override def encode(value: RemoveLabelsFromLabelableInput): Value =
-        ObjectValue(
+      override def encode(value: RemoveLabelsFromLabelableInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "labelIds"    -> ListValue(value.labelIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
+            "labelIds"    -> __ListValue(value.labelIds.map(value => implicitly[ArgEncoder[String]].encode(value))),
             "labelableId" -> implicitly[ArgEncoder[String]].encode(value.labelableId)
           )
         )
@@ -38916,10 +38953,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object RemoveOutsideCollaboratorInput {
     implicit val encoder: ArgEncoder[RemoveOutsideCollaboratorInput] = new ArgEncoder[RemoveOutsideCollaboratorInput] {
-      override def encode(value: RemoveOutsideCollaboratorInput): Value =
-        ObjectValue(
+      override def encode(value: RemoveOutsideCollaboratorInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "organizationId" -> implicitly[ArgEncoder[String]].encode(value.organizationId),
@@ -38932,10 +38969,10 @@ either curated or that have been selected automatically based on popularity.
   case class RemoveReactionInput(clientMutationId: Option[String] = None, content: ReactionContent, subjectId: String)
   object RemoveReactionInput {
     implicit val encoder: ArgEncoder[RemoveReactionInput] = new ArgEncoder[RemoveReactionInput] {
-      override def encode(value: RemoveReactionInput): Value =
-        ObjectValue(
+      override def encode(value: RemoveReactionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "content"   -> implicitly[ArgEncoder[ReactionContent]].encode(value.content),
@@ -38948,10 +38985,10 @@ either curated or that have been selected automatically based on popularity.
   case class RemoveStarInput(clientMutationId: Option[String] = None, starrableId: String)
   object RemoveStarInput {
     implicit val encoder: ArgEncoder[RemoveStarInput] = new ArgEncoder[RemoveStarInput] {
-      override def encode(value: RemoveStarInput): Value =
-        ObjectValue(
+      override def encode(value: RemoveStarInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "starrableId" -> implicitly[ArgEncoder[String]].encode(value.starrableId)
@@ -38963,10 +39000,10 @@ either curated or that have been selected automatically based on popularity.
   case class ReopenIssueInput(clientMutationId: Option[String] = None, issueId: String)
   object ReopenIssueInput {
     implicit val encoder: ArgEncoder[ReopenIssueInput] = new ArgEncoder[ReopenIssueInput] {
-      override def encode(value: ReopenIssueInput): Value =
-        ObjectValue(
+      override def encode(value: ReopenIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId" -> implicitly[ArgEncoder[String]].encode(value.issueId)
@@ -38978,10 +39015,10 @@ either curated or that have been selected automatically based on popularity.
   case class ReopenPullRequestInput(clientMutationId: Option[String] = None, pullRequestId: String)
   object ReopenPullRequestInput {
     implicit val encoder: ArgEncoder[ReopenPullRequestInput] = new ArgEncoder[ReopenPullRequestInput] {
-      override def encode(value: ReopenPullRequestInput): Value =
-        ObjectValue(
+      override def encode(value: ReopenPullRequestInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId)
@@ -38993,8 +39030,8 @@ either curated or that have been selected automatically based on popularity.
   case class RepositoryInvitationOrder(direction: OrderDirection, field: RepositoryInvitationOrderField)
   object RepositoryInvitationOrder {
     implicit val encoder: ArgEncoder[RepositoryInvitationOrder] = new ArgEncoder[RepositoryInvitationOrder] {
-      override def encode(value: RepositoryInvitationOrder): Value =
-        ObjectValue(
+      override def encode(value: RepositoryInvitationOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[RepositoryInvitationOrderField]].encode(value.field)
@@ -39006,8 +39043,8 @@ either curated or that have been selected automatically based on popularity.
   case class RepositoryOrder(direction: OrderDirection, field: RepositoryOrderField)
   object RepositoryOrder {
     implicit val encoder: ArgEncoder[RepositoryOrder] = new ArgEncoder[RepositoryOrder] {
-      override def encode(value: RepositoryOrder): Value =
-        ObjectValue(
+      override def encode(value: RepositoryOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[RepositoryOrderField]].encode(value.field)
@@ -39025,19 +39062,19 @@ either curated or that have been selected automatically based on popularity.
   )
   object RequestReviewsInput {
     implicit val encoder: ArgEncoder[RequestReviewsInput] = new ArgEncoder[RequestReviewsInput] {
-      override def encode(value: RequestReviewsInput): Value =
-        ObjectValue(
+      override def encode(value: RequestReviewsInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId),
-            "teamIds" -> value.teamIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "teamIds" -> value.teamIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "union" -> value.union.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
-            "userIds" -> value.userIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "union" -> value.union.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "userIds" -> value.userIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             )
           )
         )
@@ -39051,11 +39088,11 @@ either curated or that have been selected automatically based on popularity.
   )
   object RerequestCheckSuiteInput {
     implicit val encoder: ArgEncoder[RerequestCheckSuiteInput] = new ArgEncoder[RerequestCheckSuiteInput] {
-      override def encode(value: RerequestCheckSuiteInput): Value =
-        ObjectValue(
+      override def encode(value: RerequestCheckSuiteInput): __Value =
+        __ObjectValue(
           List(
             "checkSuiteId" -> implicitly[ArgEncoder[String]].encode(value.checkSuiteId),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId)
@@ -39067,10 +39104,10 @@ either curated or that have been selected automatically based on popularity.
   case class ResolveReviewThreadInput(clientMutationId: Option[String] = None, threadId: String)
   object ResolveReviewThreadInput {
     implicit val encoder: ArgEncoder[ResolveReviewThreadInput] = new ArgEncoder[ResolveReviewThreadInput] {
-      override def encode(value: ResolveReviewThreadInput): Value =
-        ObjectValue(
+      override def encode(value: ResolveReviewThreadInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "threadId" -> implicitly[ArgEncoder[String]].encode(value.threadId)
@@ -39082,8 +39119,8 @@ either curated or that have been selected automatically based on popularity.
   case class SavedReplyOrder(direction: OrderDirection, field: SavedReplyOrderField)
   object SavedReplyOrder {
     implicit val encoder: ArgEncoder[SavedReplyOrder] = new ArgEncoder[SavedReplyOrder] {
-      override def encode(value: SavedReplyOrder): Value =
-        ObjectValue(
+      override def encode(value: SavedReplyOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[SavedReplyOrderField]].encode(value.field)
@@ -39096,8 +39133,8 @@ either curated or that have been selected automatically based on popularity.
   object SecurityAdvisoryIdentifierFilter {
     implicit val encoder: ArgEncoder[SecurityAdvisoryIdentifierFilter] =
       new ArgEncoder[SecurityAdvisoryIdentifierFilter] {
-        override def encode(value: SecurityAdvisoryIdentifierFilter): Value =
-          ObjectValue(
+        override def encode(value: SecurityAdvisoryIdentifierFilter): __Value =
+          __ObjectValue(
             List(
               "type"  -> implicitly[ArgEncoder[SecurityAdvisoryIdentifierType]].encode(value.`type`),
               "value" -> implicitly[ArgEncoder[String]].encode(value.value)
@@ -39109,8 +39146,8 @@ either curated or that have been selected automatically based on popularity.
   case class SecurityAdvisoryOrder(direction: OrderDirection, field: SecurityAdvisoryOrderField)
   object SecurityAdvisoryOrder {
     implicit val encoder: ArgEncoder[SecurityAdvisoryOrder] = new ArgEncoder[SecurityAdvisoryOrder] {
-      override def encode(value: SecurityAdvisoryOrder): Value =
-        ObjectValue(
+      override def encode(value: SecurityAdvisoryOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[SecurityAdvisoryOrderField]].encode(value.field)
@@ -39122,8 +39159,8 @@ either curated or that have been selected automatically based on popularity.
   case class SecurityVulnerabilityOrder(direction: OrderDirection, field: SecurityVulnerabilityOrderField)
   object SecurityVulnerabilityOrder {
     implicit val encoder: ArgEncoder[SecurityVulnerabilityOrder] = new ArgEncoder[SecurityVulnerabilityOrder] {
-      override def encode(value: SecurityVulnerabilityOrder): Value =
-        ObjectValue(
+      override def encode(value: SecurityVulnerabilityOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[SecurityVulnerabilityOrderField]].encode(value.field)
@@ -39144,16 +39181,17 @@ either curated or that have been selected automatically based on popularity.
   object SetEnterpriseIdentityProviderInput {
     implicit val encoder: ArgEncoder[SetEnterpriseIdentityProviderInput] =
       new ArgEncoder[SetEnterpriseIdentityProviderInput] {
-        override def encode(value: SetEnterpriseIdentityProviderInput): Value =
-          ObjectValue(
+        override def encode(value: SetEnterpriseIdentityProviderInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "digestMethod"    -> implicitly[ArgEncoder[SamlDigestAlgorithm]].encode(value.digestMethod),
-              "enterpriseId"    -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
-              "idpCertificate"  -> implicitly[ArgEncoder[String]].encode(value.idpCertificate),
-              "issuer"          -> value.issuer.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+              "digestMethod"   -> implicitly[ArgEncoder[SamlDigestAlgorithm]].encode(value.digestMethod),
+              "enterpriseId"   -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
+              "idpCertificate" -> implicitly[ArgEncoder[String]].encode(value.idpCertificate),
+              "issuer" -> value.issuer
+                .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
               "signatureMethod" -> implicitly[ArgEncoder[SamlSignatureAlgorithm]].encode(value.signatureMethod),
               "ssoUrl"          -> implicitly[ArgEncoder[URI]].encode(value.ssoUrl)
             )
@@ -39164,8 +39202,8 @@ either curated or that have been selected automatically based on popularity.
   case class SponsorsTierOrder(direction: OrderDirection, field: SponsorsTierOrderField)
   object SponsorsTierOrder {
     implicit val encoder: ArgEncoder[SponsorsTierOrder] = new ArgEncoder[SponsorsTierOrder] {
-      override def encode(value: SponsorsTierOrder): Value =
-        ObjectValue(
+      override def encode(value: SponsorsTierOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[SponsorsTierOrderField]].encode(value.field)
@@ -39177,8 +39215,8 @@ either curated or that have been selected automatically based on popularity.
   case class SponsorshipOrder(direction: OrderDirection, field: SponsorshipOrderField)
   object SponsorshipOrder {
     implicit val encoder: ArgEncoder[SponsorshipOrder] = new ArgEncoder[SponsorshipOrder] {
-      override def encode(value: SponsorshipOrder): Value =
-        ObjectValue(
+      override def encode(value: SponsorshipOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[SponsorshipOrderField]].encode(value.field)
@@ -39190,8 +39228,8 @@ either curated or that have been selected automatically based on popularity.
   case class StarOrder(direction: OrderDirection, field: StarOrderField)
   object StarOrder {
     implicit val encoder: ArgEncoder[StarOrder] = new ArgEncoder[StarOrder] {
-      override def encode(value: StarOrder): Value =
-        ObjectValue(
+      override def encode(value: StarOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[StarOrderField]].encode(value.field)
@@ -39209,18 +39247,18 @@ either curated or that have been selected automatically based on popularity.
   )
   object SubmitPullRequestReviewInput {
     implicit val encoder: ArgEncoder[SubmitPullRequestReviewInput] = new ArgEncoder[SubmitPullRequestReviewInput] {
-      override def encode(value: SubmitPullRequestReviewInput): Value =
-        ObjectValue(
+      override def encode(value: SubmitPullRequestReviewInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "event" -> implicitly[ArgEncoder[PullRequestReviewEvent]].encode(value.event),
-            "pullRequestId" -> value.pullRequestId.fold(NullValue: Value)(value =>
+            "pullRequestId" -> value.pullRequestId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "pullRequestReviewId" -> value.pullRequestReviewId.fold(NullValue: Value)(value =>
+            "pullRequestReviewId" -> value.pullRequestReviewId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             )
           )
@@ -39231,8 +39269,8 @@ either curated or that have been selected automatically based on popularity.
   case class TeamDiscussionCommentOrder(direction: OrderDirection, field: TeamDiscussionCommentOrderField)
   object TeamDiscussionCommentOrder {
     implicit val encoder: ArgEncoder[TeamDiscussionCommentOrder] = new ArgEncoder[TeamDiscussionCommentOrder] {
-      override def encode(value: TeamDiscussionCommentOrder): Value =
-        ObjectValue(
+      override def encode(value: TeamDiscussionCommentOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[TeamDiscussionCommentOrderField]].encode(value.field)
@@ -39244,8 +39282,8 @@ either curated or that have been selected automatically based on popularity.
   case class TeamDiscussionOrder(direction: OrderDirection, field: TeamDiscussionOrderField)
   object TeamDiscussionOrder {
     implicit val encoder: ArgEncoder[TeamDiscussionOrder] = new ArgEncoder[TeamDiscussionOrder] {
-      override def encode(value: TeamDiscussionOrder): Value =
-        ObjectValue(
+      override def encode(value: TeamDiscussionOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[TeamDiscussionOrderField]].encode(value.field)
@@ -39257,8 +39295,8 @@ either curated or that have been selected automatically based on popularity.
   case class TeamMemberOrder(direction: OrderDirection, field: TeamMemberOrderField)
   object TeamMemberOrder {
     implicit val encoder: ArgEncoder[TeamMemberOrder] = new ArgEncoder[TeamMemberOrder] {
-      override def encode(value: TeamMemberOrder): Value =
-        ObjectValue(
+      override def encode(value: TeamMemberOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[TeamMemberOrderField]].encode(value.field)
@@ -39270,8 +39308,8 @@ either curated or that have been selected automatically based on popularity.
   case class TeamOrder(direction: OrderDirection, field: TeamOrderField)
   object TeamOrder {
     implicit val encoder: ArgEncoder[TeamOrder] = new ArgEncoder[TeamOrder] {
-      override def encode(value: TeamOrder): Value =
-        ObjectValue(
+      override def encode(value: TeamOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[TeamOrderField]].encode(value.field)
@@ -39283,8 +39321,8 @@ either curated or that have been selected automatically based on popularity.
   case class TeamRepositoryOrder(direction: OrderDirection, field: TeamRepositoryOrderField)
   object TeamRepositoryOrder {
     implicit val encoder: ArgEncoder[TeamRepositoryOrder] = new ArgEncoder[TeamRepositoryOrder] {
-      override def encode(value: TeamRepositoryOrder): Value =
-        ObjectValue(
+      override def encode(value: TeamRepositoryOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[TeamRepositoryOrderField]].encode(value.field)
@@ -39296,10 +39334,10 @@ either curated or that have been selected automatically based on popularity.
   case class TransferIssueInput(clientMutationId: Option[String] = None, issueId: String, repositoryId: String)
   object TransferIssueInput {
     implicit val encoder: ArgEncoder[TransferIssueInput] = new ArgEncoder[TransferIssueInput] {
-      override def encode(value: TransferIssueInput): Value =
-        ObjectValue(
+      override def encode(value: TransferIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId"      -> implicitly[ArgEncoder[String]].encode(value.issueId),
@@ -39312,10 +39350,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnarchiveRepositoryInput(clientMutationId: Option[String] = None, repositoryId: String)
   object UnarchiveRepositoryInput {
     implicit val encoder: ArgEncoder[UnarchiveRepositoryInput] = new ArgEncoder[UnarchiveRepositoryInput] {
-      override def encode(value: UnarchiveRepositoryInput): Value =
-        ObjectValue(
+      override def encode(value: UnarchiveRepositoryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId)
@@ -39327,10 +39365,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnfollowUserInput(clientMutationId: Option[String] = None, userId: String)
   object UnfollowUserInput {
     implicit val encoder: ArgEncoder[UnfollowUserInput] = new ArgEncoder[UnfollowUserInput] {
-      override def encode(value: UnfollowUserInput): Value =
-        ObjectValue(
+      override def encode(value: UnfollowUserInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "userId" -> implicitly[ArgEncoder[String]].encode(value.userId)
@@ -39347,10 +39385,10 @@ either curated or that have been selected automatically based on popularity.
   object UnlinkRepositoryFromProjectInput {
     implicit val encoder: ArgEncoder[UnlinkRepositoryFromProjectInput] =
       new ArgEncoder[UnlinkRepositoryFromProjectInput] {
-        override def encode(value: UnlinkRepositoryFromProjectInput): Value =
-          ObjectValue(
+        override def encode(value: UnlinkRepositoryFromProjectInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "projectId"    -> implicitly[ArgEncoder[String]].encode(value.projectId),
@@ -39363,10 +39401,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnlockLockableInput(clientMutationId: Option[String] = None, lockableId: String)
   object UnlockLockableInput {
     implicit val encoder: ArgEncoder[UnlockLockableInput] = new ArgEncoder[UnlockLockableInput] {
-      override def encode(value: UnlockLockableInput): Value =
-        ObjectValue(
+      override def encode(value: UnlockLockableInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "lockableId" -> implicitly[ArgEncoder[String]].encode(value.lockableId)
@@ -39378,10 +39416,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnmarkFileAsViewedInput(clientMutationId: Option[String] = None, path: String, pullRequestId: String)
   object UnmarkFileAsViewedInput {
     implicit val encoder: ArgEncoder[UnmarkFileAsViewedInput] = new ArgEncoder[UnmarkFileAsViewedInput] {
-      override def encode(value: UnmarkFileAsViewedInput): Value =
-        ObjectValue(
+      override def encode(value: UnmarkFileAsViewedInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "path"          -> implicitly[ArgEncoder[String]].encode(value.path),
@@ -39398,11 +39436,11 @@ either curated or that have been selected automatically based on popularity.
   )
   object UnmarkIssueAsDuplicateInput {
     implicit val encoder: ArgEncoder[UnmarkIssueAsDuplicateInput] = new ArgEncoder[UnmarkIssueAsDuplicateInput] {
-      override def encode(value: UnmarkIssueAsDuplicateInput): Value =
-        ObjectValue(
+      override def encode(value: UnmarkIssueAsDuplicateInput): __Value =
+        __ObjectValue(
           List(
             "canonicalId" -> implicitly[ArgEncoder[String]].encode(value.canonicalId),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "duplicateId" -> implicitly[ArgEncoder[String]].encode(value.duplicateId)
@@ -39414,10 +39452,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnminimizeCommentInput(clientMutationId: Option[String] = None, subjectId: String)
   object UnminimizeCommentInput {
     implicit val encoder: ArgEncoder[UnminimizeCommentInput] = new ArgEncoder[UnminimizeCommentInput] {
-      override def encode(value: UnminimizeCommentInput): Value =
-        ObjectValue(
+      override def encode(value: UnminimizeCommentInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "subjectId" -> implicitly[ArgEncoder[String]].encode(value.subjectId)
@@ -39429,10 +39467,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnpinIssueInput(clientMutationId: Option[String] = None, issueId: String)
   object UnpinIssueInput {
     implicit val encoder: ArgEncoder[UnpinIssueInput] = new ArgEncoder[UnpinIssueInput] {
-      override def encode(value: UnpinIssueInput): Value =
-        ObjectValue(
+      override def encode(value: UnpinIssueInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "issueId" -> implicitly[ArgEncoder[String]].encode(value.issueId)
@@ -39444,10 +39482,10 @@ either curated or that have been selected automatically based on popularity.
   case class UnresolveReviewThreadInput(clientMutationId: Option[String] = None, threadId: String)
   object UnresolveReviewThreadInput {
     implicit val encoder: ArgEncoder[UnresolveReviewThreadInput] = new ArgEncoder[UnresolveReviewThreadInput] {
-      override def encode(value: UnresolveReviewThreadInput): Value =
-        ObjectValue(
+      override def encode(value: UnresolveReviewThreadInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "threadId" -> implicitly[ArgEncoder[String]].encode(value.threadId)
@@ -39477,52 +39515,54 @@ either curated or that have been selected automatically based on popularity.
   object UpdateBranchProtectionRuleInput {
     implicit val encoder: ArgEncoder[UpdateBranchProtectionRuleInput] =
       new ArgEncoder[UpdateBranchProtectionRuleInput] {
-        override def encode(value: UpdateBranchProtectionRuleInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateBranchProtectionRuleInput): __Value =
+          __ObjectValue(
             List(
               "branchProtectionRuleId" -> implicitly[ArgEncoder[String]].encode(value.branchProtectionRuleId),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "dismissesStaleReviews" -> value.dismissesStaleReviews.fold(NullValue: Value)(value =>
+              "dismissesStaleReviews" -> value.dismissesStaleReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "isAdminEnforced" -> value.isAdminEnforced.fold(NullValue: Value)(value =>
+              "isAdminEnforced" -> value.isAdminEnforced.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "pattern" -> value.pattern.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-              "pushActorIds" -> value.pushActorIds.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "pattern" -> value.pattern.fold(__NullValue: __Value)(value =>
+                implicitly[ArgEncoder[String]].encode(value)
               ),
-              "requiredApprovingReviewCount" -> value.requiredApprovingReviewCount.fold(NullValue: Value)(value =>
+              "pushActorIds" -> value.pushActorIds.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              ),
+              "requiredApprovingReviewCount" -> value.requiredApprovingReviewCount.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Int]].encode(value)
               ),
-              "requiredStatusCheckContexts" -> value.requiredStatusCheckContexts.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "requiredStatusCheckContexts" -> value.requiredStatusCheckContexts.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               ),
-              "requiresApprovingReviews" -> value.requiresApprovingReviews.fold(NullValue: Value)(value =>
+              "requiresApprovingReviews" -> value.requiresApprovingReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresCodeOwnerReviews" -> value.requiresCodeOwnerReviews.fold(NullValue: Value)(value =>
+              "requiresCodeOwnerReviews" -> value.requiresCodeOwnerReviews.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresCommitSignatures" -> value.requiresCommitSignatures.fold(NullValue: Value)(value =>
+              "requiresCommitSignatures" -> value.requiresCommitSignatures.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresStatusChecks" -> value.requiresStatusChecks.fold(NullValue: Value)(value =>
+              "requiresStatusChecks" -> value.requiresStatusChecks.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "requiresStrictStatusChecks" -> value.requiresStrictStatusChecks.fold(NullValue: Value)(value =>
+              "requiresStrictStatusChecks" -> value.requiresStrictStatusChecks.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "restrictsPushes" -> value.restrictsPushes.fold(NullValue: Value)(value =>
+              "restrictsPushes" -> value.restrictsPushes.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "restrictsReviewDismissals" -> value.restrictsReviewDismissals.fold(NullValue: Value)(value =>
+              "restrictsReviewDismissals" -> value.restrictsReviewDismissals.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "reviewDismissalActorIds" -> value.reviewDismissalActorIds.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "reviewDismissalActorIds" -> value.reviewDismissalActorIds.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               )
             )
           )
@@ -39545,35 +39585,37 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateCheckRunInput {
     implicit val encoder: ArgEncoder[UpdateCheckRunInput] = new ArgEncoder[UpdateCheckRunInput] {
-      override def encode(value: UpdateCheckRunInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateCheckRunInput): __Value =
+        __ObjectValue(
           List(
-            "actions" -> value.actions.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[CheckRunAction]].encode(value)))
+            "actions" -> value.actions.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[CheckRunAction]].encode(value)))
             ),
             "checkRunId" -> implicitly[ArgEncoder[String]].encode(value.checkRunId),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "completedAt" -> value.completedAt.fold(NullValue: Value)(value =>
+            "completedAt" -> value.completedAt.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DateTime]].encode(value)
             ),
-            "conclusion" -> value.conclusion.fold(NullValue: Value)(value =>
+            "conclusion" -> value.conclusion.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckConclusionState]].encode(value)
             ),
-            "detailsUrl" -> value.detailsUrl.fold(NullValue: Value)(value => implicitly[ArgEncoder[URI]].encode(value)),
-            "externalId" -> value.externalId.fold(NullValue: Value)(value =>
+            "detailsUrl" -> value.detailsUrl.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[URI]].encode(value)
+            ),
+            "externalId" -> value.externalId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "name" -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "output" -> value.output.fold(NullValue: Value)(value =>
+            "name" -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "output" -> value.output.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[CheckRunOutput]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-            "startedAt" -> value.startedAt.fold(NullValue: Value)(value =>
+            "startedAt" -> value.startedAt.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[DateTime]].encode(value)
             ),
-            "status" -> value.status.fold(NullValue: Value)(value =>
+            "status" -> value.status.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[RequestableCheckStatusState]].encode(value)
             )
           )
@@ -39589,15 +39631,15 @@ either curated or that have been selected automatically based on popularity.
   object UpdateCheckSuitePreferencesInput {
     implicit val encoder: ArgEncoder[UpdateCheckSuitePreferencesInput] =
       new ArgEncoder[UpdateCheckSuitePreferencesInput] {
-        override def encode(value: UpdateCheckSuitePreferencesInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateCheckSuitePreferencesInput): __Value =
+          __ObjectValue(
             List(
-              "autoTriggerPreferences" -> ListValue(
+              "autoTriggerPreferences" -> __ListValue(
                 value.autoTriggerPreferences.map(value =>
                   implicitly[ArgEncoder[CheckSuiteAutoTriggerPreference]].encode(value)
                 )
               ),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId)
@@ -39615,10 +39657,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseAdministratorRoleInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseAdministratorRoleInput] =
       new ArgEncoder[UpdateEnterpriseAdministratorRoleInput] {
-        override def encode(value: UpdateEnterpriseAdministratorRoleInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseAdministratorRoleInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39637,10 +39679,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput] =
       new ArgEncoder[UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput] {
-        override def encode(value: UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseAllowPrivateRepositoryForkingSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39658,10 +39700,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseDefaultRepositoryPermissionSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseDefaultRepositoryPermissionSettingInput] =
       new ArgEncoder[UpdateEnterpriseDefaultRepositoryPermissionSettingInput] {
-        override def encode(value: UpdateEnterpriseDefaultRepositoryPermissionSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseDefaultRepositoryPermissionSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39680,10 +39722,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanChangeRepositoryVisibilitySettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39705,22 +39747,22 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanCreateRepositoriesSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanCreateRepositoriesSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanCreateRepositoriesSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanCreateRepositoriesSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanCreateRepositoriesSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
               "membersCanCreateInternalRepositories" -> value.membersCanCreateInternalRepositories
-                .fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+                .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
               "membersCanCreatePrivateRepositories" -> value.membersCanCreatePrivateRepositories
-                .fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+                .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
               "membersCanCreatePublicRepositories" -> value.membersCanCreatePublicRepositories
-                .fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+                .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
               "membersCanCreateRepositoriesPolicyEnabled" -> value.membersCanCreateRepositoriesPolicyEnabled
-                .fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
-              "settingValue" -> value.settingValue.fold(NullValue: Value)(value =>
+                .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+              "settingValue" -> value.settingValue.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[EnterpriseMembersCanCreateRepositoriesSettingValue]].encode(value)
               )
             )
@@ -39736,10 +39778,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanDeleteIssuesSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanDeleteIssuesSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanDeleteIssuesSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanDeleteIssuesSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanDeleteIssuesSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39757,10 +39799,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanDeleteRepositoriesSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39778,10 +39820,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanInviteCollaboratorsSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39799,10 +39841,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanMakePurchasesSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanMakePurchasesSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanMakePurchasesSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanMakePurchasesSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanMakePurchasesSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39821,10 +39863,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanUpdateProtectedBranchesSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39842,10 +39884,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput] =
       new ArgEncoder[UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput] {
-        override def encode(value: UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseMembersCanViewDependencyInsightsSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39863,10 +39905,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseOrganizationProjectsSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseOrganizationProjectsSettingInput] =
       new ArgEncoder[UpdateEnterpriseOrganizationProjectsSettingInput] {
-        override def encode(value: UpdateEnterpriseOrganizationProjectsSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseOrganizationProjectsSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39886,19 +39928,21 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateEnterpriseProfileInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseProfileInput] = new ArgEncoder[UpdateEnterpriseProfileInput] {
-      override def encode(value: UpdateEnterpriseProfileInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateEnterpriseProfileInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
-            "location"     -> value.location.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "name"         -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "websiteUrl" -> value.websiteUrl.fold(NullValue: Value)(value =>
+            "location" -> value.location.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[String]].encode(value)
+            ),
+            "name" -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "websiteUrl" -> value.websiteUrl.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             )
           )
@@ -39914,10 +39958,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseRepositoryProjectsSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseRepositoryProjectsSettingInput] =
       new ArgEncoder[UpdateEnterpriseRepositoryProjectsSettingInput] {
-        override def encode(value: UpdateEnterpriseRepositoryProjectsSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseRepositoryProjectsSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39935,10 +39979,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseTeamDiscussionsSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseTeamDiscussionsSettingInput] =
       new ArgEncoder[UpdateEnterpriseTeamDiscussionsSettingInput] {
-        override def encode(value: UpdateEnterpriseTeamDiscussionsSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseTeamDiscussionsSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39956,10 +40000,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput {
     implicit val encoder: ArgEncoder[UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput] =
       new ArgEncoder[UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput] {
-        override def encode(value: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateEnterpriseTwoFactorAuthenticationRequiredSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enterpriseId" -> implicitly[ArgEncoder[String]].encode(value.enterpriseId),
@@ -39977,10 +40021,10 @@ either curated or that have been selected automatically based on popularity.
   object UpdateIpAllowListEnabledSettingInput {
     implicit val encoder: ArgEncoder[UpdateIpAllowListEnabledSettingInput] =
       new ArgEncoder[UpdateIpAllowListEnabledSettingInput] {
-        override def encode(value: UpdateIpAllowListEnabledSettingInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateIpAllowListEnabledSettingInput): __Value =
+          __ObjectValue(
             List(
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "ownerId"      -> implicitly[ArgEncoder[String]].encode(value.ownerId),
@@ -39999,16 +40043,16 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateIpAllowListEntryInput {
     implicit val encoder: ArgEncoder[UpdateIpAllowListEntryInput] = new ArgEncoder[UpdateIpAllowListEntryInput] {
-      override def encode(value: UpdateIpAllowListEntryInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateIpAllowListEntryInput): __Value =
+        __ObjectValue(
           List(
             "allowListValue" -> implicitly[ArgEncoder[String]].encode(value.allowListValue),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "ipAllowListEntryId" -> implicitly[ArgEncoder[String]].encode(value.ipAllowListEntryId),
             "isActive"           -> implicitly[ArgEncoder[Boolean]].encode(value.isActive),
-            "name"               -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "name"               -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "UpdateIpAllowListEntryInput"
@@ -40017,11 +40061,11 @@ either curated or that have been selected automatically based on popularity.
   case class UpdateIssueCommentInput(body: String, clientMutationId: Option[String] = None, id: String)
   object UpdateIssueCommentInput {
     implicit val encoder: ArgEncoder[UpdateIssueCommentInput] = new ArgEncoder[UpdateIssueCommentInput] {
-      override def encode(value: UpdateIssueCommentInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateIssueCommentInput): __Value =
+        __ObjectValue(
           List(
             "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -40043,28 +40087,29 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateIssueInput {
     implicit val encoder: ArgEncoder[UpdateIssueInput] = new ArgEncoder[UpdateIssueInput] {
-      override def encode(value: UpdateIssueInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateIssueInput): __Value =
+        __ObjectValue(
           List(
-            "assigneeIds" -> value.assigneeIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "assigneeIds" -> value.assigneeIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id" -> implicitly[ArgEncoder[String]].encode(value.id),
-            "labelIds" -> value.labelIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "labelIds" -> value.labelIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "milestoneId" -> value.milestoneId.fold(NullValue: Value)(value =>
+            "milestoneId" -> value.milestoneId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "projectIds" -> value.projectIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "projectIds" -> value.projectIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "state" -> value.state.fold(NullValue: Value)(value => implicitly[ArgEncoder[IssueState]].encode(value)),
-            "title" -> value.title.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "state" -> value.state
+              .fold(__NullValue: __Value)(value => implicitly[ArgEncoder[IssueState]].encode(value)),
+            "title" -> value.title.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "UpdateIssueInput"
@@ -40079,18 +40124,18 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateLabelInput {
     implicit val encoder: ArgEncoder[UpdateLabelInput] = new ArgEncoder[UpdateLabelInput] {
-      override def encode(value: UpdateLabelInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateLabelInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "color" -> value.color.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "color" -> value.color.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id"   -> implicitly[ArgEncoder[String]].encode(value.id),
-            "name" -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "name" -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "UpdateLabelInput"
@@ -40104,16 +40149,16 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateProjectCardInput {
     implicit val encoder: ArgEncoder[UpdateProjectCardInput] = new ArgEncoder[UpdateProjectCardInput] {
-      override def encode(value: UpdateProjectCardInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateProjectCardInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "isArchived" -> value.isArchived.fold(NullValue: Value)(value =>
+            "isArchived" -> value.isArchived.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "note"          -> value.note.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "note"          -> value.note.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "projectCardId" -> implicitly[ArgEncoder[String]].encode(value.projectCardId)
           )
         )
@@ -40123,10 +40168,10 @@ either curated or that have been selected automatically based on popularity.
   case class UpdateProjectColumnInput(clientMutationId: Option[String] = None, name: String, projectColumnId: String)
   object UpdateProjectColumnInput {
     implicit val encoder: ArgEncoder[UpdateProjectColumnInput] = new ArgEncoder[UpdateProjectColumnInput] {
-      override def encode(value: UpdateProjectColumnInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateProjectColumnInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "name"            -> implicitly[ArgEncoder[String]].encode(value.name),
@@ -40146,17 +40191,19 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateProjectInput {
     implicit val encoder: ArgEncoder[UpdateProjectInput] = new ArgEncoder[UpdateProjectInput] {
-      override def encode(value: UpdateProjectInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateProjectInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "name"      -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "name"      -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "projectId" -> implicitly[ArgEncoder[String]].encode(value.projectId),
-            "public"    -> value.public.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
-            "state"     -> value.state.fold(NullValue: Value)(value => implicitly[ArgEncoder[ProjectState]].encode(value))
+            "public"    -> value.public.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "state" -> value.state.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[ProjectState]].encode(value)
+            )
           )
         )
       override def typeName: String = "UpdateProjectInput"
@@ -40177,36 +40224,36 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdatePullRequestInput {
     implicit val encoder: ArgEncoder[UpdatePullRequestInput] = new ArgEncoder[UpdatePullRequestInput] {
-      override def encode(value: UpdatePullRequestInput): Value =
-        ObjectValue(
+      override def encode(value: UpdatePullRequestInput): __Value =
+        __ObjectValue(
           List(
-            "assigneeIds" -> value.assigneeIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "assigneeIds" -> value.assigneeIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "baseRefName" -> value.baseRefName.fold(NullValue: Value)(value =>
+            "baseRefName" -> value.baseRefName.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "labelIds" -> value.labelIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "labelIds" -> value.labelIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
-            "maintainerCanModify" -> value.maintainerCanModify.fold(NullValue: Value)(value =>
+            "maintainerCanModify" -> value.maintainerCanModify.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "milestoneId" -> value.milestoneId.fold(NullValue: Value)(value =>
+            "milestoneId" -> value.milestoneId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "projectIds" -> value.projectIds.fold(NullValue: Value)(value =>
-              ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "projectIds" -> value.projectIds.fold(__NullValue: __Value)(value =>
+              __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
             ),
             "pullRequestId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestId),
-            "state" -> value.state.fold(NullValue: Value)(value =>
+            "state" -> value.state.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[PullRequestUpdateState]].encode(value)
             ),
-            "title" -> value.title.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "title" -> value.title.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "UpdatePullRequestInput"
@@ -40220,11 +40267,11 @@ either curated or that have been selected automatically based on popularity.
   object UpdatePullRequestReviewCommentInput {
     implicit val encoder: ArgEncoder[UpdatePullRequestReviewCommentInput] =
       new ArgEncoder[UpdatePullRequestReviewCommentInput] {
-        override def encode(value: UpdatePullRequestReviewCommentInput): Value =
-          ObjectValue(
+        override def encode(value: UpdatePullRequestReviewCommentInput): __Value =
+          __ObjectValue(
             List(
               "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "pullRequestReviewCommentId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestReviewCommentId)
@@ -40240,11 +40287,11 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdatePullRequestReviewInput {
     implicit val encoder: ArgEncoder[UpdatePullRequestReviewInput] = new ArgEncoder[UpdatePullRequestReviewInput] {
-      override def encode(value: UpdatePullRequestReviewInput): Value =
-        ObjectValue(
+      override def encode(value: UpdatePullRequestReviewInput): __Value =
+        __ObjectValue(
           List(
             "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "pullRequestReviewId" -> implicitly[ArgEncoder[String]].encode(value.pullRequestReviewId)
@@ -40261,13 +40308,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateRefInput {
     implicit val encoder: ArgEncoder[UpdateRefInput] = new ArgEncoder[UpdateRefInput] {
-      override def encode(value: UpdateRefInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateRefInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "force" -> value.force.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "force" -> value.force.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
             "oid"   -> implicitly[ArgEncoder[GitObjectID]].encode(value.oid),
             "refId" -> implicitly[ArgEncoder[String]].encode(value.refId)
           )
@@ -40282,13 +40329,13 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateRefsInput {
     implicit val encoder: ArgEncoder[UpdateRefsInput] = new ArgEncoder[UpdateRefsInput] {
-      override def encode(value: UpdateRefsInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateRefsInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "refUpdates"   -> ListValue(value.refUpdates.map(value => implicitly[ArgEncoder[RefUpdate]].encode(value))),
+            "refUpdates"   -> __ListValue(value.refUpdates.map(value => implicitly[ArgEncoder[RefUpdate]].encode(value))),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId)
           )
         )
@@ -40308,30 +40355,32 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateRepositoryInput {
     implicit val encoder: ArgEncoder[UpdateRepositoryInput] = new ArgEncoder[UpdateRepositoryInput] {
-      override def encode(value: UpdateRepositoryInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateRepositoryInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "description" -> value.description.fold(NullValue: Value)(value =>
+            "description" -> value.description.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "hasIssuesEnabled" -> value.hasIssuesEnabled.fold(NullValue: Value)(value =>
+            "hasIssuesEnabled" -> value.hasIssuesEnabled.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "hasProjectsEnabled" -> value.hasProjectsEnabled.fold(NullValue: Value)(value =>
+            "hasProjectsEnabled" -> value.hasProjectsEnabled.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "hasWikiEnabled" -> value.hasWikiEnabled.fold(NullValue: Value)(value =>
+            "hasWikiEnabled" -> value.hasWikiEnabled.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[Boolean]].encode(value)
             ),
-            "homepageUrl" -> value.homepageUrl.fold(NullValue: Value)(value =>
+            "homepageUrl" -> value.homepageUrl.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[URI]].encode(value)
             ),
-            "name"         -> value.name.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "name"         -> value.name.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-            "template"     -> value.template.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value))
+            "template" -> value.template.fold(__NullValue: __Value)(value =>
+              implicitly[ArgEncoder[Boolean]].encode(value)
+            )
           )
         )
       override def typeName: String = "UpdateRepositoryInput"
@@ -40344,10 +40393,10 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateSubscriptionInput {
     implicit val encoder: ArgEncoder[UpdateSubscriptionInput] = new ArgEncoder[UpdateSubscriptionInput] {
-      override def encode(value: UpdateSubscriptionInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateSubscriptionInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "state"          -> implicitly[ArgEncoder[SubscriptionState]].encode(value.state),
@@ -40366,14 +40415,14 @@ either curated or that have been selected automatically based on popularity.
   object UpdateTeamDiscussionCommentInput {
     implicit val encoder: ArgEncoder[UpdateTeamDiscussionCommentInput] =
       new ArgEncoder[UpdateTeamDiscussionCommentInput] {
-        override def encode(value: UpdateTeamDiscussionCommentInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateTeamDiscussionCommentInput): __Value =
+          __ObjectValue(
             List(
               "body" -> implicitly[ArgEncoder[String]].encode(value.body),
-              "bodyVersion" -> value.bodyVersion.fold(NullValue: Value)(value =>
+              "bodyVersion" -> value.bodyVersion.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "id" -> implicitly[ArgEncoder[String]].encode(value.id)
@@ -40392,19 +40441,19 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateTeamDiscussionInput {
     implicit val encoder: ArgEncoder[UpdateTeamDiscussionInput] = new ArgEncoder[UpdateTeamDiscussionInput] {
-      override def encode(value: UpdateTeamDiscussionInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateTeamDiscussionInput): __Value =
+        __ObjectValue(
           List(
-            "body" -> value.body.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value)),
-            "bodyVersion" -> value.bodyVersion.fold(NullValue: Value)(value =>
+            "body" -> value.body.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value)),
+            "bodyVersion" -> value.bodyVersion.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "id"     -> implicitly[ArgEncoder[String]].encode(value.id),
-            "pinned" -> value.pinned.fold(NullValue: Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
-            "title"  -> value.title.fold(NullValue: Value)(value => implicitly[ArgEncoder[String]].encode(value))
+            "pinned" -> value.pinned.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[Boolean]].encode(value)),
+            "title"  -> value.title.fold(__NullValue: __Value)(value => implicitly[ArgEncoder[String]].encode(value))
           )
         )
       override def typeName: String = "UpdateTeamDiscussionInput"
@@ -40422,24 +40471,24 @@ either curated or that have been selected automatically based on popularity.
   object UpdateTeamReviewAssignmentInput {
     implicit val encoder: ArgEncoder[UpdateTeamReviewAssignmentInput] =
       new ArgEncoder[UpdateTeamReviewAssignmentInput] {
-        override def encode(value: UpdateTeamReviewAssignmentInput): Value =
-          ObjectValue(
+        override def encode(value: UpdateTeamReviewAssignmentInput): __Value =
+          __ObjectValue(
             List(
-              "algorithm" -> value.algorithm.fold(NullValue: Value)(value =>
+              "algorithm" -> value.algorithm.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[TeamReviewAssignmentAlgorithm]].encode(value)
               ),
-              "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+              "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[String]].encode(value)
               ),
               "enabled" -> implicitly[ArgEncoder[Boolean]].encode(value.enabled),
-              "excludedTeamMemberIds" -> value.excludedTeamMemberIds.fold(NullValue: Value)(value =>
-                ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
+              "excludedTeamMemberIds" -> value.excludedTeamMemberIds.fold(__NullValue: __Value)(value =>
+                __ListValue(value.map(value => implicitly[ArgEncoder[String]].encode(value)))
               ),
               "id" -> implicitly[ArgEncoder[String]].encode(value.id),
-              "notifyTeam" -> value.notifyTeam.fold(NullValue: Value)(value =>
+              "notifyTeam" -> value.notifyTeam.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Boolean]].encode(value)
               ),
-              "teamMemberCount" -> value.teamMemberCount.fold(NullValue: Value)(value =>
+              "teamMemberCount" -> value.teamMemberCount.fold(__NullValue: __Value)(value =>
                 implicitly[ArgEncoder[Int]].encode(value)
               )
             )
@@ -40454,14 +40503,14 @@ either curated or that have been selected automatically based on popularity.
   )
   object UpdateTopicsInput {
     implicit val encoder: ArgEncoder[UpdateTopicsInput] = new ArgEncoder[UpdateTopicsInput] {
-      override def encode(value: UpdateTopicsInput): Value =
-        ObjectValue(
+      override def encode(value: UpdateTopicsInput): __Value =
+        __ObjectValue(
           List(
-            "clientMutationId" -> value.clientMutationId.fold(NullValue: Value)(value =>
+            "clientMutationId" -> value.clientMutationId.fold(__NullValue: __Value)(value =>
               implicitly[ArgEncoder[String]].encode(value)
             ),
             "repositoryId" -> implicitly[ArgEncoder[String]].encode(value.repositoryId),
-            "topicNames"   -> ListValue(value.topicNames.map(value => implicitly[ArgEncoder[String]].encode(value)))
+            "topicNames"   -> __ListValue(value.topicNames.map(value => implicitly[ArgEncoder[String]].encode(value)))
           )
         )
       override def typeName: String = "UpdateTopicsInput"
@@ -40470,8 +40519,8 @@ either curated or that have been selected automatically based on popularity.
   case class UserStatusOrder(direction: OrderDirection, field: UserStatusOrderField)
   object UserStatusOrder {
     implicit val encoder: ArgEncoder[UserStatusOrder] = new ArgEncoder[UserStatusOrder] {
-      override def encode(value: UserStatusOrder): Value =
-        ObjectValue(
+      override def encode(value: UserStatusOrder): __Value =
+        __ObjectValue(
           List(
             "direction" -> implicitly[ArgEncoder[OrderDirection]].encode(value.direction),
             "field"     -> implicitly[ArgEncoder[UserStatusOrderField]].encode(value.field)
@@ -42902,4 +42951,3 @@ for the given reference will be allowed.
   }
 
 }
-
