@@ -2,4 +2,6 @@ GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
 
 // GitHub personal access token
 // https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line
-GITHUB_OAUTH_TOKEN = "0d46a91ec914903d25925324167100b6bf477d76"
+GITHUB_OAUTH_TOKEN = ""
+
+MONGODB_URL = "mongodb://localhost"
